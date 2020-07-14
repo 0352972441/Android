@@ -8,8 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="CustomTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimaryDark">#00FFF0</item>
-        <item name="colorPrimary">#00FFFF</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
         <item name="colorAccent">#FF0000</item>
         <item name="android:textColor">#FF92</item>
         <item name="android:textSize">20dp</item>
