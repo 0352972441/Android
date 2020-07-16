@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Watch</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="reset">Reset</string>
+    <string-array name="arr">
+        <item>One</item>
+    </string-array>
+</resources>

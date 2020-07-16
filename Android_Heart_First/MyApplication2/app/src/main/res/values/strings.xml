@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="home">HOME</string>
+    <string name="COPYRIGHT">COPYRIGHT</string>
+    <string name="author">AUTHOR</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="name">
+        <item>USA</item>
+        <item>TOKYO</item>
+        <item>CALIFORNIA</item>
+        <item>FRANCE</item>
+        <item>USA</item>
+        <item>TOKYO</item>
+        <item>CALIFORNIA</item>
+        <item>FRANCE</item>
+    </string-array>
+
+    <string-array name="title">
+        <item>USA</item>
+        <item>TOKYO</item>
+        <item>CALIFORNIA</item>
+        <item>FRANCE</item>
+        <item>THAIlAND</item>
+        <item>MYANMA</item>
+        <item>LAO</item>
+        <item>CANADA</item>
+    </string-array>
+</resources>

@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">OverLoading</string>
+    <string name="Add">Add</string>
+    <string name="sell">Sell</string>
+    <string name="button">Comfirm</string>
+    <string name="address">Address</string>
+    <string name="store">Store</string>
+    <string name="menu">Menu</string>
+    <string name="hint">Type a message</string>
+    <string name="to">To:</string>
+    <string name="send">SEND</string>
+    <string name="share">Share</string>
+    <string name="detail">Detail</string>
+    <string name="address_detail">Address Detail</string>
+    <string name="start">START</string>
+    <string name="stop">STOP</string>
+    <string name="reset">RESET</string>
+    <string name="clock">Clock</string>
+
+    <string-array name="option">
+        <item>USA</item>
+        <item>TOKYO</item>
+        <item>FRANCE</item>
+    </string-array>
+
+    <string-array name="array">
+        <item>Address</item>
+        <item>Store</item>
+        <item>Menu</item>
+    </string-array>
+</resources>

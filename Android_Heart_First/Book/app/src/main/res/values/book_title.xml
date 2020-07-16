@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="batman">Bat Man</string>
+    <string name="enemy">Enemy</string>
+    <string name="zero">Zero</string>
+    <string name="scherlock">Scherlock Kholmes</string>
+    <string name="alldoom">Next Life All Doom </string>
+    <string name="sauquay">Đằng sau quay</string>
+    <string name="titan">Attack of Titan</string>
+    <string name="theory">Game Theory</string>
+    <string name="spirit">Spirit Chronicles</string>
+    <string name="question">10 Question Brain</string>
+    <string name="abraham">Abraham</string>
+    <string name="getguy">Get Guy</string>
+    <string name="MBA">MBA</string>
+    <string name="sonic">Sonic</string>
+    <string name="soul">Soul Slient</string>
+    <string name="walking">Walking Dead</string>
+    <string name="java">Java Beginner</string>
+    <string name="minicraft">MiniCraft</string>
+    <string name="unexpexted">Unexpected</string>
+    <string name="tracy">Tracy</string>
+
+</resources>

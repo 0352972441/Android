@@ -1,0 +1,114 @@
+<resources>
+    <string name="app_name">MySwipe</string>
+    <string name="home_tab">Home</string>
+    <string name="pizza_tab">Pizzas</string>
+    <string name="pasta_tab">Pasta</string>
+    <string name="store_tab">Stores</string>
+    <string name="address">Address</string>
+    <string name="order_name_hint">Please enter your name</string>
+    <string name="order_details_hint">Please enter your order</string>
+    <string name="restaurant_image">image Restaurant</string>
+    <string name="company_name">Ocaler</string>
+    <string name="home_text">Since we opened our doors in 2017, Bits and Pizzas
+     has built its reputation as one of America’s best Italian-Digital
+     restaurants. Some people believe eating out is about being with your
+     friends and family. We believe that good food is best enjoyed while
+     staring at your phone.</string>
+
+    <string name="Context">Since we opened our doors in 2017, Bits and Pizzas
+     has built its reputation as one of America’s best Italian-Digital
+     restaurants. Some people believe eating out is about being with your
+     friends and family. We believe that good food is best enjoyed while
+     staring at your phone.Since we opened our doors in 2017, Bits and Pizzas
+     has built its reputation as one of America’s best Italian-Digital
+     restaurants. Some people believe eating out is about being with your
+     friends and family. We believe that good food is best enjoyed while
+     staring at your phone.Since we opened our doors in 2017, Bits and Pizzas
+     has built its reputation as one of America’s best Italian-Digital
+     restaurants. Some people believe eating out is about being with your
+     friends and family. We believe that good food is best enjoyed while
+     staring at your phone.Since we opened our doors in 2017, Bits and Pizzas
+     has built its reputation as one of America’s best Italian-Digital
+     restaurants. Some people believe eating out is about being with your
+     friends and family. We believe that good food is best enjoyed while
+     staring at your phone.Since we opened our doors in 2017, Bits and Pizzas
+     has built its reputation as one of America’s best Italian-Digital
+     restaurants. Some people believe eating out is about being with your
+     friends and family. We believe that good food is best enjoyed while
+     staring at your phone.Since we opened our doors in 2017, Bits and Pizzas
+     has built its reputation as one of America’s best Italian-Digital
+     restaurants. Some people believe eating out is about being with your
+     friends and family. We believe that good food is best enjoyed while
+     staring at your phone.Since we opened our doors in 2017, Bits and Pizzas
+     has built its reputation as one of America’s best Italian-Digital
+     restaurants. Some people believe eating out is about being with your
+     friends and family. We believe that good food is best enjoyed while
+     staring at your phone.Since we opened our doors in 2017, Bits and Pizzas
+     has built its reputation as one of America’s best Italian-Digital
+     restaurants. Some people believe eating out is about being with your
+     friends and family. We believe that good food is best enjoyed while
+     staring at your phone.Since we opened our doors in 2017, Bits and Pizzas
+     has built its reputation as one of America’s best Italian-Digital
+     restaurants. Some people believe eating out is about being with your
+     friends and family. We believe that good food is best enjoyed while
+     staring at your phone.Since we opened our doors in 2017, Bits and Pizzas
+     has built its reputation as one of America’s best Italian-Digital
+     restaurants. Some people believe eating out is about being with your
+     friends and family. We believe that good food is best enjoyed while
+     staring at your phone.Since we opened our doors in 2017, Bits and Pizzas
+     has built its reputation as one of America’s best Italian-Digital
+     restaurants. Some people believe eating out is about being with your
+     friends and family. We believe that good food is best enjoyed while
+     staring at your phone.Since we opened our doors in 2017, Bits and Pizzas
+     has built its reputation as one of America’s best Italian-Digital
+     restaurants. Some people believe eating out is about being with your
+     friends and family. We believe that good food is best enjoyed while
+     staring at your phone.Since we opened our doors in 2017, Bits and Pizzas
+     has built its reputation as one of America’s best Italian-Digital
+     restaurants. Some people believe eating out is about being with your
+     friends and family. We believe that good food is best enjoyed while
+     staring at your phone.Since we opened our doors in 2017, Bits and Pizzas
+     has built its reputation as one of America’s best Italian-Digital
+     restaurants. Some people believe eating out is about being with your
+     friends and family. We believe that good food is best enjoyed while
+     staring at your phone.Since we opened our doors in 2017, Bits and Pizzas
+     has built its reputation as one of America’s best Italian-Digital
+     restaurants. Some people believe eating out is about being with your
+     friends and family. We believe that good food is best enjoyed while
+     staring at your phone.Since we opened our doors in 2017, Bits and Pizzas
+     has built its reputation as one of America’s best Italian-Digital
+     restaurants. Some people believe eating out is about being with your
+     friends and family. We believe that good food is best enjoyed while
+     staring at your phone.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="top_fragment">Top Fragment</string>
+    <string-array name="array_address">
+        <item>Chicago</item>
+        <item>California</item>
+        <item>Chicago</item>
+        <item>California</item>
+        <item>Chicago</item>
+        <item>California</item>
+    </string-array>
+
+    <string-array name="array_pizza">
+        <item>Divagory</item>
+        <item>Angerle</item>
+    </string-array>
+
+    <string-array name="array_pasta">
+        <item>Maloca</item>
+        <item>Justico</item>
+    </string-array>
+
+    <string-array name="array_store">
+        <item>France</item>
+        <item>Cambiger</item>
+    </string-array>
+
+    <string name="title">ADD</string>
+    <string name="share">SHARE</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

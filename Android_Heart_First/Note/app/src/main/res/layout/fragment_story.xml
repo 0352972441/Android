@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/layoutStory"
+    android:layout_height="match_parent"
+    tools:context=".ActivityFragment.StoryFragment">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ActivityFragment.StoryFragment">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <!-- TODO: Update blank fragment layout -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/chap1"
+                android:textColor="@color/textSelected"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:text="@string/chracterOne" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/content1"
+                android:paddingLeft="5dp"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:text="@string/chap1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/chap2"
+                android:textColor="@color/textSelected"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:text="@string/chracterTwo" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/content2"
+                android:textStyle="bold"
+                android:paddingLeft="5dp"
+                android:textSize="15sp"
+                android:text="@string/chap2" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/favorite"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/unlike"
+        android:layout_gravity="end|bottom"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

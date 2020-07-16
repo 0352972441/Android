@@ -1,0 +1,31 @@
+<resources>
+    <string name="hint">Enter a title</string>
+    <string name="ok">OK</string>
+    <string name="app_name">Note</string>
+    <string name="today">TODAY</string>
+    <string name="hot">HOT</string>
+    <string name="week">WEEK</string>
+    <string-array name="array">
+        <item>Cha giầu cha nghèo</item>
+        <item>Mật mã Vinki</item>
+        <item>Làm ít được nhiều</item>
+        <item>Tôi tài giỏi bạn cũng thế</item>
+        <item>Kheo ăn khéo nói có cả thiên hạ</item>
+        <item>Đánh thức bản lĩnh phi thường trong bạn</item>
+        <item>Nghệ thuật bắt tay</item>
+        <item>Dấu ấn rồng</item>
+        <item>OnePunch Man</item>
+        <item>Người nhện</item>
+        <item>Worl Man</item>
+        <item>Thế giới chật</item>
+        <item>Làm 8 được 10</item>
+        <item>Thế giới phẳng</item>
+        <item>Chuyến bay kỳ lạ</item>
+        <item>Nha giả kim</item>
+        <item>Đi về phương nam</item>
+        <item>Nghệ thuật học tiếng anh</item>
+        <item>Hoa hồng vúkiz</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
