@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:title="@string/comic"
+            android:icon="@drawable/comics"
+            android:id="@+id/nav_comic"/>
+        <item android:title="@string/romantic"
+            android:icon="@drawable/romantic"
+            android:id="@+id/nav_romantic"/>
+        <item android:title="@string/detective"
+            android:icon="@drawable/detective"
+            android:id="@+id/nav_detective"/>
+        <item android:title="@string/developer"
+            android:icon="@drawable/developer"
+            android:id="@+id/nav_developer"/>
+    </group>
+    <item android:title="Suport">
+        <menu>
+            <item android:title="@string/feedback"
+                android:icon="@android:drawable/ic_menu_edit"
+                android:id="@+id/nav_feedback"/>
+            <item android:title="@string/help"
+                android:id="@+id/nav_help"
+                android:icon="@android:drawable/ic_menu_help"/>
+            <item android:title="@string/info"
+                android:id="@+id/nav_info"
+                android:icon="@android:drawable/ic_menu_info_details"/>
+        </menu>
+    </item>
+</menu>

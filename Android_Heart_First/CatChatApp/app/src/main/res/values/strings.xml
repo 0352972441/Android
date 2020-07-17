@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">CatChat App</string>
+    <string name="user_name">spot@catchat.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="nav_inbox">Mesagez</string>
+    <string name="nav_drafts">Draftz</string>
+    <string name="nav_sent">Sent mesagez</string>
+    <string name="nav_trash">In da trash</string>
+    <string name="nav_support">Support</string>
+    <string name="nav_help">Halp</string>
+    <string name="nav_feedback">Giv us feedback</string>
+
+    <string name="open">Opening drawer</string>
+    <string name="close">Closing drawer</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="inbox">Inbox message</string>
+    <string name="message">Message</string>
+    <string name="edit">Edit message</string>
+    <string name="help">Help message</string>
+    <string name="delete">Delete</string>
+</resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:rowCount="4"
+    android:columnCount="2"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:text="@string/doyouspeakenglish"
+        android:tag="doyouspeakenglish"
+        android:onClick="playphrases"
+        android:id="@+id/button1"/>
+
+    <Button
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:text="@string/goodevening"
+        android:tag="goodevening"
+        android:onClick="playphrases"
+        android:id="@+id/button2"/>
+
+    <Button
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:text="@string/hello"
+        android:tag="hello"
+        android:onClick="playphrases"
+        android:id="@+id/button3"/>
+
+    <Button
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:text="@string/howareyou"
+        android:tag="howareyou"
+        android:onClick="playphrases"
+        android:id="@+id/button4"/>
+
+    <Button
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:text="@string/ilivein"
+        android:tag="ilivein"
+        android:onClick="playphrases"
+        android:id="@+id/button5"/>
+
+    <Button
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:text="@string/mynameis"
+        android:tag="mynameis"
+        android:onClick="playphrases"
+        android:id="@+id/button6"/>
+
+    <Button
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:text="@string/please"
+        android:tag="please"
+        android:onClick="playphrases"
+        android:id="@+id/button7"/>
+
+    <Button
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:text="@string/welcome"
+        android:tag="welcome"
+        android:onClick="playphrases"
+        android:id="@+id/button8"/>
+
+
+
+</GridLayout>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Practices</string>
+    <string name="hot">HOT</string>
+    <string name="cold">Cold</string>
+    <string name="surger">Surger</string>
+    <string name="milk">Milk</string>
+    <string name="lemon">Lemon</string>
+    <string name="text">How do you like tea serves?</string>
+</resources>
