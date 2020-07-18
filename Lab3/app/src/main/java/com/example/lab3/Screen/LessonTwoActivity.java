@@ -25,28 +25,28 @@ public class LessonTwoActivity extends AppCompatActivity {
     }
 
     private void createSimpleSpinnerView(){
-//        String[] fromData = {"country", "icon"};
-//        int[] toData = {R.id.country, R.id.icon};
-//
-//        SimpleAdapter adapter = new SimpleAdapter(this, createDataList(), R.layout.custom_view_item_spinner, fromData, toData);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Custom_BaseAdapter_ListView adapter = new Custom_BaseAdapter_ListView(this, createListData());
+        String[] fromData = {"provider", "icon"};
+        int[] toData = {R.id.provider, R.id.icon};
+
+        SimpleAdapter adapter = new SimpleAdapter(this, createDataSpinner(), R.layout.custom_view_item_spinner, fromData, toData);
+        /*adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Custom_BaseAdapter_ListView adapter = new Custom_BaseAdapter_ListView(this, createListData());*/
         mSpinnerItem.setAdapter(adapter);
     }
 
-    private List<HashMap<String, Object>> createDataList(){
+    private List<HashMap<String, Object>> createDataSpinner(){
         List<HashMap<String , Object>> data = new ArrayList<>();
         HashMap<String , Object> dataItem1 = new HashMap<>();
-        dataItem1.put("country","Facebook");
+        dataItem1.put("provider","Facebook");
         dataItem1.put("icon", R.drawable.facebook);
         HashMap<String , Object> dataItem2 = new HashMap<>();
-        dataItem2.put("country","Firefox");
+        dataItem2.put("provider","Firefox");
         dataItem2.put("icon", R.drawable.firefox);
         HashMap<String , Object> dataItem3 = new HashMap<>();
-        dataItem3.put("country","Chrome");
+        dataItem3.put("provider","Chrome");
         dataItem3.put("icon",  R.drawable.chrome);
         HashMap<String , Object> dataItem4 = new HashMap<>();
-        dataItem4.put("country","Microsoft");
+        dataItem4.put("provider","Microsoft");
         dataItem4.put("icon", R.drawable.microsoft);
         data.add(dataItem1);
         data.add(dataItem2);
