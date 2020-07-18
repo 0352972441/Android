@@ -42,6 +42,16 @@ public class LessonFourActivity extends AppCompatActivity {
         data.add(new Actor("Firefox",  R.drawable.firefox));
         data.add(new Actor("Chrome",  R.drawable.chrome));
         data.add(new Actor("Microsoft",  R.drawable.microsoft));
+        data.add(new Actor("Apple",  R.drawable.apple));
+        data.add(new Actor("Hp",  R.drawable.hp));
+        data.add(new Actor("Blogger",  R.drawable.blogger));
+        data.add(new Actor("Android",  R.drawable.android));
+        data.add(new Actor("Kimsibeun",  R.drawable.kimsoeun));
+        data.add(new Actor("Kimnajoo",  R.drawable.kimnamjoo));
+        data.add(new Actor("Hancock",  R.drawable.hancock));
+        data.add(new Actor("Kimsoeeun",  R.drawable.kimsoeun));
+        data.add(new Actor("Kimtaehee",  R.drawable.kimtaehee));
+        data.add(new Actor("Apple",  R.drawable.apple));
         data.add(new Actor("Dell",  R.drawable.dell));
         return data;
     }
