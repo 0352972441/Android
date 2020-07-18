@@ -3,8 +3,11 @@ package com.example.lab3.Screen;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.example.lab3.CustomListView.Custom_Base_GridView;
 import com.example.lab3.Models.Provider;
@@ -25,8 +28,15 @@ public class LessonThreeActivity extends AppCompatActivity {
     }
 
     private void createListGridView(){
-        Custom_Base_GridView base_gridView = new Custom_Base_GridView(this, createListData());
+        final ArrayList<Provider> data = createListData();
+        Custom_Base_GridView base_gridView = new Custom_Base_GridView(this, data);
         mGridItem.setAdapter(base_gridView);
+        mGridItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(LessonThreeActivity.this, "On click "+data.get(position).getName(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private ArrayList createListData(){
