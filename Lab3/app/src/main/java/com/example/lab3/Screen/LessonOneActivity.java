@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class LessonOneActivity extends AppCompatActivity {
     ListView mListItem;
@@ -33,6 +34,10 @@ public class LessonOneActivity extends AppCompatActivity {
         data.add(createDataList("One65", 21, R.drawable.one65));
         SimpleAdapter adapter = new SimpleAdapter(this, data, R.layout.custom_view, fromData, toData);
         mListItem.setAdapter(adapter);
+//        HashMap<String , Object> itemOne = new HashMap<>();
+//        itemOne.put("name", "Toán");
+//        data.add(itemOne);
+//        System.out.println(itemOne.get("name"));
     }
 
     private HashMap createDataList(String name, int age, int image){
