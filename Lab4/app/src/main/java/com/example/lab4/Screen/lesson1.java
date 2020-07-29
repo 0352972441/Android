@@ -16,7 +16,7 @@ public class lesson1 extends AppCompatActivity {
         setContentView(R.layout.activity_lesson1);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setLogo(R.drawable.dog);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
     }

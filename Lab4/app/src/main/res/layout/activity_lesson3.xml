@@ -9,12 +9,15 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
     <Button
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="100dp"
+        android:layout_below="@id/toolbar"
         android:textStyle="bold"
+        android:textSize="30pt"
         android:textColor="@color/colorAccent"
-        android:text="ShowPopup"
-        android:layout_centerVertical="true"
+        android:text="Menu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:id="@+id/popButton"/>
 
 </RelativeLayout>

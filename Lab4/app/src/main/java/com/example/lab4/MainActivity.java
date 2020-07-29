@@ -33,9 +33,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btThree :
                 intent = new Intent(this, Lesson3Activity.class);
                 break;
-            case R.id.btFour :
-                intent = new Intent(this, null);
-                break;
             default:
                 return;
         }

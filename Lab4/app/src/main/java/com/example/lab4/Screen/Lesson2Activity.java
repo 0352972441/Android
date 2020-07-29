@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lab4.R;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
@@ -29,7 +30,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 
 public class Lesson2Activity extends AppCompatActivity {
-    private ActionBar actionBar;
+
     Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +66,10 @@ public class Lesson2Activity extends AppCompatActivity {
     }
 
     private void createListView(){
+
         final ArrayList<String> listButton = new ArrayList<>();
-        for(int i=0 ; i< 30; i++){
-            String text = "Button "+ i;
-            listButton.add(text);
+        for(String i : createData()){
+            listButton.add(i.toString());
         }
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listButton);
         final ListView mList = (ListView)findViewById(R.id.list_item);
@@ -85,5 +86,49 @@ public class Lesson2Activity extends AppCompatActivity {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         getMenuInflater().inflate(R.menu.optionmenuitem, menu);
         super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.add:
+                Toast.makeText(this, "Find successed", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.remove:
+                Toast.makeText(this, "Catch successed", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.edit:
+                Toast.makeText(this, "Drop successed", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.update:
+                Toast.makeText(this, "Evelution successed", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    private ArrayList<String> createData(){
+        ArrayList<String> pokemon = new ArrayList();
+        pokemon.add("Bulbasaur");
+        pokemon.add("Charizard");
+        pokemon.add("Blastoise");
+        pokemon.add("Butterfree");
+        pokemon.add("Beedrill");
+        pokemon.add("Pidgeot");
+        pokemon.add("Raichu");
+        pokemon.add("Pikachu");
+        pokemon.add("Growlithe");
+        pokemon.add("Arcanine");
+        pokemon.add("Kadabra");
+        pokemon.add("Haunter");
+        pokemon.add("Electrode");
+        pokemon.add("Kangaskhan");
+        pokemon.add("Electabuzz");
+        pokemon.add("Lapras");
+        pokemon.add("Gyarados");
+        pokemon.add("Articuno");
+        pokemon.add("Mewtwo");
+        pokemon.add("Crobat");
+        return pokemon;
     }
 }

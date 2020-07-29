@@ -11,6 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         app:titleTextColor="@android:color/white"
-        android:background="@color/background"/>
+        android:background="#E3F2FD"/>
 
 </LinearLayout>
