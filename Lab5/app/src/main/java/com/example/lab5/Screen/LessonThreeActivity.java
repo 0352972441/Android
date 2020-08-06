@@ -23,15 +23,17 @@ public class LessonThreeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_three);
-        inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.login, null);
-        mUserName = (EditText) view.findViewById(R.id.txtuser);
-        mPassword = (EditText)view.findViewById(R.id.txtPassword);
-        Toast.makeText(this, "Runnning", Toast.LENGTH_SHORT).show();
+
+        //Toast.makeText(this, "Runnning", Toast.LENGTH_SHORT).show();
     }
 
     public void ShowLoginAlertDialog(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view1 = inflater.inflate(R.layout.login, null);
+        mUserName = (EditText) view1.findViewById(R.id.txtuser);
+        mPassword = (EditText)view1.findViewById(R.id.txtPassword);
+        builder.setView(view1);
 
         builder.setPositiveButton("Login", new DialogInterface.OnClickListener() {
             @Override
@@ -51,7 +53,6 @@ public class LessonThreeActivity extends AppCompatActivity {
                 finish();
             }
         });
-        builder.setView(R.layout.login);
         builder.show();
     }
 }

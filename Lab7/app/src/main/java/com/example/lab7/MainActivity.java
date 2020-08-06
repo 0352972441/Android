@@ -1,15 +1,16 @@
-package com.example.lab5;
+package com.example.lab7;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.lab5.Screen.LessonFourActivity;
-import com.example.lab5.Screen.LessonOneActivity;
-import com.example.lab5.Screen.LessonThreeActivity;
-import com.example.lab5.Screen.LessonTwoActivity;
+import com.example.lab7.Screens.LessonFourActivity;
+import com.example.lab7.Screens.LessonOneActivity;
+import com.example.lab7.Screens.LessonThreeActivity;
+import com.example.lab7.Screens.LessonTwoActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
     public void switchActivity(View view) {
         Intent intent = null;
         switch (view.getId()){
@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btThree:
                 intent = new Intent(this, LessonThreeActivity.class);
                 break;
-            /*case R.id.btFour:
+            case R.id.btFour:
                 intent = new Intent(this, LessonFourActivity.class);
-                break;*/
+                break;
             default: return;
         }
         startActivity(intent);

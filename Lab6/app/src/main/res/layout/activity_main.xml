@@ -37,14 +37,15 @@
             android:onClick="switchActivity"
             android:text="Lesson 3"/>
 
-        <!--<Button
+      <!--  <Button
             android:background="@color/colorAccent"
             android:layout_marginTop="20dp"
             android:onClick="switchActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btFour"
-        android:text="Lesson 4"/>-->
+            android:text="Lesson 4"/>-->
     </LinearLayout>
+
 
 </LinearLayout>

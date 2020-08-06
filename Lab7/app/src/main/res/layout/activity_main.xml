@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -37,14 +36,12 @@
             android:onClick="switchActivity"
             android:text="Lesson 3"/>
 
-        <!--<Button
-            android:background="@color/colorAccent"
-            android:layout_marginTop="20dp"
-            android:onClick="switchActivity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btFour"
-        android:text="Lesson 4"/>-->
-    </LinearLayout>
-
+          <Button
+              android:background="@color/colorAccent"
+              android:layout_marginTop="20dp"
+              android:onClick="switchActivity"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/btFour"
+              android:text="Lesson 4"/>
 </LinearLayout>

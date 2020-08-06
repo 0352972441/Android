@@ -1,4 +1,4 @@
-package com.example.lab5;
+package com.example.lab6;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.lab5.Screen.LessonFourActivity;
-import com.example.lab5.Screen.LessonOneActivity;
-import com.example.lab5.Screen.LessonThreeActivity;
-import com.example.lab5.Screen.LessonTwoActivity;
+import com.example.lab6.Screen.LessonFourActivity;
+import com.example.lab6.Screen.LessonOneActivity;
+import com.example.lab6.Screen.LessonThreeActivity;
+import com.example.lab6.Screen.LessonTwoActivity;
 
 public class MainActivity extends AppCompatActivity {
 
