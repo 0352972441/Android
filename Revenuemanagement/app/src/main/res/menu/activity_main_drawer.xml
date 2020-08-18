@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_revenue"
+            android:icon="@drawable/icon_revenue_menu_red"
+            android:title="@string/menu_revinue" />
+        <item
+            android:id="@+id/nav_expenses"
+            android:icon="@drawable/icon_expenditure_blue"
+            android:title="@string/menu_expenses" />
+        <item
+            android:id="@+id/nav_statistical"
+            android:icon="@drawable/icon_statistical_menu_blue"
+            android:title="@string/menu_statistical" />
+    </group>
+    <item android:title="About">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/icon_about_menu_green"
+                android:title="@string/menu_about" />
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/icon_exit_menu_blue"
+                android:title="@string/menu_exit" />
+        </menu>
+    </item>
+</menu>

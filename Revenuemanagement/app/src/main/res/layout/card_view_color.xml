@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="24dp"
+    android:background="#FFFFFF"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:background="@drawable/radiu_choose_color"
+        android:id="@+id/mcolor"
+        android:layout_width="48dp"
+        android:layout_height="48dp"/>
+
+</androidx.cardview.widget.CardView>

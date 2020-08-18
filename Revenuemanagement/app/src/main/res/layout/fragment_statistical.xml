@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".ui.Statistical.StatisticalFragment">
+
+    <FrameLayout
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:background="@drawable/background_statistical"
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+        <LinearLayout
+            android:gravity="fill_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+<!--            Cột thứ nhất-->
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/mcolumOne"
+                android:layout_gravity="bottom"
+                android:layout_margin="15dp"
+                android:layout_width="20dp"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary">
+            </LinearLayout>
+
+<!--thứ 2-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/mcolumTwo"
+                android:layout_gravity="bottom"
+                android:layout_margin="15dp"
+                android:layout_width="20dp"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"/>
+<!--Thứ 3-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/mcolumThree"
+                android:layout_gravity="bottom"
+                android:layout_margin="15dp"
+                android:layout_width="20dp"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"/>
+<!--Thứ 4-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/mcolumFour"
+                android:layout_gravity="bottom"
+                android:layout_margin="15dp"
+                android:layout_width="20dp"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"/>
+<!--Thứ 5-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/mcolumFive"
+                android:layout_gravity="bottom"
+                android:layout_margin="15dp"
+                android:layout_width="20dp"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"/>
+<!--Thứ 6-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/mcolumSix"
+                android:layout_gravity="bottom"
+                android:layout_margin="15dp"
+                android:layout_width="20dp"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"/>
+<!--Thứ 7-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/mcolumSeven"
+                android:layout_gravity="bottom"
+                android:layout_margin="15dp"
+                android:layout_width="20dp"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"/>
+        </LinearLayout>
+
+    </FrameLayout>
+
+</RelativeLayout>

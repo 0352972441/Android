@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+    <ImageView
+        android:src="@drawable/illustrations3"
+        android:layout_width="match_parent"
+        android:layout_height="176dp"/>
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mcategory"
+        android:src="@drawable/category_outfit"/>
+    <EditText
+        android:layout_marginTop="20dp"
+        android:drawableStart="@drawable/ic_title_black_24dp"
+        android:gravity="center"
+        android:hint="@string/hintTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mtitle"/>
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:drawableStart="@drawable/ic_description_black_24dp"
+        android:gravity="center"
+        android:hint="@string/hintDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mdescription"/>
+
+    <!--<TextView
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:drawableStart="@drawable/date_icon"
+        android:gravity="center"
+        android:hint="Please choose date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mdate"/>-->
+</LinearLayout>

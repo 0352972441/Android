@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:padding="70dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/shap_dialog_update"
+    android:layout_height="match_parent">
+
+    <Button
+        android:textStyle="bold"
+        android:textColor="@color/textColorButton"
+        android:text="Update"
+        android:background="@drawable/button_image_dialog_expenditure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mupdate" />
+    <Button
+        android:textStyle="bold"
+        android:textColor="@color/textColorButton"
+        android:text="Delete"
+        android:layout_below="@id/mupdate"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_image_dialog_expenditure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mdelete" />
+<!--        android:background="#8033b5e5"-->
+</RelativeLayout>

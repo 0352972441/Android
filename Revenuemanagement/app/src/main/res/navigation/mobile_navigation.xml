@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.revenuemanagement.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
+            app:destination="@id/nav_home_second" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_home_second"
+        android:name="com.example.revenuemanagement.ui.home.HomeSecondFragment"
+        android:label="@string/home_second"
+        tools:layout="@layout/fragment_home_second">
+        <action
+            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
+            app:destination="@id/nav_home" />
+
+        <argument
+            android:name="myArg"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_expenses"
+        android:name="com.example.revenuemanagement.ui.Expenditures.ExpendituresFragment"
+        android:label="fragment_expenditures"
+        tools:layout="@layout/fragment_expenditures" />
+    <fragment
+        android:id="@+id/nav_revenue"
+        android:name="com.example.revenuemanagement.ui.Revenue.RevenueFragment"
+        android:label="fragment_revenue"
+        tools:layout="@layout/fragment_revenue" />
+    <fragment
+        android:id="@+id/nav_statistical"
+        android:name="com.example.revenuemanagement.ui.Statistical.StatisticalFragment"
+        android:label="fragment_statistical"
+        tools:layout="@layout/fragment_statistical" />
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.example.revenuemanagement.ui.About.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/nav_exit"
+        android:name="com.example.revenuemanagement.ui.Exit.ExitFragment"
+        android:label="fragment_exit"
+        tools:layout="@layout/fragment_exit" />
+</navigation>
