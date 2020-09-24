@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">BuzzBee</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="onOne">Communication skills</string>
+    <string name="onThree">Diverse vocabulary</string>
+    <string name="onTwo">Target </string>
+    <string name="descriptionOne">Standard pronunciation and common communication sentences help you communicate with confidence</string>
+    <string name="descriptionThree">With a variety of economic and information technology topics, you can study anytime, anywhere.</string>
+    <string name="descriptionTwo">Clear progress goals make it easier for you to manage your progress</string>
+
+    <!--    Text -->
+    <string name="oldpassword">Old Password</string>
+    <string name="password">Password</string>
+    <string name="confirmpassword">Confirm Password</string>
+    <string name="newpassword">New Password</string>
+    <string name="changepassword">Change Password</string>
+    <string name="next">Next</string>
+    <string name="label_signup">Create your account</string>
+    <string name="label_signin">Login to your account</string>
+    <string name="label_signWith">- or sign in with -</string>
+    <string name="label_question_not_account">Don\'t have an account.</string>
+    <string name="label_question_have_account">Have an account.</string>
+    <string name="label_button_login">LOGIN</string>
+    <string name="label_button_signup">SIGNUP</string>
+    <string name="label_change_activity_signup">Sign Up</string>
+    <string name="label_change_activity_signin">Sign In</string>
+    <string name="label_hint_email">Email</string>
+    <string name="label_hint_password">Password</string>
+    <string name="label_hint_confirm_password">Confirm Password</string>
+    <string name="description_image_logo">Logo</string>
+</resources>

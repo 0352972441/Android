@@ -42,7 +42,12 @@ public class ExpenditureViewModel extends AndroidViewModel {
 
 
 
-    public LiveData<List<Expenditure>> getAllCategory(String isSalary, String isAd, String isPurchase, String isOutfit){
+    /*public LiveData<List<Expenditure>> getAllCategory(String isSalary, String isAd, String isPurchase, String isOutfit){
         return responsive.getAllCategory(isPurchase,isSalary,isOutfit,isAd);
+    }*/
+
+
+    public LiveData<List<Expenditure>> filterAllCategory(String travelling, String shoping, int category, String word){
+        return responsive.filterAllCategory(travelling,shoping,category,word);
     }
 }

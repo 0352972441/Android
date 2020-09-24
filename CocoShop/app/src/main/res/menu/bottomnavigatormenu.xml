@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/itemHome"
+        android:title="Home"
+        android:icon="@drawable/bottom_tab_home"/>
+    <item
+        android:id="@+id/itemProgressive"
+        android:title="Progressive"
+        android:icon="@drawable/progressive"/>
+    <item
+        android:id="@+id/itemLearnigTopic"
+        android:title="Topic"
+        android:icon="@drawable/topic"/>
+    <item
+        android:id="@+id/itemAudio"
+        android:title="Audio"
+        android:icon="@drawable/n_speak_on_24"/>
+    <item
+        android:id="@+id/itemProfile"
+        android:title="Profile"
+        android:icon="@drawable/bottom_tab_my"/>
+</menu>

@@ -83,7 +83,11 @@ public class ExpenditureResponsive {
         }
     }
 
-    public LiveData<List<Expenditure>> getAllCategory(String isSalary, String isAd, String isPurchase, String isOutfit){
+    /*public LiveData<List<Expenditure>> getAllCategory(String isSalary, String isAd, String isPurchase, String isOutfit){
         return expenditureDao.getAllCategory(isPurchase,isSalary,isOutfit,isAd);
+    }*/
+
+    public LiveData<List<Expenditure>> filterAllCategory(String travelling, String shoping, int category, String word){
+        return expenditureDao.filterAllCategory(travelling,shoping,category,word);
     }
 }

@@ -2,7 +2,7 @@
     <string name="app_name">Revenue management</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Managerment Revenue Expenditure</string>
+    <string name="nav_header_title">Managerment Revenue</string>
     <string name="nav_header_subtitle">Nguyenvantoan.info@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
@@ -11,10 +11,10 @@
     <string name="hintMoney">Money</string>
     <string name="titleButtonChoose">Choose</string>
     <string name="time">Please choose day</string>
-    <string name="titleAdvertisement">Advertisement</string>
-    <string name="titlePurchase">Purchase</string>
-    <string name="titleOutfit">Outfit</string>
-    <string name="titleSalary">Salary</string>
+    <string name="titleTravelling">Travelling</string>
+    <string name="titileShopping">Shopping</string>
+    <string name="titleOutfit">Alphabet</string>
+    <string name="titleCategory">Category</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>

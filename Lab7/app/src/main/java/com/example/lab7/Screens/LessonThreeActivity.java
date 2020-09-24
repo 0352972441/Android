@@ -36,6 +36,7 @@ public class LessonThreeActivity extends AppCompatActivity {
                         break;
                 }
                 Toast.makeText(LessonThreeActivity.this, message, Toast.LENGTH_SHORT).show();
+                menuItem.setChecked(true);
                 return false;
             }
         });

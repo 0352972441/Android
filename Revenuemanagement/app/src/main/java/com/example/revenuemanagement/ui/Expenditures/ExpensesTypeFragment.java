@@ -58,6 +58,7 @@ public class ExpensesTypeFragment extends Fragment {
             @Override
             public void listener(int position) {
                 expenditureTypeDialog = new ExpenditureTypeDialog(adapter.getExpenditureType(position));
+                expenditureTypeDialog.showDialogExpenditureType(getContext(),mViewModel,true);
             }
         });
         adapter.setListenerDelete(new ItemOnListener() {

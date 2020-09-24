@@ -174,6 +174,13 @@ public class ExpenditureDialog {
         if(money.isEmpty()){
             message += "\n Money can't empty";
         }
+        try {
+            if (Double.parseDouble(money) <= 0) {
+                message += "\n Money had to biger 0";
+            }
+        }catch (Exception ex){
+
+        }
         return message;
     }
 

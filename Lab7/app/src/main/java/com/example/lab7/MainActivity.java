@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.lab7.Screens.LessonFiveActivity;
 import com.example.lab7.Screens.LessonFourActivity;
 import com.example.lab7.Screens.LessonOneActivity;
 import com.example.lab7.Screens.LessonThreeActivity;
@@ -33,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btFour:
                 intent = new Intent(this, LessonFourActivity.class);
+                break;
+            case R.id.btFive:
+                intent = new Intent(this, LessonFiveActivity.class);
                 break;
             default: return;
         }

@@ -3,7 +3,7 @@
     android:padding="70dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@drawable/shap_dialog_update"
+    android:background="#E0F2F1"
     android:layout_height="match_parent">
 
     <Button

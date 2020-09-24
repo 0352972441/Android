@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundonboarding"
+    tools:context=".MainActivity">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/viewPageOnboarding"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:textColor="@color/colorTextBoarding"
+            android:id="@+id/mtxNext"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:textSize="30dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="15dp"/>
+        <TextView
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@color/colorTextBoarding"
+            android:visibility="invisible"
+            android:textColor="#122497"
+            android:id="@+id/mtxGetStart"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get start"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="30dp" />
+        <TextView
+            android:id="@+id/txSkip"
+            android:textColor="@color/colorTextBoarding"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="skip"/>
+        <LinearLayout
+            android:layout_marginBottom="10dp"
+            android:layout_above="@+id/mtxNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:id="@+id/indicator"/>
+
+    </RelativeLayout>
+</FrameLayout>

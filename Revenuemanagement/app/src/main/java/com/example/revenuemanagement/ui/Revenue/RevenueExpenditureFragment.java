@@ -3,6 +3,8 @@ package com.example.revenuemanagement.ui.Revenue;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -28,6 +30,7 @@ import com.example.revenuemanagement.adapter.RevenueAdapter;
 import com.example.revenuemanagement.dialog.RevenueDialog;
 import com.example.revenuemanagement.dialog.RevenueTypeDialog;
 import com.example.revenuemanagement.entity.Revenue;
+import com.example.revenuemanagement.entity.RevenueType;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -37,6 +40,10 @@ public class RevenueExpenditureFragment extends Fragment {
     private RevenueExpenditureViewModel mViewModel;
     private RecyclerView mRevenueView;
     private RevenueAdapter recycler;
+    //
+    private List<RevenueType> revenueTypeList;
+    private RevenueTypeViewModel model;
+    //
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -46,13 +53,12 @@ public class RevenueExpenditureFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         mRevenueView = (RecyclerView)view.findViewById(R.id.revenue_Recyclerview);
-        recycler = new RevenueAdapter(false);
-        revenueDialog = new RevenueDialog();
+        recycler = new RevenueAdapter();
         recycler.setListener(new ItemOnListener() {
             @Override
             public void listener(int position) {
+                revenueDialog = new RevenueDialog(revenueTypeList);
                 revenueDialog.revenueDialog(getContext(), mViewModel, recycler.getRevunue(position),true);
-                Toast.makeText(getContext(), "Đã click bạn ơi", Toast.LENGTH_SHORT).show();
             }
         });
         mRevenueView.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -61,25 +67,38 @@ public class RevenueExpenditureFragment extends Fragment {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                revenueDialog = new RevenueDialog(revenueTypeList);
                 revenueDialog.revenueDialog(getContext(),mViewModel,null, false);
             }
         });
 
-        ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
             }
 
             @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                if(direction == ItemTouchHelper.LEFT){
-                    mViewModel.delete(recycler.getRevunue(viewHolder.getAdapterPosition()));
-                    Toast.makeText(getContext(), "Delete successful", Toast.LENGTH_SHORT).show();
-                    recycler.notifyDataSetChanged();
-                }else {
-                    // Do something
-                }
+            public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int direction) {
+                final RecyclerView.ViewHolder viewHolder1 = viewHolder;
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle("Are you sure want to delete ?");
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            recycler.notifyDataSetChanged();
+                        }
+                    });
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            mViewModel.delete(recycler.getRevunue(viewHolder1.getAdapterPosition()));
+                            Toast.makeText(getContext(), "Delete successful", Toast.LENGTH_SHORT).show();
+                            recycler.notifyDataSetChanged();
+                        }
+                    });
+                    builder.show();
             }
         };
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
@@ -90,10 +109,18 @@ public class RevenueExpenditureFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new  ViewModelProvider(this).get(RevenueExpenditureViewModel.class);
+        model = new ViewModelProvider(this).get(RevenueTypeViewModel.class);
         mViewModel.getGetAll().observe(getActivity(), new Observer<List<Revenue>>() {
             @Override
             public void onChanged(List<Revenue> revenues) {
                 recycler.setListDataRevenue(revenues);
+            }
+        });
+
+        model.getGetAll().observe(getViewLifecycleOwner(), new Observer<List<RevenueType>>() {
+            @Override
+            public void onChanged(List<RevenueType> revenueTypes) {
+                revenueTypeList = revenueTypes;
             }
         });
     }

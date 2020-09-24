@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="20dp"
+    android:padding="10dp"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mEmailValidation"
+        android:textColorHint="@color/colorPrimary"
+        app:errorEnabled="true">
+        <EditText
+            android:drawablePadding="10dp"
+            android:hint="Email"
+            android:paddingLeft="10dp"
+            android:background="@drawable/border_radiu_edittext"
+            android:drawableLeft="@drawable/email_icon"
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mPasswordValidation"
+        android:textColorHint="@color/colorPrimary"
+        app:passwordToggleEnabled="true"
+        app:errorEnabled="true">
+        <EditText
+            android:drawablePadding="10dp"
+            android:hint="Password"
+            android:paddingLeft="10dp"
+            android:background="@drawable/border_radiu_edittext"
+            android:drawableStart="@drawable/password_icon"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:visibility="invisible"
+        android:hint="ComformPassword"
+        android:textColorHint="@color/colorPrimary"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mComfirmPasswordValidation"
+        app:passwordToggleEnabled="true"
+        app:errorEnabled="true">
+        <EditText
+            android:id="@+id/mComfirmPassword"
+            android:visibility="invisible"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"
+            android:background="@drawable/border_radiu_edittext"
+            android:drawableStart="@drawable/password_icon"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:background="@drawable/border_radiu_edittext"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/mBtSignin"
+            android:text="Login"/>
+
+
+        <TextView
+            style="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:layout_marginTop="10dp"
+            android:textSize="10pt"
+            android:textAlignment="center"
+            android:id="@+id/mTxtSwitch"
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mBtSignin"
+            android:text="I don't have a account"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

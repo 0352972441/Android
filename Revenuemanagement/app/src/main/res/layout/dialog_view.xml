@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"/>
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_below="@id/image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,6 @@
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:errorEnabled="true"
             app:startIconDrawable="@drawable/ic_title_black_24dp"
             android:id="@+id/title">
             <EditText
@@ -31,7 +30,6 @@
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:errorEnabled="true"
             app:startIconDrawable="@drawable/ic_description_black_24dp"
             android:id="@+id/description">
             <EditText
@@ -44,7 +42,6 @@
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:errorEnabled="true"
             app:startIconDrawable="@drawable/icon_money_edittext"
             android:id="@+id/money">
             <EditText
@@ -52,22 +49,28 @@
                 android:drawablePadding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hintDescription"/>
+                android:hint="@string/hintMoney"/>
         </com.google.android.material.textfield.TextInputLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="10">
+            android:orientation="vertical">
             <TextView
+                android:drawableStart="@drawable/ic_access_time_black_24dp"
+                android:drawablePadding="20dp"
                 android:paddingLeft="20dp"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18dp"
                 android:text="@string/time"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
                 android:id="@+id/mTime"/>
+            <Spinner
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner_revenue"/>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

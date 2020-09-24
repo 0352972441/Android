@@ -72,6 +72,7 @@ public class ExpenditureAdapter extends RecyclerView.Adapter<ExpenditureAdapter.
                 holder.mMoney.setText(String.valueOf(listExpenditure.get(position).getMoney()));
                 holder.mCategory.setImageResource(listExpenditure.get(position).getImage());
                 holder.header.setBackgroundColor(listExpenditure.get(position).getColor());
+                System.out.println("===================\n"+"Giá trị ở đây: "+listExpenditure.get(position).getImage() +"Giá trị tiếp theo:"+R.drawable.image_12);
             }
         }
         holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {

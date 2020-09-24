@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,6 +47,8 @@ public class ExpenditureTypeDialog {
             mtitle.setText(expenditureTypeOld.getTitle());
             mcategory.setImageResource(expenditureTypeOld.getImgCategory());
             mdescription.setText(expenditureTypeOld.getDescription());
+            //mcategory.setImageResource(expenditureTypeOld.getImgCategory());
+            currentImage = expenditureTypeOld.getImgCategory();
         }
         dialog = new AlertDialog.Builder(context);
         mcategory.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +68,12 @@ public class ExpenditureTypeDialog {
                         mcategory.setImageResource(currentImage);
                     }
                 });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
                 builder.setView(expentditure_type_category);
                 final AlertDialog alert = builder.create();
                 alert.show();
@@ -78,19 +87,29 @@ public class ExpenditureTypeDialog {
                 });
             }
         });
-        dialog.setNegativeButton("Save", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton("Save", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 ExpenditureType expenditureType = new ExpenditureType();
                 expenditureType.setTitle(mtitle.getText().toString());
                 expenditureType.setImgCategory(currentImage);
                 expenditureType.setDescription(mdescription.getText().toString());
+                if(mtitle.getText().toString().isEmpty()){
+                    Toast.makeText(view.getContext(), "Title can't empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if(isUpdate){
                     expenditureType.setId(expenditureTypeOld.getId());
                     model.update(expenditureType);
                 }else{
                     model.insert(expenditureType);
                 }
+            }
+        });
+        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
             }
         });
         dialog.setView(view);

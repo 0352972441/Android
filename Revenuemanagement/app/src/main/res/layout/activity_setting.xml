@@ -27,14 +27,14 @@
                 android:layout_width="0dp"
                 android:layout_weight="4"
                 android:layout_height="wrap_content"
-                android:text="@string/titlePurchase"/>
+                android:text="@string/titileShopping"/>
             <Switch
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/isPurchese"/>
+                android:id="@+id/isShopping"/>
         </LinearLayout>
         <!--    -->
         <LinearLayout
@@ -54,14 +54,14 @@
                 android:layout_width="0dp"
                 android:layout_weight="4"
                 android:layout_height="wrap_content"
-                android:text="@string/titleAdvertisement"/>
+                android:text="@string/titleTravelling"/>
             <Switch
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/isAd"/>
+                android:id="@+id/isTravelling"/>
         </LinearLayout>
         <!--    -->
         <LinearLayout
@@ -74,22 +74,24 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="5">
-            <TextView
+            <ImageView
+                android:layout_gravity="left"
+                android:src="@drawable/category_outfit"
                 android:textColor="@color/textSetting"
                 android:textStyle="bold"
                 android:textSize="12pt"
-                android:id="@+id/titleSalary"
+                android:id="@+id/titleCategory"
                 android:layout_width="0dp"
                 android:layout_weight="4"
                 android:layout_height="wrap_content"
-                android:text="@string/titleSalary"/>
+                android:text="@string/titleCategory"/>
             <Switch
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/isSalary"/>
+                android:id="@+id/isCategory"/>
         </LinearLayout>
         <!--    -->
         <LinearLayout

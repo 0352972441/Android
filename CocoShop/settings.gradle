@@ -1,0 +1,2 @@
+rootProject.name='CocoShop'
+include ':app'

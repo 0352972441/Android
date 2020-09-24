@@ -19,6 +19,16 @@ public class Revenue {
 
     @ColumnInfo(name = "money")
     private double money;
+    @ColumnInfo(name = "category")
+    private String category;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public String getDate() {
         return date;

@@ -19,8 +19,11 @@ public interface ExpenditureDao {
     @Query("SELECT * FROM Expenditure")
     LiveData<List<Expenditure>> getAll();
 
-    @Query("SELECT * FROM Expenditure where category = :isPurchase or category = :isSalary or category = :isOutfit or category =:isAd")
-    LiveData<List<Expenditure>> getAllCategory(String isPurchase, String isSalary, String isOutfit, String isAd);
+    /*@Query("SELECT * FROM Expenditure where category = :isPurchase or category = :isSalary or category = :isOutfit or category =:isAd")
+    LiveData<List<Expenditure>> getAllCategory(String isPurchase, String isSalary, String isOutfit, String isAd);*/
+
+    @Query("SELECT * FROM Expenditure where categoryImg =:category or title =:travelling or title like :shoping or title like :word")
+    LiveData<List<Expenditure>> filterAllCategory(String travelling, String shoping, int category, String word);
 
     @Query("SELECT * FROM Expenditure WHERE category = :isCategory ")
     LiveData<List<Expenditure>> getPurchase(String isCategory);

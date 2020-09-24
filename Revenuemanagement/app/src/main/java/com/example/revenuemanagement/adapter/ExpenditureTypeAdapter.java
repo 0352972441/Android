@@ -39,10 +39,6 @@ public class ExpenditureTypeAdapter extends RecyclerView.Adapter<ExpenditureType
         return listExpenditureType.get(position);
     }
 
-    public List<ExpenditureType> getListExpenditureType() {
-        return listExpenditureType;
-    }
-
     public void setListExpenditureType(List<ExpenditureType> listExpenditureType) {
         this.listExpenditureType = listExpenditureType;
         notifyDataSetChanged();

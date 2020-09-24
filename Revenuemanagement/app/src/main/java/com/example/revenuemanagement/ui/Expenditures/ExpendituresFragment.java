@@ -94,8 +94,9 @@ public class ExpendituresFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putBoolean(SettingActivity.ISPURCHASE,Expenditure.isIsPurchase());
         bundle.putBoolean(SettingActivity.ISAD,Expenditure.isIsAd());
-        bundle.putBoolean(SettingActivity.ISSALARY,Expenditure.isIsSalary());
+        bundle.putBoolean(SettingActivity.ISCATEGORY,Expenditure.isIsCategory());
         bundle.putBoolean(SettingActivity.ISOUTFIT,Expenditure.isIsOutfit());
+        bundle.putInt(SettingActivity.CURRENTIMAGE, Expenditure.getCrurentImage());
         if(item.getItemId() == R.id.action_settings){
             Intent intent = new Intent(getContext(), SettingActivity.class);
             intent.putExtra(SettingActivity.KEYBUNDLE,bundle);

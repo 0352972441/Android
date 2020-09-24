@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,48 +30,40 @@ import java.util.List;
 
 public class RevenueTypeDialog {
     AlertDialog.Builder dialog;
-    TextInputLayout mTitle, mdescription,mMoney;
+    private EditText mTitle, mdescription;
     private TextView mTime;
     RevenueTypeViewModel revenueTypeModel;
-    private boolean isUpdate = false;
+    private RevenueType revenueTypeData;
     public RevenueTypeDialog() {
     }
 
-    public RevenueTypeDialog(boolean isUpdate) {
-        this.isUpdate = isUpdate;
+    public RevenueTypeDialog(RevenueType revenueType){
+        this.revenueTypeData = revenueType;
     }
 
-    public void revenueTypeDialog(final Context context, final RevenueTypeViewModel revenueTypeModel, final RevenueType revenueTypeData){
+    public void revenueTypeDialog(final Context context, final RevenueTypeViewModel revenueTypeModel, final boolean isUpdate){
         this.revenueTypeModel = revenueTypeModel;
-        View view = LayoutInflater.from(context).inflate(R.layout.dialog_view,null);
-        mTitle = (TextInputLayout)view.findViewById(R.id.title);
-        mMoney = (TextInputLayout)view.findViewById(R.id.money);
-        mTime = (TextView)view.findViewById(R.id.mTime);
-        mdescription = (TextInputLayout)view.findViewById(R.id.description);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_revenue_type,null);
+        mTitle = (EditText) view.findViewById(R.id.mtitle);
+//        mTime = (TextView)view.findViewById(R.id.mTime);
+        mdescription = (EditText) view.findViewById(R.id.mdescription);
         if(isUpdate){
-            mTitle.getEditText().setText(revenueTypeData.getTitle());
-            mdescription.getEditText().setText(revenueTypeData.getDescription());
-            mMoney.getEditText().setText(String.valueOf(revenueTypeData.getMoney()));
-            mTime.setText(revenueTypeData.getDate());
+            mTitle.setText(revenueTypeData.getTitle());
+            mdescription.setText(revenueTypeData.getDescription());
+//            mTime.setText(revenueTypeData.getDate());
         }
         dialog = new AlertDialog.Builder(context);
         dialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String message = "";
-                if(mTitle.getEditText().getText().toString().isEmpty()){
+                if(mTitle.getText().toString().isEmpty()){
                     message = "Title can't empty";
                 }
-                if(mdescription.getEditText().getText().toString().isEmpty()){
+                if(mdescription.getText().toString().isEmpty()){
                     message += "\nDescription can't empty";
                 }
-                String money = mMoney.getEditText().getText().toString();
-                if(money.isEmpty()){
-                    message +="\n Money can't empty";
-                }
                 if(message.equals("")){
-                    try {
-                        //RevenueType revenueType = getRevenueType();; //= new RevenueType();
                         RevenueType revenueType = getRevenueType();
                         if(isUpdate){
                             revenueType.setId(revenueTypeData.getId());
@@ -81,15 +74,12 @@ public class RevenueTypeDialog {
                             Toast.makeText(context, "Add successful", Toast.LENGTH_SHORT).show();
                         }
                         dialog.dismiss();
-                    }catch (NumberFormatException ex){
-                        Toast.makeText(context, "Money has to a number ", Toast.LENGTH_SHORT).show();
-                    }
                 }else {
                     Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        dialog.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
@@ -100,9 +90,8 @@ public class RevenueTypeDialog {
 
     private RevenueType getRevenueType(){
         RevenueType revenueType = new RevenueType();
-        revenueType.setTitle(mTitle.getEditText().getText().toString());
-        revenueType.setDescription(mdescription.getEditText().getText().toString());
-        revenueType.setMoney(Double.parseDouble(mMoney.getEditText().getText().toString()));
+        revenueType.setTitle(mTitle.getText().toString());
+        revenueType.setDescription(mdescription.getText().toString());
         return  revenueType;
     }
 

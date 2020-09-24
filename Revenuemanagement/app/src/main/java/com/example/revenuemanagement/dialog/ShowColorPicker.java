@@ -93,6 +93,26 @@ public class ShowColorPicker {
         listColors.add(new Colors(Color.parseColor("#90ee90")));
         listColors.add(new Colors(Color.parseColor("#778899")));
         listColors.add(new Colors(Color.parseColor("#3cb371")));
+        listColors.add(new Colors(Color.parseColor("#800000")));
+        listColors.add(new Colors(Color.parseColor("#ff0000")));
+        listColors.add(new Colors(Color.parseColor("#800080")));
+        listColors.add(new Colors(Color.parseColor("#ff00ff")));
+        listColors.add(new Colors(Color.parseColor("#008000")));
+        listColors.add(new Colors(Color.parseColor("#808000")));
+        listColors.add(new Colors(Color.parseColor("#f0f8ff")));
+        listColors.add(new Colors(Color.parseColor("#7fffd4")));
+        listColors.add(new Colors(Color.parseColor("#f5f5dc")));
+        listColors.add(new Colors(Color.parseColor("#ffe4c4")));
+        listColors.add(new Colors(Color.parseColor("#d3d3d3")));
+        listColors.add(new Colors(Color.parseColor("#90ee90")));
+        listColors.add(new Colors(Color.parseColor("#d3d3d3")));
+        listColors.add(new Colors(Color.parseColor("#ffb6c1")));
+        listColors.add(new Colors(Color.parseColor("#20b2aa")));
+        listColors.add(new Colors(Color.parseColor("#b0c4de")));
+        listColors.add(new Colors(Color.parseColor("#7b68ee")));
+        listColors.add(new Colors(Color.parseColor("#48d1cc")));
+        listColors.add(new Colors(Color.parseColor("#98fb98")));
+        listColors.add(new Colors(Color.parseColor("#ffc0cb")));
         return listColors;
     }
 

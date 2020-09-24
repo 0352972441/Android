@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "127608005633",
+    "firebase_url": "https://cocoenglish-79c9b.firebaseio.com",
+    "project_id": "cocoenglish-79c9b",
+    "storage_bucket": "cocoenglish-79c9b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127608005633:android:c046aabe956356beca4c00",
+        "android_client_info": {
+          "package_name": "com.example.cocoshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127608005633-bv071rtdaagkl5ga5ithccprc67vsum6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cocoshop",
+            "certificate_hash": "f6a506a830e42e250f684fbcff35578beb553fc1"
+          }
+        },
+        {
+          "client_id": "127608005633-0ptc3pfokqi0vc7pmpm5fe5vb02o67ar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_cd08p5a0aclMV9KqQ-3JWILiWUijKqM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127608005633-0ptc3pfokqi0vc7pmpm5fe5vb02o67ar.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:title="revenue"
+            android:icon="@drawable/password_icon"/>
+        <item
+            android:title="Expenditures"
+            android:icon="@drawable/password_icon"/>
+        <item
+            android:title="Statistical"
+            android:icon="@drawable/password_icon"/>
+    </group>
+
+    <group>
+        <item
+            android:title="About"
+            android:icon="@drawable/email_icon"/>
+        <item
+            android:title="Exit"
+            android:icon="@drawable/password_icon"/>
+    </group>
+
+
+</menu>

@@ -44,4 +44,12 @@
               android:layout_height="wrap_content"
               android:id="@+id/btFour"
               android:text="Lesson 4"/>
+        <Button
+            android:background="@color/colorAccent"
+            android:layout_marginTop="20dp"
+            android:onClick="switchActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btFive"
+            android:text="Lesson 5"/>
 </LinearLayout>

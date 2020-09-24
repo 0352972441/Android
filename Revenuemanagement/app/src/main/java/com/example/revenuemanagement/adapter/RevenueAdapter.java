@@ -18,9 +18,9 @@ import java.util.List;
 public class RevenueAdapter extends RecyclerView.Adapter<RevenueAdapter.ViewHolder>{
     private enum Model {isOpen, isClose};
     private RevenueAdapter.Model model = RevenueAdapter.Model.isClose;
-    private boolean isType = true;// Kiểm tra Revenue or RevenueType
+//    private boolean isType = true;// Kiểm tra Revenue or RevenueType
     private List<Revenue> listDataRevenue;
-    private List<RevenueType> listDataRevenueType;// = new ArrayList<>();
+//    private List<RevenueType> listDataRevenueType;// = new ArrayList<>();
     private ItemOnListener listener;
 
 
@@ -28,10 +28,10 @@ public class RevenueAdapter extends RecyclerView.Adapter<RevenueAdapter.ViewHold
         this.listener = listener;
     }
 
-    public RevenueAdapter(Boolean isType) {
-        this.isType = isType;
+    public RevenueAdapter() {
+//        this.isType = isType;
         listDataRevenue = new ArrayList<>();
-        listDataRevenueType = new ArrayList<>();
+//        listDataRevenueType = new ArrayList<>();
     }
 
 
@@ -40,16 +40,16 @@ public class RevenueAdapter extends RecyclerView.Adapter<RevenueAdapter.ViewHold
         notifyDataSetChanged();
     }
     public void setListData(List<RevenueType> listData) {
-        this.listDataRevenueType = listData;
+//        this.listDataRevenueType = listData;
         notifyDataSetChanged();
     }
 
     public Revenue getRevunue(int position){
         return listDataRevenue.get(position);
     }
-    public RevenueType getRevenueType(int position){
-        return listDataRevenueType.get(position);
-    }
+//    public RevenueType getRevenueType(int position){
+//        return listDataRevenueType.get(position);
+//    }
 
     @NonNull
     @Override
@@ -61,17 +61,18 @@ public class RevenueAdapter extends RecyclerView.Adapter<RevenueAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         if(listDataRevenue != null){
-            if (isType) {
-                holder.title.setText(listDataRevenueType.get(position).getTitle());
-                holder.description.setText(listDataRevenueType.get(position).getDescription());
-                holder.mMoney.setText(String.valueOf(listDataRevenueType.get(position).getMoney())+"$");
-                holder.mTime.setText(listDataRevenueType.get(position).getDate());
-            } else {
+//            if (isType) {
+//                holder.title.setText(listDataRevenueType.get(position).getTitle());
+//                holder.description.setText(listDataRevenueType.get(position).getDescription());
+//                holder.mMoney.setText(String.valueOf(listDataRevenueType.get(position).getMoney())+"$");
+//                holder.mTime.setText(listDataRevenueType.get(position).getDate());
+//            } else {
                 holder.title.setText(listDataRevenue.get(position).getTitle());
                 holder.description.setText(listDataRevenue.get(position).getDescription());
                 holder.mMoney.setText(String.valueOf(listDataRevenue.get(position).getMoney())+"$");
                 System.out.println(listDataRevenue.get(position).getDate());
                 holder.mTime.setText(listDataRevenue.get(position).getDate());
+                holder.mcategory.setText(listDataRevenue.get(position).getCategory());
             }
             holder.imageEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -85,6 +86,7 @@ public class RevenueAdapter extends RecyclerView.Adapter<RevenueAdapter.ViewHold
                     ViewGroup.LayoutParams params = holder.cardView.getLayoutParams();
                     if(model == RevenueAdapter.Model.isClose) {
                         holder.imageEdit.setVisibility(View.VISIBLE);
+                        holder.mcategory.setVisibility(View.VISIBLE);
                         holder.mContentLinear.setVisibility(View.VISIBLE);
                         params.height = 500;
                         holder.cardView.setLayoutParams(params);
@@ -92,6 +94,7 @@ public class RevenueAdapter extends RecyclerView.Adapter<RevenueAdapter.ViewHold
                         holder.drop_down.setImageResource(R.drawable.ic_arrow_drop_up_black_24dp);
                         //holder.description.setVisibility(View.VISIBLE);
                     }else {
+                        holder.mcategory.setVisibility(View.INVISIBLE);
                         holder.imageEdit.setVisibility(View.INVISIBLE);
                         holder.mContentLinear.setVisibility(View.INVISIBLE);
                         params.height = 220;
@@ -102,18 +105,19 @@ public class RevenueAdapter extends RecyclerView.Adapter<RevenueAdapter.ViewHold
                     }
                 }
             });
-        }
+//        }
     }
 
     @Override
     public int getItemCount() {
-        return isType ? listDataRevenueType.size() :listDataRevenue.size();
+        return listDataRevenue.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView title,description,mMoney,mTime;
         ImageView imageEdit,drop_down;
         LinearLayout mContentLinear;
+        private TextView mcategory;
         CardView cardView;
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -124,6 +128,7 @@ public class RevenueAdapter extends RecyclerView.Adapter<RevenueAdapter.ViewHold
             imageEdit = (ImageView) itemView.findViewById(R.id.imageEdit);
             drop_down = (ImageView) itemView.findViewById(R.id.drop_down);
             description = (TextView)itemView.findViewById(R.id.mdescription);
+            mcategory = (TextView)itemView.findViewById(R.id.mcategory);
             cardView = (CardView)itemView;
         }
     }

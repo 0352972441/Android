@@ -4,28 +4,41 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
 import com.example.revenuemanagement.R;
+import com.example.revenuemanagement.entity.ExpenditureType;
 import com.example.revenuemanagement.entity.Revenue;
 import com.example.revenuemanagement.entity.RevenueType;
 import com.example.revenuemanagement.ui.Revenue.RevenueExpenditureViewModel;
 import com.example.revenuemanagement.ui.Revenue.RevenueTypeViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RevenueDialog {
     private static final String TITLETIME = "Please choose day";
     private AlertDialog.Builder dialog;
     private View view;
     private TextInputLayout mTitle, mdescription,mMoney;
-    private Button chooseDay;
     private TextView mtime;
     private RevenueExpenditureViewModel revenueModel;
+    private Spinner spinner_revenue;
+    private List<RevenueType> expenditureTypeList;
     //private boolean isUpdate = false;
+
+
+    public RevenueDialog(List<RevenueType> expenditureTypeList) {
+        this.expenditureTypeList = expenditureTypeList;
+    }
 
     public void revenueDialog(final Context context, final RevenueExpenditureViewModel revenueModel, final Revenue revenueOld, final boolean isUpdate){
         this.revenueModel = revenueModel;
@@ -34,6 +47,9 @@ public class RevenueDialog {
         mdescription = (TextInputLayout)view.findViewById(R.id.description);
         mMoney = (TextInputLayout)view.findViewById(R.id.money);
         mtime = (TextView)view.findViewById(R.id.mTime);
+        spinner_revenue = (Spinner)view.findViewById(R.id.spinner_revenue);
+        ArrayAdapter adapter = new ArrayAdapter<String>(view.getContext(),android.R.layout.simple_spinner_dropdown_item,getAllData());
+        spinner_revenue.setAdapter(adapter);
         mtime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +81,13 @@ public class RevenueDialog {
                 if(mtime.getText().toString().equals(TITLETIME)){
                     message +="\nPlease chooose day";
                 }
+                try {
+                    if(Double.parseDouble(money) <= 0){
+                        message += "\nMoney had to bigger 0";
+                    }
+                }catch (Exception e){
+
+                }
                 if(message.equals("")){
                     try {
                         Revenue revenue = new Revenue();
@@ -72,6 +95,7 @@ public class RevenueDialog {
                         revenue.setDescription(mdescription.getEditText().getText().toString());
                         revenue.setMoney(Double.parseDouble(money));
                         revenue.setDate(mtime.getText().toString());
+                        revenue.setCategory(spinner_revenue.getSelectedItem().toString());
                         if(isUpdate){
                             revenue.setId(revenueOld.getId());
                             revenueModel.update(revenue);
@@ -97,6 +121,14 @@ public class RevenueDialog {
         });
         dialog.setView(view);
         dialog.show();
+    }
+
+    private ArrayList<String> getAllData(){
+        ArrayList<String> data = new ArrayList<>();
+        for(RevenueType i : expenditureTypeList){
+            data.add(i.getTitle());
+        }
+        return data;
     }
 
 }

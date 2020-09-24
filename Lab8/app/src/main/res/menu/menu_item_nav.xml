@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:title="home"
+            android:id="@+id/first"
+            android:icon="@drawable/ic_home_black_24dp"/>
+        <item
+            android:id="@+id/ac_first"
+            android:title="Image"
+            android:icon="@drawable/ic_image_black_24dp"/>
+
+        <item
+            android:id="@+id/thrid"
+            android:title="email"
+            android:icon="@android:drawable/ic_dialog_email"/>
+    </group>
+    <item android:title="support">
+        <menu>
+            <item
+                android:id="@+id/ac_second"
+                android:title="Info"
+                android:icon="@android:drawable/ic_media_next"/>
+            <item
+                android:id="@+id/second"
+                android:title="Exit"
+                android:icon="@drawable/ic_exit_to_app_black_24dp"/>
+        </menu>
+    </item>
+</menu>

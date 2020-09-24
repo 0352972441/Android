@@ -47,9 +47,10 @@ public class Expenditure extends Fragment {
     }
     // Bộ lọc
     private static boolean isPurchase;
-    private static boolean isSalary;
+    private static boolean isCategory;
     private static boolean isAd;
     private static boolean isOutfit;
+    private static int crurentImage =0;
 
     public static void setIsPurchase(boolean isPurchase) {
         Expenditure.isPurchase = isPurchase;
@@ -59,12 +60,12 @@ public class Expenditure extends Fragment {
         return isPurchase;
     }
 
-    public static boolean isIsSalary() {
-        return isSalary;
+    public static boolean isIsCategory() {
+        return isCategory;
     }
 
-    public static void setIsSalary(boolean isSalary) {
-        Expenditure.isSalary = isSalary;
+    public static void setIsCategory(boolean isCategory) {
+        Expenditure.isCategory = isCategory;
     }
 
     public static boolean isIsAd() {
@@ -82,6 +83,15 @@ public class Expenditure extends Fragment {
     public static void setIsOutfit(boolean isOutfit) {
         Expenditure.isOutfit = isOutfit;
     }
+
+    public static int getCrurentImage() {
+        return crurentImage;
+    }
+
+    public static void setCrurentImage(int crurentImage) {
+        Expenditure.crurentImage = crurentImage;
+    }
+
     // Bộ lọc
 
     @Override
@@ -156,20 +166,24 @@ public class Expenditure extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        String categoryPurchase="", categoryAd="",categorySalary = "",categoryOutfit="";
+        String travelling="", shopping="", word = "";
+        int categoryImg = -100;
         if(isAd){
-            categoryAd = "Advertisement";
+            travelling = "Travelling";
         }
-        if(isSalary){
-            categorySalary = "Salary";
+        if(isCategory){
+                categoryImg = crurentImage;
+               /* if(categoryImg < 0){
+                    categoryImg = R.drawable.category_outfit;
+                }*/
         }
         if(isOutfit){
-            categoryOutfit = "Outfit";
+            word = "A%";
         }
         if(isPurchase){
-            categoryPurchase = "Purchase";
+            shopping = "%Shopping%";
         }
-        if(categoryAd.equals("") && categoryOutfit.equals("")&&categoryPurchase.equals("")&& categorySalary.equals("")){
+        if(travelling.equals("")&& categoryImg <= 0&& shopping.equals("") && word.equals("")){
             mViewModel.getGetAll().observe(getViewLifecycleOwner(), new Observer<List<com.example.revenuemanagement.entity.Expenditure>>() {
                 @Override
                 public void onChanged(List<com.example.revenuemanagement.entity.Expenditure> expenditures) {
@@ -177,7 +191,7 @@ public class Expenditure extends Fragment {
                 }
             });
         }else{
-            mViewModel.getAllCategory(categorySalary,categoryAd,categoryPurchase,categoryOutfit).observe(getViewLifecycleOwner(), new Observer<List<com.example.revenuemanagement.entity.Expenditure>>() {
+            mViewModel.filterAllCategory(travelling,shopping,categoryImg,word).observe(getViewLifecycleOwner(), new Observer<List<com.example.revenuemanagement.entity.Expenditure>>() {
                 @Override
                 public void onChanged(List<com.example.revenuemanagement.entity.Expenditure> expenditures) {
                     adapter.setListExpenditure(expenditures);
