@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <size
+        android:height="@dimen/height_text_10dp"
+        android:width="@dimen/width_text_10dp"/>
+    <gradient
+        android:endColor="#FF0000"
+        android:startColor="#FF0000"/>
+    <corners
+        android:radius="@dimen/cardView_radiu_100dp"/>
+</shape>

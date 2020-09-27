@@ -26,44 +26,18 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeScreen extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
-    private ActionBar tabBar;
+    //private ActionBar tabBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavigatorView);
         bottomNavigationView.setItemIconTintList(null);
-        tabBar = getSupportActionBar();
-        tabBar.setTitle("Home");
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
-                    case R.id.itemProgressive:
-                        tabBar.setTitle("Progressive Learning");
-                        loadFragment(new FragmentProgressive());
-                        return true;
-                    case R.id.itemProfile:
-                        FragmentProfile profile = new FragmentProfile();
-                        tabBar.setTitle("Profile");
-                        loadFragment(profile);
-                        return true;
-                    case R.id.itemHome:
-                        tabBar.setTitle("Home");
-                        loadFragment(new FragmentHome());
-                        return true;
-                    case R.id.itemLearnigTopic:
-                        tabBar.setTitle("Learning by topic");
-                        loadFragment(new FragmentLearningTopic());
-                        return true;
-                    case R.id.itemAudio:
-                        tabBar.setTitle("Audio");
-                        loadFragment(new FragmentAudio());
-                        return true;
-                }
-                return false;
-            }
-        });
+        //tabBar = getSupportActionBar();
+        //tabBar.setTitle("Home");
+        bottomNavigationView.setOnNavigationItemSelectedListener(new onNavigatoritemSelectListener());
+        FragmentHome home = new FragmentHome();
+        loadFragment(home);
     }
 
     public void loadFragment(Fragment fragment){
@@ -72,6 +46,43 @@ public class HomeScreen extends AppCompatActivity {
 //        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.disallowAddToBackStack();
         fragmentTransaction.commit();
+    }
+
+    class onNavigatoritemSelectListener implements BottomNavigationView.OnNavigationItemSelectedListener{
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment fragment = null;
+            switch (item.getItemId()){
+                case R.id.itemProgressive:
+                    if(!(FragmentProgressive.class.isInstance(fragment))){
+                        fragment = new FragmentProgressive();
+                        loadFragment(fragment);
+                        return true;
+                    }
+                    return false;
+                case R.id.itemProfile:
+                    if(!(FragmentProfile.class.isInstance(fragment))){
+                        fragment = new FragmentProfile();
+                        //tabBar.setTitle("Profile");
+                        loadFragment(fragment);
+                        return true;
+                    }
+                    return false;
+                case R.id.itemHome:
+                    //tabBar.setTitle("Home");
+                    loadFragment(new FragmentHome());
+                    return true;
+                case R.id.itemLearnigTopic:
+                    //tabBar.setTitle("Learning by topic");
+                    loadFragment(new FragmentLearningTopic());
+                    return true;
+                case R.id.itemAudio:
+                    //tabBar.setTitle("Audio");
+                    loadFragment(new FragmentAudio());
+                    return true;
+            }
+            return false;
+        }
     }
 
 }

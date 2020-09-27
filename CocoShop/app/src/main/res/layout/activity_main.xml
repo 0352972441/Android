@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:text="skip"/>
+            android:text="@string/label_text_skip"/>
         <LinearLayout
             android:layout_marginBottom="10dp"
             android:layout_above="@+id/mtxNext"

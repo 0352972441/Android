@@ -17,7 +17,7 @@ import com.example.cocoshop.Auth.AuthGoogle;
 import com.example.cocoshop.Models.User;
 import com.example.cocoshop.R;
 import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
-import com.example.cocoshop.fireStore.AddUser;
+import com.example.cocoshop.fireStore.FireStoreUser;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
@@ -34,8 +34,8 @@ public class SignUpScreenActivity extends AppCompatActivity {
 
     private String email;
     private String password ;
-    private Button mbtnLogin;
-    private TextView mtxChange,mtxTtile;
+    private Button mbtnRegister;
+    private TextView mtxChange;
     private ImageView imgSignInWithGoogle;
     private TextInputEditText medPassword,medEmail,medConfirmPassword;
     public static final FirebaseAuth mAuth;
@@ -50,9 +50,8 @@ public class SignUpScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_screen);
-        mbtnLogin = (Button)findViewById(R.id.mbtnLg);
+        mbtnRegister = (Button)findViewById(R.id.mbtnRg);
         mtxChange = (TextView)findViewById(R.id.mtxChange);
-        mtxTtile = (TextView)findViewById(R.id.mtxTtile);
         medPassword = (TextInputEditText)findViewById(R.id.medPassword);
         medEmail = (TextInputEditText)findViewById(R.id.medGmail);
         imgSignInWithGoogle = (ImageView)findViewById(R.id.imgSignInGoogle);
@@ -66,17 +65,10 @@ public class SignUpScreenActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            User.setEmail(email);
-            User.setPassword(password);
-            Intent intent = new Intent(this, HomeScreen.class);
-            startActivity(intent);
-        }
     }
 
     private void setOnClickButtonLogin(){
-        mbtnLogin.setOnClickListener(new View.OnClickListener() {
+        mbtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //if(modeAuth.LOGIN == currentMode){
@@ -89,9 +81,8 @@ public class SignUpScreenActivity extends AppCompatActivity {
                                 // Login into Screen home
                                 // Lưu tài khoản và mật khẩu vào User
                                 User.setEmail(email);
-                                User.setPassword(password);
-                                AddUser.addUser("unknow",email,"Avata");
-                                loginSuccessed();
+                                User.setKind("Basic");
+                                registerSuccessed();
                             }else{
                                 Log.w("Thông tin",task.getException());
                                 Toast.makeText(SignUpScreenActivity.this, "Account or password is incrrect", Toast.LENGTH_SHORT).show();
@@ -119,9 +110,10 @@ public class SignUpScreenActivity extends AppCompatActivity {
         });
     }
 
-    public void loginSuccessed(){
+    public void registerSuccessed(){
         Intent intent = new Intent(SignUpScreenActivity.this, HomeScreen.class);
         startActivity(intent);
+        FireStoreUser.addUser("basic",email.isEmpty() ? currentUser.getEmail() : email,null);
         finish();
     }
 
@@ -195,8 +187,11 @@ public class SignUpScreenActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    FireStoreUser.addUser("basic",email==null ? task.getResult().getUser().getEmail() : email,"Avata");
+                    User.setKind("Basic");
+                    User.setEmail(task.getResult().getUser().getEmail());
                     Toast.makeText(SignUpScreenActivity.this, "Login Successed", Toast.LENGTH_SHORT).show();
-                    loginSuccessed();
+                    registerSuccessed();
                 }else{
                     Toast.makeText(SignUpScreenActivity.this, "Logged failed", Toast.LENGTH_SHORT).show();
                 }

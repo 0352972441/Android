@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/itemHome"
-        android:title="Home"
-        android:icon="@drawable/bottom_tab_home"/>
+        android:title="@string/lable_item_menu_bottomnavigator_home"
+        android:icon="@drawable/icon_item_bottom_navigator_home_24"/>
     <item
         android:id="@+id/itemProgressive"
-        android:title="Progressive"
-        android:icon="@drawable/progressive"/>
+        android:title="@string/lable_item_menu_bottomnavigator_Progressive"
+        android:icon="@drawable/icon_item_bottom_navigator_progressive_24"/>
     <item
         android:id="@+id/itemLearnigTopic"
-        android:title="Topic"
-        android:icon="@drawable/topic"/>
+        android:title="@string/lable_item_menu_bottomnavigator_topic"
+        android:icon="@drawable/icon_bottom_navigator_topic_24"/>
     <item
         android:id="@+id/itemAudio"
-        android:title="Audio"
-        android:icon="@drawable/n_speak_on_24"/>
+        android:title="@string/lable_item_menu_bottomnavigator_audio"
+        android:icon="@drawable/icon_item_bottom_navigator_voice_24"/>
     <item
         android:id="@+id/itemProfile"
-        android:title="Profile"
-        android:icon="@drawable/bottom_tab_my"/>
+        android:title="@string/lable_item_menu_bottomnavigator_profile"
+        android:icon="@drawable/icon_item_bottom_navigator_profile_24"/>
 </menu>

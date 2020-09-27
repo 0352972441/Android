@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_marginTop="40dp"
     android:padding="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -16,13 +20,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="Developer"/>
+            android:text="Unknow"/>
         <TextView
             android:id="@+id/tvemailDisplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="Nguyenvantoan.info@gmail.com"/>
+            android:text="Unknow"/>
     </LinearLayout>
     <ImageView
         android:layout_below="@id/layoutInfo"
@@ -30,100 +34,151 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/divice"/>
-    <LinearLayout
-        android:layout_marginTop="22dp"
-        android:layout_below="@id/divice"
-        android:id="@+id/funtionOne"
+    <RelativeLayout
+        android:paddingLeft="10dp"
+        android:layout_marginTop="42dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="4"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:src="@drawable/avataprofile"/>
-        <TextView
-            android:textColor="@color/white"
-            android:textSize="@dimen/fontSizeProfileFunction"
-            android:layout_marginTop="12dp"
-            android:gravity="left"
-            android:layout_marginRight="10dp"
-            android:text="Your vocabulary"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="22dp"
-        android:id="@+id/functionTwo"
-        android:layout_below="@id/funtionOne"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="4"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:src="@drawable/avataprofile"/>
-        <TextView
-            android:textColor="@color/white"
-            android:textSize="@dimen/fontSizeProfileFunction"
-            android:layout_marginTop="12dp"
-            android:gravity="left"
-            android:layout_marginRight="10dp"
-            android:text="Vocabulary learned"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="22dp"
-        android:id="@+id/functionThree"
-        android:layout_below="@id/functionTwo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="4"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:src="@drawable/avataprofile"/>
-        <TextView
-            android:textColor="@color/white"
-            android:textSize="@dimen/fontSizeProfileFunction"
-            android:layout_marginTop="12dp"
-            android:gravity="left"
-            android:layout_marginRight="10dp"
-            android:text="Statistical"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="22dp"
-        android:id="@+id/functionFour"
-        android:layout_below="@id/functionThree"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="4"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="24dp"
-            android:src="@drawable/logout_profile_24"/>
-        <TextView
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="@dimen/fontSizeProfileFunction"
-            android:layout_marginRight="12dp"
-            android:gravity="left"
-            android:text="Account information"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_below="@id/divice">
+        <LinearLayout
+            android:id="@+id/funtionOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4"
+            android:orientation="horizontal">
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/textItem_color"
+                android:textSize="@dimen/text_size_label_item_18dp"
+                android:layout_marginTop="12dp"
+                android:gravity="left"
+                android:layout_marginRight="10dp"
+                android:text="Vocabulary"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:src="@drawable/icon_next_profile"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="22dp"
+            android:id="@+id/functionTwo"
+            android:layout_below="@id/funtionOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4"
+            android:orientation="horizontal">
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/textItem_color"
+                android:textSize="@dimen/text_size_label_item_18dp"
+                android:layout_marginTop="12dp"
+                android:gravity="left"
+                android:layout_marginRight="10dp"
+                android:text="Information"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:src="@drawable/icon_next_profile"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="22dp"
+            android:id="@+id/functionThree"
+            android:layout_below="@id/functionTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4"
+            android:orientation="horizontal">
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/textItem_color"
+                android:textSize="@dimen/text_size_label_item_18dp"
+                android:layout_marginTop="12dp"
+                android:gravity="left"
+                android:layout_marginRight="10dp"
+                android:text="Statistical"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:src="@drawable/icon_next_profile"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="22dp"
+            android:id="@+id/functionFour"
+            android:layout_below="@id/functionThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4"
+            android:orientation="horizontal">
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/textItem_color"
+                android:textSize="@dimen/text_size_label_item_18dp"
+                android:layout_marginTop="12dp"
+                android:gravity="left"
+                android:text="Policy"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:src="@drawable/icon_next_profile"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="22dp"
+            android:id="@+id/functionFive"
+            android:layout_below="@id/functionFour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4"
+            android:orientation="horizontal">
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/textItem_color"
+                android:textSize="@dimen/text_size_label_item_18dp"
+                android:layout_marginTop="12dp"
+                android:gravity="left"
+                android:text="terms of use"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:src="@drawable/icon_next_profile"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin_top_10dp"
+            android:id="@+id/functionSix"
+            android:layout_below="@id/functionFive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:textStyle="bold"
+                android:textColor="#FF0000"
+                android:textSize="@dimen/text_size_label_item_18dp"
+                android:layout_marginTop="12dp"
+                android:gravity="left"
+                android:text="Logout"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>
+</ScrollView>

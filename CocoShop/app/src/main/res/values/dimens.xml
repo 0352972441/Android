@@ -7,4 +7,25 @@
     <dimen name="height_text_input_edittext_50dp">50dp</dimen>
     <dimen name="margin_top_10dp">10dp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override = "true" >12sp</dimen>
+    <dimen name="text_size_label_item_18dp">18dp</dimen>
+    <dimen name="radiu_size_cardview_10dp">10dp</dimen>
+    <dimen name="text_size_20dp">35dp</dimen>
+    <dimen name="margin_all_view_10dp">10dp</dimen>
+    <dimen name="text_size_label_title_18dp">18dp</dimen>
+    <dimen name="icon_size_24dp">24dp</dimen>
+    <dimen name="icon_size_36dp">36dp</dimen>
+    <dimen name="icon_size_48dp">48dp</dimen>
+    <dimen name="cardView_radiu_100dp">100dp</dimen>
+    <dimen name="margin_left_20dp">20dp</dimen>
+    <dimen name="width_text_10dp">10dp</dimen>
+    <dimen name="height_text_10dp">10dp</dimen>
+    <dimen name="padding_5dp">5dp</dimen>
+    <dimen name="margin_5dp">5dp</dimen>
+    <dimen name="text_size_notification_8sp">8sp</dimen>
+    <dimen name="margin_top_20dp">20dp</dimen>
+    <dimen name="radiu_10dp">10dp</dimen>
+    <dimen name="margin_20dp">20dp</dimen>
+    <dimen name="margin_bottom_20dp">20dp</dimen>
+    <dimen name="margin_start_20dp">20dp</dimen>
+    <dimen name="padding_left_10dp">10dp</dimen>
 </resources>

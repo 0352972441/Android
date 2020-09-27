@@ -2,7 +2,7 @@ package com.example.cocoshop.Models;
 
 public class User {
     private static String email;
-    private static String password;
+    private static String kind;
 
     public static String getEmail() {
         return email;
@@ -12,11 +12,12 @@ public class User {
         User.email = email;
     }
 
-    public static String getPassword() {
-        return password;
+    public static String getKind() {
+        return kind;
     }
 
-    public static void setPassword(String password) {
-        User.password = password;
+    public static void setKind(String kind) {
+        User.kind = kind;
     }
+
 }

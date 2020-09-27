@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +17,7 @@ import com.example.cocoshop.Auth.AuthGoogle;
 import com.example.cocoshop.Models.User;
 import com.example.cocoshop.R;
 import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
+import com.example.cocoshop.fireStore.FireStoreUser;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
@@ -28,13 +28,19 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class LoginScreen extends AppCompatActivity {
     private String email;
     private String password ;
     private Button mbtnLogin;
-    private TextView mtxChange,mtxTtile;
+    private TextView mtxChange;
     private ImageView imgSignInWithGoogle;
     private TextInputEditText medPassword,medEmail;
     //private EditText medConfirmPassword;
@@ -42,7 +48,7 @@ public class LoginScreen extends AppCompatActivity {
     public static FirebaseUser currentUser;
     private static final int RC_SIGN_IN = 9001;
     private AuthGoogle authGoogle;
-    private View viewSignInWith;
+    private com.example.cocoshop.Models.usersmodel.User user;
     static {
         mAuth = FirebaseAuth.getInstance();
     }
@@ -53,7 +59,6 @@ public class LoginScreen extends AppCompatActivity {
         setContentView(R.layout.activity_login_screen);
         mbtnLogin = (Button)findViewById(R.id.mbtnLg);
         mtxChange = (TextView)findViewById(R.id.mtxChange);
-        mtxTtile = (TextView)findViewById(R.id.mtxTtile);
         medPassword = (TextInputEditText)findViewById(R.id.medPassword);
         medEmail = (TextInputEditText)findViewById(R.id.medGmail);
         imgSignInWithGoogle = (ImageView)findViewById(R.id.imgSignInGoogle);
@@ -68,10 +73,37 @@ public class LoginScreen extends AppCompatActivity {
         super.onStart();
         currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            User.setEmail(email);
-            User.setPassword(password);
-            Intent intent = new Intent(this,HomeScreen.class);
-            startActivity(intent);
+            currentUser.getIdToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+                @Override
+                public void onComplete(@NonNull Task<GetTokenResult> task) {
+                    if(task.getResult().getExpirationTimestamp() > 0){
+                    Calendar calendar = Calendar.getInstance();
+                    Date now = calendar.getTime();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+                    String localTime = sdf.format(new Date(task.getResult().getExpirationTimestamp() * 1000));
+                    Date date = new Date();
+                    try {
+                        date = sdf.parse(localTime);//get local date
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                        if(date.after(now)) {
+                            User.setKind("Basic");
+                            User.setEmail(currentUser.getEmail());
+                            Intent intent = new Intent(LoginScreen.this, HomeScreen.class);
+                            startActivity(intent);
+                            finish();
+                        }else{
+                            mAuth.signOut();
+                            Intent intent = new Intent(LoginScreen.this,HomeScreen.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }else{
+                        mAuth.signOut();
+                    }
+                }
+            });
         }
     }
 
@@ -79,7 +111,6 @@ public class LoginScreen extends AppCompatActivity {
         mbtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if(modeAuth.LOGIN == currentMode){
                     if(signUp()){
                         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(LoginScreen.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -88,12 +119,12 @@ public class LoginScreen extends AppCompatActivity {
                                     Toast.makeText(LoginScreen.this, "Logged in successfuly ", Toast.LENGTH_SHORT).show();
                                     // Login into Screen home
                                     // Lưu tài khoản và mật khẩu vào User
+                                    User.setKind("Basic");
                                     User.setEmail(email);
-                                    User.setPassword(password);
                                     loginSuccessed();
                                 }else{
                                     Log.w("Thông tin",task.getException());
-                                    Toast.makeText(LoginScreen.this, "Account or password is incrrect", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginScreen.this, "Account or password is incorrect", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -129,7 +160,7 @@ public class LoginScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginScreen.this, SignUpScreenActivity.class);
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(LoginScreen.this).toBundle());
+                startActivity(intent);
                 finish();
             }
         });
@@ -139,7 +170,6 @@ public class LoginScreen extends AppCompatActivity {
     private boolean signUp(){
         email = medEmail.getText().toString();
         password = medPassword.getText().toString();
-        //String confirmPassword = mtxilConfirmPassword.getEditText().getText().toString();
         if(email.isEmpty()){
             medEmail.setError("Email hasn't empty");
             return false;
@@ -163,9 +193,9 @@ public class LoginScreen extends AppCompatActivity {
             Task<GoogleSignInAccount> account = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount currentAccount = account.getResult(ApiException.class);
+                Log.d("Result Account",data.toString());
                 firebaseSignInWith(currentAccount.getIdToken());
             }catch (ApiException e){
-                Log.w("Lỗi đăng nhập",e);
                 Toast.makeText(this, "Occured error"+e.getStatusCode(), Toast.LENGTH_SHORT).show();
             }
         }else{
@@ -190,7 +220,9 @@ public class LoginScreen extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(LoginScreen.this, "Login Successed", Toast.LENGTH_SHORT).show();
+                    FireStoreUser.addUser("basic",email==null ? task.getResult().getUser().getEmail() : email,"Avata");
+                    User.setKind("Basic");
+                    User.setEmail(task.getResult().getUser().getEmail());
                     loginSuccessed();
                 }else{
                     Toast.makeText(LoginScreen.this, "Logged failed", Toast.LENGTH_SHORT).show();

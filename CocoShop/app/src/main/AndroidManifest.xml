@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cocoshop">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,7 +19,7 @@
         </activity>
         <activity android:name=".Screen.AuthScreen.SignUpScreenActivity" android:theme="@style/noActionBar" android:screenOrientation="fullSensor"/>
         <activity android:name=".Screen.ChangePasswordScreen.ChangePasswordScreen" />
-        <activity android:name=".Screen.HomeScreen.HomeScreen" />
+        <activity android:name=".Screen.HomeScreen.HomeScreen" android:theme="@style/noActionBar"/>
         <activity android:name=".Screen.AuthScreen.LoginScreen" android:theme="@style/noActionBar" android:screenOrientation="fullSensor"/>
         <activity android:name=".MainActivity">
             <!--<intent-filter>

@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/splash_color"
+    android:background="@color/white"
     tools:context=".Screen.HomeScreen.HomeScreen">
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <FrameLayout
         android:layout_above="@id/bottomNavigatorView"
         android:id="@+id/frame_container"
@@ -23,7 +25,6 @@
         app:labelVisibilityMode="labeled"
         android:layout_gravity="bottom"
         app:itemTextColor="@color/white"
-        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         android:layout_alignParentBottom="true"/>
-
+    </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

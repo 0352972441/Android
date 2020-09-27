@@ -4,13 +4,13 @@
     <item
         android:icon="@drawable/password_24dp"
         android:id="@+id/changePassword"
-        android:title="Change Password"/>
+        android:title="@string/title_item_menu_change_password"/>
     <item
         android:icon="@drawable/password_24dp"
         android:id="@+id/changeAvata"
-        android:title="Change Avata"/>
+        android:title="@string/title_item_menu_change_avata"/>
     <item
         android:icon="@drawable/logout_profile_24"
         android:id="@+id/logout"
-        android:title="Logout"/>
+        android:title="@string/title_item_menu_logout"/>
 </menu>

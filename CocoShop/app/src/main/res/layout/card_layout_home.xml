@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="160dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:id="@+id/cardview"
+    android:layout_margin="@dimen/margin_5dp"
+    android:layout_height="160dp">
+    <FrameLayout
+        android:id="@+id/cardBackground"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="UselessParent">
+                <ImageView
+                    android:id="@+id/imgLogo"
+                    android:layout_marginStart="@dimen/margin_start_20dp"
+                    android:layout_marginTop="@dimen/margin_top_20dp"
+                    android:background="@drawable/shape_radiu_48"
+                    android:layout_alignParentStart="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_notifications_none_grey_24dp"
+                    android:contentDescription="@string/description_image" />
+                <TextView
+                    android:id="@+id/txTitleCard"
+                    android:paddingLeft="@dimen/padding_left_15dp"
+                    android:layout_marginTop="@dimen/margin_top_20dp"
+                    android:layout_below="@id/imgLogo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Transaction"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/txCountCard"
+                    android:paddingLeft="@dimen/padding_left_15dp"
+                    android:layout_marginTop="@dimen/margin_top_10dp"
+                    android:layout_below="@id/txTitleCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="10 card"/>
+            </RelativeLayout>
+    </FrameLayout>
+</androidx.cardview.widget.CardView>

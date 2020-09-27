@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#42A5F5</color>
+    <color name="colorPrimaryDark">#42A5F5</color>
+    <color name="colorAccent">#9CCC65</color>
     <color name="colorTextBoarding">#FFFFFF</color>
     <color name="colorTextBoarding2">#B3A6A6</color>
     <color name="white">#ffffff</color>
     <color name="hint_color">#100F0F</color>
     <color name="splash_color">#EDE7F6</color>
+    <color name="textItem_color">#000000</color>
+    <color name="background_bottomNavigator_color">#42A5F5</color>
+    <color name="blue_sky_color">#A576B3E4</color>
+    <color name="notification_color">#0091EA</color>
 </resources>

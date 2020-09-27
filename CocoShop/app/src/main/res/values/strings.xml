@@ -3,20 +3,22 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+<!--    Onboarding-->
     <string name="onOne">Communication skills</string>
     <string name="onThree">Diverse vocabulary</string>
     <string name="onTwo">Target </string>
     <string name="descriptionOne">Standard pronunciation and common communication sentences help you communicate with confidence</string>
     <string name="descriptionThree">With a variety of economic and information technology topics, you can study anytime, anywhere.</string>
     <string name="descriptionTwo">Clear progress goals make it easier for you to manage your progress</string>
+    <string name="next">Next</string>
+    <string name="label_text_skip">Skip</string>
 
-    <!--    Text -->
+    <!--    Login and SignUp -->
     <string name="oldpassword">Old Password</string>
     <string name="password">Password</string>
     <string name="confirmpassword">Confirm Password</string>
     <string name="newpassword">New Password</string>
     <string name="changepassword">Change Password</string>
-    <string name="next">Next</string>
     <string name="label_signup">Create your account</string>
     <string name="label_signin">Login to your account</string>
     <string name="label_signWith">- or sign in with -</string>
@@ -30,4 +32,20 @@
     <string name="label_hint_password">Password</string>
     <string name="label_hint_confirm_password">Confirm Password</string>
     <string name="description_image_logo">Logo</string>
+<!--    Home Fragment -->
+    <string name="label_hint_search">Search</string>
+    <string name="label_new">New</string>
+    <string name="label_audio">Audio</string>
+    <string name="label_recommend">Recommed</string>
+<!--    Menu-->
+    <string name="title_item_menu_change_password">Change the password</string>
+    <string name="title_item_menu_change_avata">Change the avata</string>
+    <string name="title_item_menu_logout">Logout</string>
+    <!-- Menu BottomNavigator   -->
+    <string name="lable_item_menu_bottomnavigator_home">Home</string>
+    <string name="lable_item_menu_bottomnavigator_Progressive">Progressive</string>
+    <string name="lable_item_menu_bottomnavigator_topic">Topic</string>
+    <string name="lable_item_menu_bottomnavigator_audio">Audio</string>
+    <string name="lable_item_menu_bottomnavigator_profile">Profile</string>
+    <string name="description_image">this is image</string>
 </resources>
