@@ -26,6 +26,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeScreen extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
+    public static String isCurrentFragment = "";
     //private ActionBar tabBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +55,14 @@ public class HomeScreen extends AppCompatActivity {
             Fragment fragment = null;
             switch (item.getItemId()){
                 case R.id.itemProgressive:
-                    if(!(FragmentProgressive.class.isInstance(fragment))){
+                    if(!isCurrentFragment.equals("Progressive")){
                         fragment = new FragmentProgressive();
                         loadFragment(fragment);
                         return true;
                     }
                     return false;
                 case R.id.itemProfile:
-                    if(!(FragmentProfile.class.isInstance(fragment))){
+                    if(!isCurrentFragment.equals("Profile")){
                         fragment = new FragmentProfile();
                         //tabBar.setTitle("Profile");
                         loadFragment(fragment);
@@ -70,15 +71,21 @@ public class HomeScreen extends AppCompatActivity {
                     return false;
                 case R.id.itemHome:
                     //tabBar.setTitle("Home");
-                    loadFragment(new FragmentHome());
+                    if(!isCurrentFragment.equals("HOME")){
+                        loadFragment(new FragmentHome());
+                    }
                     return true;
                 case R.id.itemLearnigTopic:
                     //tabBar.setTitle("Learning by topic");
-                    loadFragment(new FragmentLearningTopic());
+                    if(!isCurrentFragment.equals("TOPIC")){
+                        loadFragment(new FragmentLearningTopic());
+                    }
                     return true;
                 case R.id.itemAudio:
                     //tabBar.setTitle("Audio");
-                    loadFragment(new FragmentAudio());
+                    if(!isCurrentFragment.equals("AUDIO")){
+                        loadFragment(new FragmentAudio());
+                    }
                     return true;
             }
             return false;

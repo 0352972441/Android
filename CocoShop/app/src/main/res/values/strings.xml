@@ -3,7 +3,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-<!--    Onboarding-->
+    <!--    Onboarding-->
     <string name="onOne">Communication skills</string>
     <string name="onThree">Diverse vocabulary</string>
     <string name="onTwo">Target </string>
@@ -32,12 +32,12 @@
     <string name="label_hint_password">Password</string>
     <string name="label_hint_confirm_password">Confirm Password</string>
     <string name="description_image_logo">Logo</string>
-<!--    Home Fragment -->
+    <!--    Home Fragment -->
     <string name="label_hint_search">Search</string>
     <string name="label_new">New</string>
     <string name="label_audio">Audio</string>
     <string name="label_recommend">Recommed</string>
-<!--    Menu-->
+    <!--    Menu-->
     <string name="title_item_menu_change_password">Change the password</string>
     <string name="title_item_menu_change_avata">Change the avata</string>
     <string name="title_item_menu_logout">Logout</string>
@@ -48,4 +48,13 @@
     <string name="lable_item_menu_bottomnavigator_audio">Audio</string>
     <string name="lable_item_menu_bottomnavigator_profile">Profile</string>
     <string name="description_image">this is image</string>
+    <!--    Text Level-->
+    <string name="label_level_beginer">Beginer</string>
+    <string name="label_level_HighBeginer">High Beginer</string>
+    <string name="label_level_low_intermadiate">Low Intermadiate</string>
+    <string name="label_level_intermadicate">Intermadiate</string>
+    <string name="label_level_high_intermadiate">High Intermadiate</string>
+    <string name="label_level_low_advanced">Low advanced</string>
+    <string name="label_level_advanced">Advanced</string>
+    <string name="label_level_high_advanced">High advanced</string>
 </resources>

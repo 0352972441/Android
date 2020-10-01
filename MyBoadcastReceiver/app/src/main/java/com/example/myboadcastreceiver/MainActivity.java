@@ -1,7 +1,9 @@
 package com.example.myboadcastreceiver;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
         switch (view.getId()){
             case R.id.btnLs1:
+                requestFunction();
                 break;
             case R.id.btnLs2:
                 intent = new Intent();
@@ -42,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 break;
         }
+    }
+
+    private void requestFunction() {
+
     }
 
     @Override

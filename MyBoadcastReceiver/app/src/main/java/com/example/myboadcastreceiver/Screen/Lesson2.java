@@ -48,13 +48,12 @@ public class Lesson2 extends AppCompatActivity {
 
     private boolean isCoupons(){
         coupons = edCoupons.getText().toString();
-        Toast.makeText(this, String.valueOf(coupons.contains("vip")), Toast.LENGTH_SHORT).show();
-        if(!coupons.contains("VIP") && !coupons.contains("MEN")) {
+        if(!coupons.contains("VIP") && !coupons.contains("MEM")) {
             Toast.makeText(this, "Coupons must start VIP or MEN", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(coupons.length() != 9){
-            Toast.makeText(this, "Coupons must 9 characters", Toast.LENGTH_SHORT).show();
+        if(coupons.length() != 4){
+            Toast.makeText(this, "Coupons must 4 characters", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

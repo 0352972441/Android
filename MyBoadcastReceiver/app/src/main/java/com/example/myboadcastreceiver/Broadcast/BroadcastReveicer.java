@@ -14,9 +14,8 @@ public class BroadcastReveicer extends BroadcastReceiver {
         if(bundle != null){
             String state = bundle.getString(TelephonyManager.EXTRA_STATE);
             if(state.equals(TelephonyManager.EXTRA_STATE_RINGING)){
-                Toast.makeText(context, "OK", Toast.LENGTH_SHORT).show();
                 String phoneNumber = bundle.getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
-                Toast.makeText(context, "Phone: "+phoneNumber, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Phonenumber: "+phoneNumber, Toast.LENGTH_SHORT).show();
             }
         }
     }

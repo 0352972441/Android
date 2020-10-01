@@ -30,6 +30,7 @@ import com.example.cocoshop.Models.UserAccount;
 import com.example.cocoshop.R;
 import com.example.cocoshop.Screen.ChangePasswordScreen.ChangePasswordScreen;
 import com.example.cocoshop.Screen.AuthScreen.LoginScreen;
+import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
 import com.example.cocoshop.fireStore.FireStoreUser;
 import com.example.cocoshop.firebaseStorange.FirebaseStorangeUser;
 import com.example.cocoshop.permission.PermissionReadExternalStorage;
@@ -93,7 +94,8 @@ public class FragmentProfile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        return view;
     }
 
     @Override
@@ -102,6 +104,12 @@ public class FragmentProfile extends Fragment {
         MenuInflater inflater = getActivity().getMenuInflater();
         inflater.inflate(R.menu.menu_item_setting,menu);
         menu.setHeaderTitle("Your choose!");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        HomeScreen.isCurrentFragment = "Profile";
     }
 
     @Override

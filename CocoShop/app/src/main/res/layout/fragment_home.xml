@@ -103,6 +103,8 @@
                         android:layout_height="wrap_content"
                         android:text="BuzzBee"/>
                     <EditText
+                        android:focusable="true"
+                        android:defaultFocusHighlightEnabled="true"
                         android:paddingStart="@dimen/padding_left_10dp"
                         android:textColorHint="#000000"
                         android:layout_marginTop="@dimen/margin_top_20dp"

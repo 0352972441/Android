@@ -12,4 +12,5 @@
     <color name="background_bottomNavigator_color">#42A5F5</color>
     <color name="blue_sky_color">#A576B3E4</color>
     <color name="notification_color">#0091EA</color>
+    <color name="grey">#DCE8E8E8</color>
 </resources>

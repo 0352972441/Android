@@ -1,0 +1,5 @@
+package com.example.cocoshop.Models.topicsmodel;
+
+public enum Levels {
+   BEGINER,HIGHTBEGINER,LOWINTERMADIATE,INTERMADIATE,HIGHINTERMADIATE,LOWADVANCED,ADVANCED,HIGHADVANCED
+}

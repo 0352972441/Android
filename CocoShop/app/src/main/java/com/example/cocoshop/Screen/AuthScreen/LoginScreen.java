@@ -4,17 +4,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cocoshop.Auth.AuthGoogle;
 import com.example.cocoshop.Models.User;
+import com.example.cocoshop.Models.topicsmodel.Levels;
 import com.example.cocoshop.R;
 import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
 import com.example.cocoshop.fireStore.FireStoreUser;
@@ -112,6 +115,8 @@ public class LoginScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                     if(signUp()){
+                        final ProgressDialog dialog = new ProgressDialog(LoginScreen.this);
+                        dialog.show();
                         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(LoginScreen.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -119,10 +124,12 @@ public class LoginScreen extends AppCompatActivity {
                                     Toast.makeText(LoginScreen.this, "Logged in successfuly ", Toast.LENGTH_SHORT).show();
                                     // Login into Screen home
                                     // Lưu tài khoản và mật khẩu vào User
+                                    dialog.dismiss();
                                     User.setKind("Basic");
                                     User.setEmail(email);
                                     loginSuccessed();
                                 }else{
+                                    dialog.dismiss();
                                     Log.w("Thông tin",task.getException());
                                     Toast.makeText(LoginScreen.this, "Account or password is incorrect", Toast.LENGTH_SHORT).show();
                                 }
@@ -215,16 +222,20 @@ public class LoginScreen extends AppCompatActivity {
     }
 
     public void firebaseSignInWith(String idToken){
+        final ProgressDialog dialog = new ProgressDialog(LoginScreen.this);
+        dialog.show();
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken,null);
         mAuth.signInWithCredential(credential).addOnCompleteListener(LoginScreen.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    dialog.dismiss();
                     FireStoreUser.addUser("basic",email==null ? task.getResult().getUser().getEmail() : email,"Avata");
                     User.setKind("Basic");
                     User.setEmail(task.getResult().getUser().getEmail());
                     loginSuccessed();
                 }else{
+                    dialog.dismiss();
                     Toast.makeText(LoginScreen.this, "Logged failed", Toast.LENGTH_SHORT).show();
                 }
             }

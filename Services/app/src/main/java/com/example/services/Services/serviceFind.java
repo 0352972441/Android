@@ -18,14 +18,14 @@ public class serviceFind extends Service {
 
     @Override
     public void onCreate() {
-        Toast.makeText(this, "Create services", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Create services", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onStart(Intent intent, int startId) {
         Bundle bundle = intent.getExtras().getBundle("data");
         int count = bundle.getInt("Count");
-        Toast.makeText(this, String.valueOf(count), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "number of characters A: "+String.valueOf(count), Toast.LENGTH_SHORT).show();
     }
 
     @Override

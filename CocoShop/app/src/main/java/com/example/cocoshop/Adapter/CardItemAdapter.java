@@ -11,8 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocoshop.Models.Card;
-import com.example.cocoshop.Models.Topic;
+import com.example.cocoshop.Models.CardHomeModel.Card;
 import com.example.cocoshop.R;
 import com.example.cocoshop.listener.Listener;
 
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CardItemAdapter extends RecyclerView.Adapter<CardItemAdapter.ViewHolder> {
-    private Listener listener;
+    private Listener cardListener;
     private List<Card> card = new ArrayList<>();
     private static View view;
     public CardItemAdapter(List<Card> card) {
@@ -41,13 +40,13 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemAdapter.ViewHo
             holder.mtxTitleCard.setText(card.get(position).getTitle());
             holder.imgLogo.setImageResource(card.get(position).getLogo());
             holder.mtxCountCard.setText(card.get(position).getCountCard());
-            /*holder.cardView.setOnClickListener(new View.OnClickListener() {
+            holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.listener(position);
+                    cardListener.listener(position);
                 }
-            });*/
-            //Glide.with(view.getContext()).load(topics.get(position).getImgUrl()).into(holder.ca);
+            });
+            holder.mFrameLayout.setBackgroundResource(card.get(position).getBackground());
         }
     }
 
@@ -55,8 +54,8 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemAdapter.ViewHo
     public int getItemCount() {
         return card.size();
     }
-    public void setListener(Listener listener) {
-        this.listener = listener;
+    public void setCardListener(Listener cardListener) {
+        this.cardListener = cardListener;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

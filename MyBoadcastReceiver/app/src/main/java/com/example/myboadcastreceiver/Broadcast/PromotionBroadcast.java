@@ -10,13 +10,13 @@ public class PromotionBroadcast extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String promotion = intent.getExtras().getString(KEYPROMOION);
-        if("MEM537128".equals(promotion)){
+        if("MEM1".equals(promotion)){
             Toast.makeText(context, promotion+" promotion 10%", Toast.LENGTH_SHORT).show();
-        }else if("MEM537129".equals(promotion)){
+        }else if("MEM2".equals(promotion)){
             Toast.makeText(context, promotion+" promotion 20%", Toast.LENGTH_SHORT).show();
-        }else if("VIP537128".equals(promotion)){
+        }else if("VIP1".equals(promotion)){
             Toast.makeText(context, promotion+" promotion 30%", Toast.LENGTH_SHORT).show();
-        }else if("VIP537129".equals(promotion)){
+        }else if("VIP2".equals(promotion)){
             Toast.makeText(context, promotion+" promotion 50%", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(context, promotion+" code is invalid or expired", Toast.LENGTH_SHORT).show();

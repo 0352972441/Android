@@ -1,4 +1,4 @@
-package com.example.cocoshop.Models;
+package com.example.cocoshop.Models.CardHomeModel;
 
 public class Card {
     private int logo;
