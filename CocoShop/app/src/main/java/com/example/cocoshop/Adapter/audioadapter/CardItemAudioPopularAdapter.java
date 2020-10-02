@@ -58,6 +58,10 @@ public class CardItemAudioPopularAdapter extends RecyclerView.Adapter<CardItemAu
         return audioPopulars.size();
     }
 
+    public void setAudioPopulars(List<Audio> audioPopulars) {
+        this.audioPopulars = audioPopulars;
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private CardView cardItemAudioPopular;
         private RelativeLayout backgroundCardItemAudioPopular;

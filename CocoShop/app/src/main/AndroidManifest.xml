@@ -33,9 +33,9 @@
             android:theme="@style/noActionBar" />
         <activity
             android:name=".Screen.AuthScreen.LoginScreen"
-            android:screenOrientation="fullSensor"
             android:theme="@style/noActionBar" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/noActionBar">
 
             <!--
             <intent-filter>

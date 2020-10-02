@@ -19,6 +19,7 @@ import com.example.cocoshop.Models.audiomodels.Audio;
 import com.example.cocoshop.Models.audiomodels.Category;
 import com.example.cocoshop.R;
 import com.example.cocoshop.dao.audiodao.BundleData;
+import com.example.cocoshop.fireStore.FireStoreAudio;
 import com.example.cocoshop.listener.Listener;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class MainAudioActivity extends AppCompatActivity {
     }
 
     private void displayAudioByGenre(){
-        final ArrayList<Audio> dataCategory = new ArrayList<>();
+        //final ArrayList<Audio> dataCategory = new ArrayList<>();
         categoryAdapter.setCardItemCategoryListener(new Listener() {
             @Override
             public void listener(int position) {
@@ -60,7 +61,8 @@ public class MainAudioActivity extends AppCompatActivity {
                         background = (RelativeLayout)viewItemCategory.findViewById(R.id.background_item_card_category);
                         background.setBackgroundResource(R.color.colorPrimary);
                         previousPosition = position;
-                        dataCategory.clear();
+                        //dataCategory.clear();
+                        data.clear();
                     }
                 }else{
                     if(itemCategoryRecycler.findViewHolderForAdapterPosition(previousPosition) != null){
@@ -77,21 +79,25 @@ public class MainAudioActivity extends AppCompatActivity {
                     background = (RelativeLayout)viewItemCategory.findViewById(R.id.background_item_card_category);
                     background.setBackgroundResource(R.color.colorPrimary);
                     previousPosition = position;
-                    dataCategory.clear();
+                    //dataCategory.clear();
+                    data.clear();
                 }
                 if(Category.values()[position] != Category.ALL){
                     for(Audio i : data()){
                         if(i.getCategory().equals(Category.values()[position])){
-                            dataCategory.add(i);
+                            data.add(i);
                         }
                     }
-                    cardItemAdapter = new CardItemAudioPopularAdapter(dataCategory);
-                    cardItemAudioRecycler.setAdapter(cardItemAdapter);
+                    /*cardItemAdapter = new CardItemAudioPopularAdapter(data);
+                    cardItemAudioRecycler.setAdapter(cardItemAdapter);*/
+                    cardItemAdapter.setAudioPopulars(data);
                     cardItemAdapter.notifyDataSetChanged();
                     cardItemAudioRecycler.invalidate();
                 }else{
-                    cardItemAdapter = new CardItemAudioPopularAdapter(data());
-                    cardItemAudioRecycler.setAdapter(cardItemAdapter);
+                    /*cardItemAdapter = new CardItemAudioPopularAdapter(data());
+                    cardItemAudioRecycler.setAdapter(cardItemAdapter);*/
+                    data = data();
+                    cardItemAdapter.setAudioPopulars(data);
                     cardItemAdapter.notifyDataSetChanged();
                     cardItemAudioRecycler.invalidate();
                 }
@@ -111,17 +117,18 @@ public class MainAudioActivity extends AppCompatActivity {
         });
     }
 
+
     private ArrayList<Audio> data(){
         ArrayList<Audio> data = new ArrayList<>();
-        data.add(new Audio("Hello","Url","Hana chister","Url",R.drawable
+        data.add(new Audio("Hello1","Url","Hana chister","Url",R.drawable
                 .background_card_item, Category.EDUCATION));
-        data.add(new Audio("Gặp người nước ngoài lần đầu thì sao","Url","Hana chister","Url",R.drawable
+        data.add(new Audio("Gặp người nước ","Url","Hana chister","Url",R.drawable
                 .background_card_item,Category.EDUCATION));
-        data.add(new Audio("Gặp người nước ngoài","Url","Hana chister","Url",R.drawable
+        data.add(new Audio("Gặp người nước 2","Url","Hana chister","Url",R.drawable
                 .background_card_item,Category.EDUCATION));
-        data.add(new Audio("Gặp người nước ngoài","Url","Hana chister","Url",R.drawable
+        data.add(new Audio("Gặp người nước3","Url","Hana chister","Url",R.drawable
                 .background_card_item,Category.MUSIC));
-        data.add(new Audio("Hello","Url","Hana chister","Url",R.drawable
+        data.add(new Audio("Hello3","Url","Hana chister","Url",R.drawable
                 .background_card_item,Category.EDUCATION));
         return data;
     }

@@ -1,6 +1,7 @@
 package com.example.cocoshop.ui.Profile;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -59,6 +61,7 @@ import static android.app.Activity.RESULT_OK;
 public class FragmentProfile extends Fragment {
     private static Uri uriAvata = null;
     private ImageView mImgSetting,imgAvata;
+    private Handler handler;
     private View viewContentProfile;
     private TextView tvNameDisplay,tvEmailDisplay;
     private static final FirebaseUser user;
@@ -67,6 +70,7 @@ public class FragmentProfile extends Fragment {
     private static final FirebaseStorage store;
     private static final StorageReference storeRef;
     private static Uri filePath;
+    private Context context;
     static {
         user = FirebaseAuth.getInstance().getCurrentUser();
         store =  FirebaseStorage.getInstance();
@@ -88,6 +92,7 @@ public class FragmentProfile extends Fragment {
         tvEmailDisplay = (TextView)viewContentProfile.findViewById(R.id.tvemailDisplay);
         tvNameDisplay.setText("Unknow");
         //firestore = FirebaseFirestore.getInstance();
+        this.context = getContext();
         setUpProfile();
     }
 
@@ -144,19 +149,32 @@ public class FragmentProfile extends Fragment {
     }
 
     private void setUpProfile(){
-        tvEmailDisplay.setText(User.getEmail()==null ? "Unknow" : User.getEmail());
-        tvNameDisplay.setText(User.getKind() == null ?"Unknow" :User.getKind());
-        if(uriAvata == null){
-            storeRef.child("avatas/"+user.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-                    Picasso.with(getContext()).load(uri).error(R.drawable.defaultavata).placeholder(R.drawable.defaultavata).into(imgAvata);
-                    uriAvata = uri;
+        handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                tvEmailDisplay.setText(User.getEmail()==null ? "Unknow" : User.getEmail());
+                tvNameDisplay.setText(User.getKind() == null ?"Unknow" :User.getKind());
+                if(uriAvata == null){
+                    if(context != null){
+                        storeRef.child("avatas/"+user.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Picasso.with(context).load(uri).error(R.drawable.defaultavata).placeholder(R.drawable.defaultavata).into(imgAvata);
+                                uriAvata = uri;
+                            }
+                        });
+                    }
+                }else{
+                    Picasso.with(getContext()).load(uriAvata).into(imgAvata);
                 }
-            });
-        }else{
-            Picasso.with(getContext()).load(uriAvata).into(imgAvata);
-        }
+            }
+        });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
     private void pickImageFromGallery(){

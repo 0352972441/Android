@@ -8,10 +8,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
-
 import com.example.contact.Models.Contact;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,13 +22,13 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<Contact> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,displayContacts());
         mlvContacts.setAdapter(adapter);
     }
-    private ArrayList<Contact> displayContacts() {
+    private ArrayList<Contact> displayContacts(){
         contacts = new ArrayList<>();
         ContentResolver cr = getContentResolver();
         Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
                 null, null, null, null);
         if (cur.getCount() > 0) {
-            while (cur.moveToNext()) {
+            while (cur.moveToNext()){
                 String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
                 String name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
                 if (Integer.parseInt(cur.getString(

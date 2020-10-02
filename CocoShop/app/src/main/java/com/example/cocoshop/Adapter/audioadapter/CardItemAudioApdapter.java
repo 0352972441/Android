@@ -52,6 +52,10 @@ public class CardItemAudioApdapter extends RecyclerView.Adapter<CardItemAudioApd
         }
     }
 
+    public Audio getItemPosition(int position){
+        return audios.get(position);
+    }
+
     @Override
     public int getItemCount() {
         return audios.size();
