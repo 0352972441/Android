@@ -40,7 +40,7 @@ public class CardItemAudioApdapter extends RecyclerView.Adapter<CardItemAudioApd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         if(audios != null){
-            holder.txTitleAudio.setText(audios.get(position).getTitle());
+            holder.txTitleAudio.setText(audios.get(position).getSound().getTitle());
             holder.txReaderName.setText(audios.get(position).getReaderName());
             holder.backgroundCardItem.setBackgroundResource(R.drawable.background_card_item);
             holder.bntPlay.setOnClickListener(new View.OnClickListener() {

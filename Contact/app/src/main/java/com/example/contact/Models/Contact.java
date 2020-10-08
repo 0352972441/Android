@@ -40,6 +40,6 @@ public class Contact {
     @NonNull
     @Override
     public String toString() {
-        return name+"\n"+phone+"\n"+id ;
+        return name+"\n"+phone ;
     }
 }

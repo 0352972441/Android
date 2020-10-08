@@ -44,6 +44,7 @@
     <!-- Menu BottomNavigator   -->
     <string name="lable_item_menu_bottomnavigator_home">Home</string>
     <string name="lable_item_menu_bottomnavigator_Progressive">Progressive</string>
+    <string name="label_item_menu_bottomnavigator_chat">Chat</string>
     <string name="lable_item_menu_bottomnavigator_topic">Topic</string>
     <string name="lable_item_menu_bottomnavigator_audio">Audio</string>
     <string name="lable_item_menu_bottomnavigator_profile">Profile</string>

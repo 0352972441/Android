@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/img_description"/>
+    <TextView
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:text="Family"
+        android:layout_below="@id/img_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_vocabulary_50dp"
+        android:id="@+id/vocabulary"/>
+    <TextView
+        android:textAlignment="center"
+        android:text="Spelling"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spelling"
+        android:layout_below="@id/vocabulary"
+        android:textSize="@dimen/text_size_label_title_28sp"/>
+    <ImageView
+        android:id="@+id/speaker"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:scaleType="centerCrop"
+        android:layout_width="@dimen/icon_size_85dp"
+        android:layout_height="@dimen/icon_size_85dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/icon_speaker"
+        android:layout_below="@id/spelling"/>
+
+</RelativeLayout>

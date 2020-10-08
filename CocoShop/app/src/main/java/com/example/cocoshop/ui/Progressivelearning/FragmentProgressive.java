@@ -26,13 +26,13 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentProgressive extends Fragment {
-    private RecyclerView leveMap;
+    //private RecyclerView leveMap;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        leveMap = (RecyclerView)view.findViewById(R.id.levelMap);
+        /*leveMap = (RecyclerView)view.findViewById(R.id.levelMap);
         LevelMissionProgressiveAdapter adapter = new LevelMissionProgressiveAdapter(data());
         leveMap.setAdapter(adapter);
-        leveMap.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        leveMap.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));*/
     }
 
     @Override
@@ -42,7 +42,7 @@ public class FragmentProgressive extends Fragment {
         return view;
     }
 
-    private ArrayList data(){
+    /*private ArrayList data(){
         ArrayList<LevelMap> data = new ArrayList();
         data.add(new LevelMap("Chào hỏi",R.id.cardBackground, Star.BAD));
         data.add(new LevelMap("Hỏi nơi chốn",R.id.cardBackground, Star.BAD));
@@ -55,7 +55,7 @@ public class FragmentProgressive extends Fragment {
         data.add(new LevelMap("Gia đình",R.id.cardBackground, Star.GOOD));
         data.add(new LevelMap("Bạn bè",R.id.cardBackground, Star.BAD));
         return data;
-    }
+    }*/
 
     @Override
     public void onResume() {

@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -51,6 +52,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -221,4 +224,13 @@ public class FragmentProfile extends Fragment {
             }
         }
     }
+
+    /*private byte[] encode(Uri file) throws IOException {
+        Bitmap bmp = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), file);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 25, baos);
+        byte[] data = baos.toByteArray();
+        Picasso.with(getContext()).load(data[0]);
+        return data;
+    }*/
 }

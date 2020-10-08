@@ -1,5 +1,6 @@
 package com.example.cocoshop.fireStore;
 
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -7,6 +8,7 @@ import androidx.annotation.NonNull;
 import com.example.cocoshop.Adapter.audioadapter.CardItemAudioPopularAdapter;
 import com.example.cocoshop.Models.audiomodels.Audio;
 import com.example.cocoshop.Models.audiomodels.Category;
+import com.example.cocoshop.Models.audiomodels.Sound;
 import com.example.cocoshop.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -42,7 +44,7 @@ public class FireStoreAudio {
                         //int imageAudio = (String)data.get("readerName");
                         boolean favorite = (boolean)data.get("favorite");
                         Category category = Category.valueOf((String)data.get("category"));
-                        Audio audio = new Audio(title,urlReader,readerName,urlAudio, R.drawable.background_card_item,category);
+                        Audio audio = new Audio(urlReader,readerName,new Sound("Test", "url"), R.drawable.background_card_item,category);
                         audio.setFavorite(favorite);
                         audioArrayList.add(audio);
                         Log.d("Tag","Data"+audioArrayList.size());

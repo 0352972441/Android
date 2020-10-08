@@ -7,8 +7,8 @@
         android:icon="@drawable/icon_item_bottom_navigator_home_24"/>
     <item
         android:id="@+id/itemProgressive"
-        android:title="@string/lable_item_menu_bottomnavigator_Progressive"
-        android:icon="@drawable/icon_item_bottom_navigator_progressive_24"/>
+        android:title="@string/label_item_menu_bottomnavigator_chat"
+        android:icon="@drawable/icon_bottom_navigator_chat_24dp"/>
     <item
         android:id="@+id/itemLearnigTopic"
         android:title="@string/lable_item_menu_bottomnavigator_topic"

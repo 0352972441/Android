@@ -1,5 +1,6 @@
 package com.example.cocoshop.Adapter.audioadapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,10 +41,10 @@ public class CardItemAudioPopularAdapter extends RecyclerView.Adapter<CardItemAu
     public void onBindViewHolder(@NonNull CardItemAudioPopularAdapter.ViewHolder holder, final int position) {
         if(audioPopulars != null){
             Audio audio = audioPopulars.get(position);
-           holder.txTitleAudioPopular.setText(audio.getTitle());
+           holder.txTitleAudioPopular.setText(audio.getSound().getTitle());
            holder.txReaderNameAudioPopular.setText(audio.getReaderName());
            holder.backgroundCardItemAudioPopular.setBackgroundResource(R.color.grey);
-           holder.imgAudioPolular.setImageResource(R.drawable.background_card_item);
+           holder.imgAudioPolular.setImageResource(R.drawable.backgoround_audio);
            holder.imgPlayAudioPopular.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
@@ -55,7 +56,9 @@ public class CardItemAudioPopularAdapter extends RecyclerView.Adapter<CardItemAu
 
     @Override
     public int getItemCount() {
+        Log.d("Size","Size: "+audioPopulars.size());
         return audioPopulars.size();
+
     }
 
     public void setAudioPopulars(List<Audio> audioPopulars) {

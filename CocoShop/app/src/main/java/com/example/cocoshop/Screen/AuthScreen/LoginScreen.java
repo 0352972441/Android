@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -116,22 +117,20 @@ public class LoginScreen extends AppCompatActivity {
             public void onClick(View v) {
                     if(signUp()){
                         final ProgressDialog dialog = new ProgressDialog(LoginScreen.this);
+                        dialog.setTitle("Please waiting ...");
                         dialog.show();
                         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(LoginScreen.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
-                                    Toast.makeText(LoginScreen.this, "Logged in successfuly ", Toast.LENGTH_SHORT).show();
                                     // Login into Screen home
                                     // Lưu tài khoản và mật khẩu vào User
-                                    dialog.dismiss();
+                                    //dialog.dismiss();
                                     User.setKind("Basic");
                                     User.setEmail(email);
                                     loginSuccessed();
                                 }else{
                                     dialog.dismiss();
-                                    Log.w("Thông tin",task.getException());
-                                    Toast.makeText(LoginScreen.this, "Account or password is incorrect", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Image;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
@@ -21,6 +22,7 @@ import com.example.cocoshop.Adapter.audioadapter.CardItemAudioApdapter;
 import com.example.cocoshop.Models.audiomodels.Audio;
 import com.example.cocoshop.Models.audiomodels.ModelPlay;
 import com.example.cocoshop.R;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -38,8 +40,8 @@ public class PlayAudioActivity extends AppCompatActivity {
     public static final String URLREADER = "URLREADER";
     public static final String AUDIOIMAGE = "AUDIOIMAGE";
     public static final String FAVORITE = "FAVORITE";
-    private static int index;
-    private MediaPlayer player = player = new MediaPlayer();
+    public  String urlAudio;
+    private MediaPlayer player  = new MediaPlayer();
 
     private ImageView img_Audio,img_Favorite,img_Play_Audio,img_Bnt_Next_Audio,img_Bnt_Priveous_Audio,img_Bnt_content_Audio;
     private TextView txTitleAudio,txReaderNameAudio,txRemainTimeAudio,txTotalTimeAudio;
@@ -63,30 +65,30 @@ public class PlayAudioActivity extends AppCompatActivity {
         txRemainTimeAudio = (TextView)findViewById(R.id.remain_time_of_audio);
         txTotalTimeAudio = (TextView)findViewById(R.id.total_time_of_audio);
         handler = new Handler();
-        onClickPlay();
-        onClickFavoriteAudio();
-        onClickNextAudio();
     }
 
     private void onClickPlay(){
-
         try {
-            player.setDataSource("https://firebasestorage.googleapis.com/v0/b/cocoenglish-79c9b.appspot.com/o/audios%2F1.%2BThank%2Byou%2C%2BMom.mp3?alt=media&token=3e49e684-7e3d-43f5-8ad4-5c7708c9d28c");
+            player.setDataSource(String.valueOf(urlAudio));
             player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(final MediaPlayer mp) {
                     mp.start();
                     seekBarAudio.setMax(mp.getDuration());
-                    long sencond = mp.getDuration()/1000L;
-                    long hour = sencond / 60;
-                    long sec = sencond% 60;
-                    long minute = (sencond/3600)/60;
-                    String timeTotal = String.format(Locale.getDefault(),"%d:%02d:%02d",hour,minute,sec);
-                    txTotalTimeAudio.setText(timeTotal);
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            txRemainTimeAudio.setText(String.valueOf((mp.getDuration() - mp.getCurrentPosition())/1000));
+                            long sencond = mp.getCurrentPosition()/1000L;
+                           /* long hour = sencond / 60;*/
+                            long sec = sencond% 60;
+                            long minute = (sencond/3600)/60;
+                            String timeTotal = String.format(Locale.getDefault(),"%02d:%02d",minute,sec);
+                            txRemainTimeAudio.setText(timeTotal);
+                            sencond = (mp.getDuration() - mp.getCurrentPosition())/1000L;
+                            /*hour = sencond / 60;*/
+                            sec = sencond% 60;
+                            minute = (sencond/3600)/60;
+                            txTotalTimeAudio.setText(String.valueOf(String.format(Locale.getDefault(),"%02d:%02d",minute,sec)));
                             seekBarAudio.setProgress(mp.getCurrentPosition());
                             handler.postDelayed(this,1000);
                         }
@@ -118,13 +120,23 @@ public class PlayAudioActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        player.stop();
+        finish();
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         audio = Objects.requireNonNull(getIntent().getExtras()).getBundle(KEYAUDIO);
         txTitleAudio.setText(audio.getString(TITLE).toString());
         txReaderNameAudio.setText(audio.getString(READER).toString());
-        img_Audio.setImageResource(R.drawable.background_card_item);
-        /*this.index = audio.getInt("POSITION");*/
+        Picasso.with(this).load(R.drawable.background_card_item).placeholder(R.drawable.background_card_item).error(R.drawable.background_card_item).into(img_Audio);
+        urlAudio = audio.getString(URLAUDIO);
+        onClickPlay();
+        onClickFavoriteAudio();
+        onClickNextAudio();
     }
 
     private void onClickNextAudio(){

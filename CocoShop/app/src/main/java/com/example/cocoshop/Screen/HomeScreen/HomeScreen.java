@@ -7,7 +7,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,13 +18,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.cocoshop.Models.topicsmodel.Levels;
+import com.example.cocoshop.Models.topicsmodel.Topic;
+import com.example.cocoshop.Models.vocabularysmodel.Vocabulary;
 import com.example.cocoshop.R;
+import com.example.cocoshop.dao.audiodao.Sound;
+import com.example.cocoshop.dao.audiodao.TopicDao;
 import com.example.cocoshop.ui.Learnbytopic.FragmentLearningTopic;
+import com.example.cocoshop.ui.Progressivelearning.FragmentChat;
 import com.example.cocoshop.ui.Progressivelearning.FragmentProgressive;
 import com.example.cocoshop.ui.Audio.FragmentAudio;
 import com.example.cocoshop.ui.Profile.FragmentProfile;
 import com.example.cocoshop.ui.Home.FragmentHome;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class HomeScreen extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
@@ -32,6 +50,8 @@ public class HomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+        Sound.callAudio();
+        new TopicDao().execute();
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavigatorView);
         bottomNavigationView.setItemIconTintList(null);
         //tabBar = getSupportActionBar();
@@ -55,8 +75,13 @@ public class HomeScreen extends AppCompatActivity {
             Fragment fragment = null;
             switch (item.getItemId()){
                 case R.id.itemProgressive:
-                    if(!isCurrentFragment.equals("Progressive")){
+                    /*if(!isCurrentFragment.equals("Progressive")){
                         fragment = new FragmentProgressive();
+                        loadFragment(fragment);
+                        return true;
+                    }*/
+                    if(!isCurrentFragment.equals("Chat")){
+                        fragment = new FragmentChat();
                         loadFragment(fragment);
                         return true;
                     }
@@ -91,5 +116,6 @@ public class HomeScreen extends AppCompatActivity {
             return false;
         }
     }
+
 
 }

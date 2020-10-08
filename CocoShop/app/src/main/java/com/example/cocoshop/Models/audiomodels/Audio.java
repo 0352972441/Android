@@ -1,30 +1,32 @@
 package com.example.cocoshop.Models.audiomodels;
 
 public class Audio {
-    private String title;// Tên của bài đọc
+    //private String title;// Tên của bài đọc
     private String urlReader;// Ảnh của người đọc
     private String readerName;// Tên của người đọc
-    private String urlAudio; // Tạm thời chưa xử lý. File audio
+    //private String urlAudio; // Tạm thời chưa xử lý. File audio
+    private Sound sound;
     private int imageAudio; // Hình ảnh nền của carditem của bài Audio
     private boolean favorite = false;
     private Category category; // Thể loại audio để lấy ra thể loại
-    public Audio(String title, String urlReader, String readerName, String urlAudio, int imageAudio, Category category) {
-        this.title = title;
+    public Audio(String urlReader, String readerName, Sound sound, int imageAudio, Category category) {
+        //this.title = title;
+        this.sound = sound;
         this.urlReader = urlReader;
         this.readerName = readerName;
-        this.urlAudio = urlAudio;
+        //.urlAudio = urlAudio;
         this.imageAudio = imageAudio;
         this.category = category;
         this.favorite = false;
     }
 
-    public String getTitle() {
+    /*public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
-    }
+    }*/
 
     public String getUrlReader() {
         return urlReader;
@@ -42,12 +44,12 @@ public class Audio {
         this.readerName = readerName;
     }
 
-    public String getUrlAudio() {
-        return urlAudio;
+    public Sound getSound() {
+        return sound;
     }
 
-    public void setUrlAudio(String urlAudio) {
-        this.urlAudio = urlAudio;
+    public void setSound(Sound sound) {
+        this.sound = sound;
     }
 
     public int getImageAudio() {

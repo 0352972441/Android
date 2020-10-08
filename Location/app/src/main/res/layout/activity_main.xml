@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <Button
+        android:text="lesson 1"
+        android:onClick="switchActivity"
+        android:textSize="20dp"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bntLs1"
+        android:textStyle="bold"/>
+    <Button
+        android:text="Lesson 2"
+        android:onClick="switchActivity"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:layout_below="@id/bntLs1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bntLs2"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

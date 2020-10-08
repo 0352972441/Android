@@ -19,8 +19,11 @@ import com.example.cocoshop.Models.audiomodels.Audio;
 import com.example.cocoshop.Models.audiomodels.Category;
 import com.example.cocoshop.R;
 import com.example.cocoshop.dao.audiodao.BundleData;
+import com.example.cocoshop.dao.audiodao.Sound;
 import com.example.cocoshop.fireStore.FireStoreAudio;
+import com.example.cocoshop.firebaseStorange.FirebaseStorangeAudio;
 import com.example.cocoshop.listener.Listener;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 
@@ -37,13 +40,13 @@ public class MainAudioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_audio);
         cardItemAudioRecycler = (RecyclerView)findViewById(R.id.card_item_audio_recycler);
-        itemCategoryRecycler = (RecyclerView)findViewById(R.id.item_category_recycler);
+        //itemCategoryRecycler = (RecyclerView)findViewById(R.id.item_category_recycler);
         categoryAdapter = new ItemCategoryAudioAdapter();
-        data = data();
+        data = Sound.listAllData;// This is data
         cardItemAdapter = new CardItemAudioPopularAdapter(data);
-        itemCategoryRecycler.setAdapter(categoryAdapter);
+        /*itemCategoryRecycler.setAdapter(categoryAdapter);
         itemCategoryRecycler.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        cardItemAudioRecycler.setAdapter(cardItemAdapter);
+        */cardItemAudioRecycler.setAdapter(cardItemAdapter);
         cardItemAudioRecycler.setLayoutManager(new LinearLayoutManager(MainAudioActivity.this,LinearLayoutManager.VERTICAL,false));
         displayAudioByGenre();
         onClickPlayAudio();
@@ -69,11 +72,6 @@ public class MainAudioActivity extends AppCompatActivity {
                         viewItemCategory = itemCategoryRecycler.findViewHolderForAdapterPosition(previousPosition).itemView;
                         background = (RelativeLayout)viewItemCategory.findViewById(R.id.background_item_card_category);
                         background.setBackgroundResource(R.color.white);
-                       /* viewItemCategory = itemCategoryRecycler.findViewHolderForAdapterPosition(position).itemView;
-                        background = (RelativeLayout)viewItemCategory.findViewById(R.id.background_item_card_category);
-                        background.setBackgroundResource(R.color.colorPrimary);
-                        previousPosition = position;
-                        dataCategory.clear();*/
                     }
                     viewItemCategory = itemCategoryRecycler.findViewHolderForAdapterPosition(position).itemView;
                     background = (RelativeLayout)viewItemCategory.findViewById(R.id.background_item_card_category);
@@ -83,20 +81,18 @@ public class MainAudioActivity extends AppCompatActivity {
                     data.clear();
                 }
                 if(Category.values()[position] != Category.ALL){
-                    for(Audio i : data()){
+                    for(Audio i : Sound.listAllData){
                         if(i.getCategory().equals(Category.values()[position])){
                             data.add(i);
                         }
                     }
-                    /*cardItemAdapter = new CardItemAudioPopularAdapter(data);
-                    cardItemAudioRecycler.setAdapter(cardItemAdapter);*/
-                    cardItemAdapter.setAudioPopulars(data);
+                    //cardItemAdapter.setAudioPopulars(data);
                     cardItemAdapter.notifyDataSetChanged();
                     cardItemAudioRecycler.invalidate();
                 }else{
                     /*cardItemAdapter = new CardItemAudioPopularAdapter(data());
                     cardItemAudioRecycler.setAdapter(cardItemAdapter);*/
-                    data = data();
+                    data = Sound.listAllData;
                     cardItemAdapter.setAudioPopulars(data);
                     cardItemAdapter.notifyDataSetChanged();
                     cardItemAudioRecycler.invalidate();
@@ -115,21 +111,5 @@ public class MainAudioActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-
-    private ArrayList<Audio> data(){
-        ArrayList<Audio> data = new ArrayList<>();
-        data.add(new Audio("Hello1","Url","Hana chister","Url",R.drawable
-                .background_card_item, Category.EDUCATION));
-        data.add(new Audio("Gặp người nước ","Url","Hana chister","Url",R.drawable
-                .background_card_item,Category.EDUCATION));
-        data.add(new Audio("Gặp người nước 2","Url","Hana chister","Url",R.drawable
-                .background_card_item,Category.EDUCATION));
-        data.add(new Audio("Gặp người nước3","Url","Hana chister","Url",R.drawable
-                .background_card_item,Category.MUSIC));
-        data.add(new Audio("Hello3","Url","Hana chister","Url",R.drawable
-                .background_card_item,Category.EDUCATION));
-        return data;
     }
 }

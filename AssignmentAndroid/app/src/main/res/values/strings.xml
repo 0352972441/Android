@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AssignmentAndroid</string>
+    <string name="label_menu_item_bottom_navigator_test_schedule">Test Schedule</string>
+    <string name="label_menu_item_bottom_navigator_schedule">Schedule</string>
+    <string name="label_menu_item_bottom_navigator_resgistration">Registration</string>
+    <string name="label_menu_item_bottom_navigator_my_course">My Course</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

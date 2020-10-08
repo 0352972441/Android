@@ -1,17 +1,31 @@
 package com.example.cocoshop.Models.topicsmodel;
+
+import com.example.cocoshop.Models.vocabularysmodel.Vocabulary;
+
+import java.util.ArrayList;
+import java.util.Map;
+
 public class Topic {
+    private String urlImage;
     private String name;
     private String description;
-    private int topicCode;
+    private long topicCode;
     private Levels level;
+    private ArrayList<Vocabulary> vocabularies;
 
 
-    public Topic(String name, String description, int topicCode, Levels level) {
+    public Topic(String name, String description, long topicCode, Levels level, ArrayList<Vocabulary> vocabularies, String urlImage) {
         this.name = name;
         this.description = description;
         this.topicCode = topicCode;
         this.level = level;
+        this.vocabularies = vocabularies;
+        this.urlImage = urlImage;
     }
+
+   /* public Topic() {
+
+    }*/
 
     public String getName() {
         return name;
@@ -29,7 +43,7 @@ public class Topic {
         this.description = description;
     }
 
-    public int getTopicCode() {
+    public long getTopicCode() {
         return topicCode;
     }
 
@@ -43,5 +57,21 @@ public class Topic {
 
     public void setLevel(Levels level) {
         this.level = level;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
+    public ArrayList<Vocabulary> getVocabularies() {
+        return vocabularies;
+    }
+
+    public void setVocabularies(ArrayList<Vocabulary> vocabularies) {
+        this.vocabularies = vocabularies;
     }
 }

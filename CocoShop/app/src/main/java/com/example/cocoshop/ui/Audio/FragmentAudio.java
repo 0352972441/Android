@@ -23,6 +23,7 @@ import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
 import com.example.cocoshop.Screen.audioscreen.MainAudioActivity;
 import com.example.cocoshop.Screen.audioscreen.PlayAudioActivity;
 import com.example.cocoshop.dao.audiodao.BundleData;
+import com.example.cocoshop.dao.audiodao.Sound;
 import com.example.cocoshop.listener.Listener;
 
 import java.util.ArrayList;
@@ -41,8 +42,8 @@ public class FragmentAudio extends Fragment {
         txViewAll = (TextView)view.findViewById(R.id.view_all);
         cardItemAudioRecycler = (RecyclerView)view.findViewById(R.id.card_item_audio_recycler);
         getCardItemAudioPopularRecycler = (RecyclerView)view.findViewById(R.id.card_item_audio_popular_recycler);
-        audioApdapter = new CardItemAudioApdapter(data());
-        data = data();
+        audioApdapter = new CardItemAudioApdapter(Sound.listAllData);
+        data = Sound.getAllAudioPopular();
         audioPopularAdapter = new CardItemAudioPopularAdapter(data);
         cardItemAudioRecycler.setAdapter(audioApdapter);
         getCardItemAudioPopularRecycler.setAdapter(audioPopularAdapter);
@@ -94,20 +95,5 @@ public class FragmentAudio extends Fragment {
                 startActivity(intent);
             }
         });
-    }
-
-    private ArrayList<Audio> data(){
-        ArrayList<Audio> data = new ArrayList<>();
-        data.add(new Audio("Hello","Url","Hana chister","Url",R.drawable
-        .background_card_item, Category.EDUCATION));
-        data.add(new Audio("Gặp người nước ngoài lần đầu thì sao","Url","Hana chister","Url",R.drawable
-                .background_card_item,Category.EDUCATION));
-        data.add(new Audio("Gặp người nước ngoài","Url","Hana chister","Url",R.drawable
-                .background_card_item,Category.EDUCATION));
-        data.add(new Audio("Gặp người nước ngoài","Url","Hana chister","Url",R.drawable
-                .background_card_item,Category.EDUCATION));
-        data.add(new Audio("Hello","Url","Hana chister","Url",R.drawable
-                .background_card_item,Category.EDUCATION));
-        return data;
     }
 }

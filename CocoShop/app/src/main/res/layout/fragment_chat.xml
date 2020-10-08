@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/padding_5dp"
+    android:id="@+id/chat"
+    tools:context=".ui.Progressivelearning.FragmentChat">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_above="@id/box_message"
+        android:id="@+id/chat_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <EditText
+        android:layout_toRightOf="@id/img_voice"
+        android:layout_marginRight="@dimen/margin_10dp"
+        android:layout_marginLeft="@dimen/margin_10dp"
+        android:height="@dimen/height_text_input_edittext_40dp"
+        android:background="@drawable/edittext_custom"
+        android:layout_toLeftOf="@id/img_send"
+        android:layout_marginBottom="@dimen/margin_5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/box_message"/>
+    <ImageView
+        android:layout_marginBottom="@dimen/margin_5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/chat_item"
+        android:layout_width="@dimen/icon_size_36dp"
+        android:layout_height="@dimen/icon_size_36dp"
+        android:src="@drawable/ic_send_blue_24dp"
+        android:id="@+id/img_send"/>
+    <ImageView
+        android:layout_marginBottom="@dimen/margin_5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/chat_item"
+        android:layout_width="@dimen/icon_size_36dp"
+        android:layout_height="@dimen/icon_size_36dp"
+        android:src="@drawable/ic_keyboard_voice_blue_24dp"
+        android:id="@+id/img_record"/>
+</RelativeLayout>

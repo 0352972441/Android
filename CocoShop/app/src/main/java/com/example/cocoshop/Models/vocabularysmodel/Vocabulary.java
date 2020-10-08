@@ -1,13 +1,13 @@
 package com.example.cocoshop.Models.vocabularysmodel;
 
-public class vocabulary {
+public class Vocabulary {
     private String mean;
     private String vocabulary;
     private String read;
     private String spelling;
-    private String vocabularyCode;
+    private int vocabularyCode;
 
-    public vocabulary(String mean, String vocabulary, String read, String spelling, String vocabularyCode) {
+    public Vocabulary(String mean, String vocabulary, String read, String spelling, int vocabularyCode) {
         this.mean = mean;
         this.vocabulary = vocabulary;
         this.read = read;
@@ -47,11 +47,11 @@ public class vocabulary {
         this.spelling = spelling;
     }
 
-    public String getVocabularyCode() {
+    public int getVocabularyCode() {
         return vocabularyCode;
     }
 
-    public void setVocabularyCode(String vocabularyCode) {
+    public void setVocabularyCode(int vocabularyCode) {
         this.vocabularyCode = vocabularyCode;
     }
 }

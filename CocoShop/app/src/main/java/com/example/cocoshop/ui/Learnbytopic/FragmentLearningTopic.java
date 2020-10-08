@@ -1,11 +1,11 @@
 package com.example.cocoshop.ui.Learnbytopic;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,14 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.cocoshop.Adapter.CardItemTopicAdapter;
-import com.example.cocoshop.Models.topicsmodel.Levels;
-import com.example.cocoshop.Models.topicsmodel.Topic;
+import com.example.cocoshop.Adapter.topicsadapter.CardItemTopicAdapter;
 import com.example.cocoshop.R;
 import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
-
-import java.util.ArrayList;
-import java.util.UUID;
+import com.example.cocoshop.Screen.topicsscreen.LearningTopicActivity;
+import com.example.cocoshop.dao.audiodao.TopicDao;
+import com.example.cocoshop.listener.Listener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,9 +30,17 @@ public class FragmentLearningTopic extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         cardItemTopic = (RecyclerView)view.findViewById(R.id.cardTopic);
-        cardAdapter = new CardItemTopicAdapter(data());
+        cardAdapter = new CardItemTopicAdapter(TopicDao.topics);
         cardItemTopic.setAdapter(cardAdapter);
         cardItemTopic.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        cardAdapter.setListenerItem(new Listener() {
+            @Override
+            public void listener(int position) {
+                Intent intent = new Intent(getContext(), LearningTopicActivity.class);
+                intent.putExtra(LearningTopicActivity.KEYPOSITION,position);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -48,16 +54,6 @@ public class FragmentLearningTopic extends Fragment {
     public void onStart() {
         super.onStart();
         HomeScreen.isCurrentFragment = "TOPIC";
-    }
-
-    private ArrayList data(){
-        ArrayList<Topic> data = new ArrayList<>();
-        data.add(new Topic("School",null, 1, Levels.BEGINER));
-        data.add(new Topic("Hello",null, 1, Levels.BEGINER));
-        data.add(new Topic("Nice to meet you!",null, 1, Levels.ADVANCED));
-        data.add(new Topic("What is your name?",null, 1, Levels.LOWINTERMADIATE));
-        data.add(new Topic("Where do you live?",null, 1, Levels.INTERMADIATE));
-        return data;
     }
 
 }

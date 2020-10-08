@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.cocoshop.Adapter.ViewPagerOnboarding;
 import com.example.cocoshop.Screen.AuthScreen.LoginScreen;
 import com.example.cocoshop.Screen.SplashScreen.SplashScreen;
+import com.example.cocoshop.dao.audiodao.Sound;
 import com.example.cocoshop.ui.Onboarding.OnboardingOne;
 import com.example.cocoshop.ui.Onboarding.OnboardingThree;
 import com.example.cocoshop.ui.Onboarding.OnboardingTwo;
