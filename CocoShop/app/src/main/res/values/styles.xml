@@ -18,5 +18,10 @@
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
+    <style name="ActionBarOnBoading" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#BE0DED</item>
+        <item name="colorPrimaryDark">#BE0DED</item>
+    </style>
+
 
 </resources>

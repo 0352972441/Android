@@ -39,6 +39,6 @@ public class Entry {
     @NonNull
     @Override
     public String toString() {
-        return title +"\n"+link +"\n"+description;
+        return title;
     }
 }

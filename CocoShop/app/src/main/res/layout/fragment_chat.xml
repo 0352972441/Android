@@ -15,7 +15,7 @@
         android:layout_height="match_parent" />
 
     <EditText
-        android:layout_toRightOf="@id/img_voice"
+        android:layout_toRightOf="@id/img_record"
         android:layout_marginRight="@dimen/margin_10dp"
         android:layout_marginLeft="@dimen/margin_10dp"
         android:height="@dimen/height_text_input_edittext_40dp"

@@ -41,7 +41,7 @@
             android:theme="@style/noActionBar" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/noActionBar">
+            android:theme="@style/ActionBarOnBoading">
 
             <!--
             <intent-filter>

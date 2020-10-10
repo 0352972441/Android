@@ -1,19 +1,23 @@
 package com.example.lab5;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lab5.Models.Entry;
+import com.example.lab5.activity.ContentWeb;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -30,25 +34,29 @@ public class MainActivity extends AppCompatActivity {
     private String mFeedLink;
     private String mFeedDescription;
     private ListView listView;
+    private EditText edUrl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listView = (ListView)findViewById(R.id.list_item);
-        new FetchFeedTask(listView,this).execute((Void) null);
+        edUrl = (EditText)findViewById(R.id.ed_url);
     }
-    public void okClick(View view){
 
+    public void dowloading(View view) {
+        String url = edUrl.getText().toString();
+        new FetchFeedTask(listView,this,url).execute((Void) null);
     }
+
     private class FetchFeedTask extends AsyncTask<Void, Void, Boolean> {
         private ListView listView;
         private Context context;
-        public FetchFeedTask(ListView listView, Context context) {
+        private String urlLink;
+        public FetchFeedTask(ListView listView, Context context,String urlLink) {
             this.listView = listView;
             this.context = context;
+            this.urlLink = urlLink;
         }
-
-        private String urlLink;
 
         @Override
         protected void onPreExecute() {
@@ -59,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... voids) {
             try {
-                urlLink = "https://vnexpress.net/rss/giao-duc.rss";
+                //urlLink = "https://vnexpress.net/rss/giao-duc.rss";
                 URL url = new URL(urlLink);
                 InputStream inputStream = url.openConnection().getInputStream();
                 mFeedModelList = parseFeed(inputStream);
@@ -78,6 +86,15 @@ public class MainActivity extends AppCompatActivity {
             if (success) {
                 ArrayAdapter<Entry> arrayAdapter = new ArrayAdapter<>(context,android.R.layout.simple_list_item_1,mFeedModelList);
                 listView.setAdapter(arrayAdapter);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(context, ContentWeb.class);
+                        intent.putExtra("URL",mFeedModelList.get(position+1).getLink());
+//                        Log.d("Tag","Descriptiopn"+ mFeedModelList.get(position+1).getDescription());
+                        startActivity(intent);
+                    }
+                });
             } else {
                 Toast.makeText(MainActivity.this,
                         "Enter a valid Rss feed url",
@@ -103,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
                 int eventType = xmlPullParser.getEventType();
 
                 String name = xmlPullParser.getName();
-//                Log.d("MyXmlParser", "Parsing name ==> " + name);
 
                 if(name == null)
                     continue;
@@ -131,13 +147,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if (name.equalsIgnoreCase("title")) {
                     title = result;
-                    Log.d("title", "==> " + title);
                 } else if (name.equalsIgnoreCase("link")) {
                     link = result;
-                    Log.d("link", "==> " + link);
                 } else if (name.equalsIgnoreCase("description")) {
                     description = result;
-                    Log.d("description", "==> " + description);
                 }
 
                 if (title != null && link != null && description != null) {

@@ -22,10 +22,11 @@ public class FireStoreUser {
     private static final FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     private static final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
     private static Map<String, Object> user = new HashMap<>();
-    public static void addUser(String account,String email, String avata){
+    public static void addUser(String account,String email, String avata,String uid){
         user.put("account",account);
         user.put("email",email);
         user.put("avata",avata);
+        user.put("uid",uid);
         firestore.collection("users").document(currentUser.getUid()).set(user);
     }
     public static void updateUser(UserAccount userAccount,final Context context){

@@ -229,7 +229,8 @@ public class LoginScreen extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     dialog.dismiss();
-                    FireStoreUser.addUser("basic",email==null ? task.getResult().getUser().getEmail() : email,"Avata");
+                    FirebaseUser firebaseUser = task.getResult().getUser();
+                    FireStoreUser.addUser("basic",email==null ? firebaseUser.getEmail() : email,firebaseUser.getPhotoUrl().toString(),firebaseUser.getUid());
                     User.setKind("Basic");
                     User.setEmail(task.getResult().getUser().getEmail());
                     loginSuccessed();

@@ -58,4 +58,5 @@
     <string name="label_level_low_advanced">Low advanced</string>
     <string name="label_level_advanced">Advanced</string>
     <string name="label_level_high_advanced">High advanced</string>
+    <string name="label_define">Define</string>
 </resources>

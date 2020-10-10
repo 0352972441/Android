@@ -57,6 +57,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.HashMap;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -142,7 +143,6 @@ public class FragmentProfile extends Fragment {
                 startActivity(intent);
                 getActivity().finish();
                 LoginScreen.mAuth.signOut();
-                //AuthGoogle.signOut();
                 User.setKind("");
                 User.setEmail("");
                 uriAvata = null;
@@ -165,11 +165,12 @@ public class FragmentProfile extends Fragment {
                             public void onSuccess(Uri uri) {
                                 Picasso.with(context).load(uri).error(R.drawable.defaultavata).placeholder(R.drawable.defaultavata).into(imgAvata);
                                 uriAvata = uri;
+                                Log.d("Url:",""+uri);
                             }
                         });
                     }
                 }else{
-                    Picasso.with(getContext()).load(uriAvata).into(imgAvata);
+                    Picasso.with(getContext()).load(uriAvata).error(R.drawable.defaultavata).into(imgAvata);
                 }
             }
         });
@@ -205,17 +206,7 @@ public class FragmentProfile extends Fragment {
                     filePath = data.getData();
                     if (filePath != null) {
                         imgAvata.setImageURI(filePath);
-                        FirebaseStorangeUser.putImageAvata(filePath, getContext());
-                        storeRef.child("avatas").child(user.getUid()).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                            @Override
-                            public void onComplete(@NonNull final Task<Uri> taskUrl) {
-                                if (taskUrl.isSuccessful()) {
-                                    Log.d("Link URI",taskUrl.getResult().toString());
-                                    UserAccount userAccount = new UserAccount(User.getKind(), User.getEmail(), taskUrl.getResult().toString());
-                                    FireStoreUser.updateUser(userAccount, getContext());
-                                }
-                            }
-                        });
+                        new FirebaseStorangeUser(filePath,storeRef).execute();
                     }
                 }catch(Exception ex){
                     Log.d("Eorror=============",ex.getMessage(),ex.getCause());
@@ -224,13 +215,4 @@ public class FragmentProfile extends Fragment {
             }
         }
     }
-
-    /*private byte[] encode(Uri file) throws IOException {
-        Bitmap bmp = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), file);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, 25, baos);
-        byte[] data = baos.toByteArray();
-        Picasso.with(getContext()).load(data[0]);
-        return data;
-    }*/
 }

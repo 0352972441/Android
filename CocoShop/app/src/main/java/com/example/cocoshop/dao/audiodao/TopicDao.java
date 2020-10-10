@@ -1,16 +1,27 @@
 package com.example.cocoshop.dao.audiodao;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.signature.ObjectKey;
+import com.example.cocoshop.Adapter.topicsadapter.CardItemTopicAdapter;
 import com.example.cocoshop.Models.topicsmodel.Levels;
 import com.example.cocoshop.Models.topicsmodel.Topic;
 import com.example.cocoshop.Models.vocabularysmodel.Vocabulary;
+import com.example.cocoshop.R;
+import com.example.cocoshop.Screen.topicsscreen.LearningTopicActivity;
+import com.example.cocoshop.listener.Listener;
+import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -30,16 +41,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class TopicDao extends AsyncTask<Void,Void,Boolean> {
+public class TopicDao extends AsyncTask<Void, ArrayList<Topic>,Boolean> {
+    @SuppressLint("StaticFieldLeak")
     private static final FirebaseFirestore firestore;
     private static final FirebaseStorage storage;
     private static final StorageReference mRef;
     //private static Topic topic = new Topic();
-    public static ArrayList<Topic> topics = new ArrayList<>();
+    private ArrayList<Topic> topics = new ArrayList<>();
+
+    public ArrayList<Topic> getTopics() {
+        return topics;
+    }
+
     static {
         storage = FirebaseStorage.getInstance();
         firestore = FirebaseFirestore.getInstance();
         mRef = storage.getReference();
+    }
+    private Activity activity;
+
+    public TopicDao(Activity activity) {
+        this.activity = activity;
     }
 
     @Override
@@ -52,12 +74,34 @@ public class TopicDao extends AsyncTask<Void,Void,Boolean> {
                         Map<String,Object> item = items.getData();
                         Topic topic = new Topic(item.get("title").toString(),item.get("description").toString(),(long)item.get("id"),Levels.valueOf(item.get("level").toString()),(ArrayList<Vocabulary>)item.get("vocabuary"),item.get("urlImage").toString());
                         topics.add(topic);
-                        Log.d("Size",":"+topics.size());
                     }
+                    publishProgress(topics);
                 }
             }
         });
         return true;
+    }
+
+    @Override
+    protected void onProgressUpdate(ArrayList<Topic>... values) {
+        super.onProgressUpdate(values);
+        RecyclerView cardItemTopic = (RecyclerView)activity.findViewById(R.id.cardTopic);
+        CardItemTopicAdapter cardAdapter = new CardItemTopicAdapter(values[0]);
+        cardItemTopic.setAdapter(cardAdapter);
+        cardItemTopic.setLayoutManager(new LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false));
+        cardAdapter.setListenerItem(new Listener() {
+            @Override
+            public void listener(int position) {
+                Intent intent = new Intent(activity, LearningTopicActivity.class);
+                intent.putExtra(LearningTopicActivity.KEYPOSITION,position);
+                activity.startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onPostExecute(Boolean aBoolean) {
+        super.onPostExecute(aBoolean);
     }
 
     /*public static void getAllTopic(){

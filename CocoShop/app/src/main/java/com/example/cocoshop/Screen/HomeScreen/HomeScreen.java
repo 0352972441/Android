@@ -50,8 +50,7 @@ public class HomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-        Sound.callAudio();
-        new TopicDao().execute();
+        new Sound().execute();
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavigatorView);
         bottomNavigationView.setItemIconTintList(null);
         //tabBar = getSupportActionBar();

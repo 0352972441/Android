@@ -39,4 +39,6 @@
     <dimen name="text_size_label_title_28sp">28dp</dimen>
     <dimen name="text_size_vocabulary_50dp">50dp</dimen>
     <dimen name="height_text_input_edittext_40dp">40dp</dimen>
+    <dimen name="margin_25dp">25dp</dimen>
+    <dimen name="text_size_vocabulary_40dp">40dp</dimen>
 </resources>

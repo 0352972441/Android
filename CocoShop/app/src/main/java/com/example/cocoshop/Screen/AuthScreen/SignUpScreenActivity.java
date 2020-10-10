@@ -82,10 +82,11 @@ public class SignUpScreenActivity extends AppCompatActivity {
                                 // Lưu tài khoản và mật khẩu vào User
                                 User.setEmail(email);
                                 User.setKind("Basic");
+                                FireStoreUser.addUser("basic",email.isEmpty() ? currentUser.getEmail() : email,"https://firebasestorage.googleapis.com/v0/b/cocoenglish-79c9b.appspot.com/o/avatas%2Fdefaultavata.png?alt=media&token=73041401-aed8-4ea0-a439-a734da74410b",task.getResult().getUser().getUid());
                                 registerSuccessed();
                             }else{
                                 Log.w("Thông tin",task.getException());
-                                Toast.makeText(SignUpScreenActivity.this, "Account or password is incrrect", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpScreenActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -113,7 +114,6 @@ public class SignUpScreenActivity extends AppCompatActivity {
     public void registerSuccessed(){
         Intent intent = new Intent(SignUpScreenActivity.this, HomeScreen.class);
         startActivity(intent);
-        FireStoreUser.addUser("basic",email.isEmpty() ? currentUser.getEmail() : email,null);
         finish();
     }
 
@@ -187,7 +187,8 @@ public class SignUpScreenActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    FireStoreUser.addUser("basic",email==null ? task.getResult().getUser().getEmail() : email,"Avata");
+                    FirebaseUser firebaseUser = task.getResult().getUser();
+                    FireStoreUser.addUser("basic",email==null ? firebaseUser.getEmail() : email,firebaseUser.getPhotoUrl().toString(),firebaseUser.getUid());
                     User.setKind("Basic");
                     User.setEmail(task.getResult().getUser().getEmail());
                     Toast.makeText(SignUpScreenActivity.this, "Login Successed", Toast.LENGTH_SHORT).show();

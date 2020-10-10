@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Url"
+        android:text="https://vnexpress.net/rss/giao-duc.rss"
+        android:id="@+id/ed_url"/>
+    <Button
+        android:layout_below="@id/ed_url"
+        android:text="Dowload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bnt_dowloading"
+        android:onClick="dowloading"/>
     <ListView
+        android:layout_below="@id/bnt_dowloading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/list_item"/>
-</LinearLayout>
+</RelativeLayout>

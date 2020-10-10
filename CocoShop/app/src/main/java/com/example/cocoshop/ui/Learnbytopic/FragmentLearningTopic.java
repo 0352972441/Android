@@ -1,5 +1,6 @@
 package com.example.cocoshop.ui.Learnbytopic;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -14,33 +15,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cocoshop.Adapter.topicsadapter.CardItemTopicAdapter;
+import com.example.cocoshop.Models.topicsmodel.Topic;
 import com.example.cocoshop.R;
 import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
 import com.example.cocoshop.Screen.topicsscreen.LearningTopicActivity;
 import com.example.cocoshop.dao.audiodao.TopicDao;
 import com.example.cocoshop.listener.Listener;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+import java.util.ArrayList;
+
 public class FragmentLearningTopic extends Fragment {
     private RecyclerView cardItemTopic;
-    private CardItemTopicAdapter cardAdapter;
-
+//    private CardItemTopicAdapter cardAdapter;
+    public static TopicDao dao;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        cardItemTopic = (RecyclerView)view.findViewById(R.id.cardTopic);
-        cardAdapter = new CardItemTopicAdapter(TopicDao.topics);
-        cardItemTopic.setAdapter(cardAdapter);
-        cardItemTopic.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        cardAdapter.setListenerItem(new Listener() {
-            @Override
-            public void listener(int position) {
-                Intent intent = new Intent(getContext(), LearningTopicActivity.class);
-                intent.putExtra(LearningTopicActivity.KEYPOSITION,position);
-                startActivity(intent);
-            }
-        });
+        dao = new TopicDao(getActivity());
+        dao.execute();
     }
 
     @Override
@@ -56,4 +47,8 @@ public class FragmentLearningTopic extends Fragment {
         HomeScreen.isCurrentFragment = "TOPIC";
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }
