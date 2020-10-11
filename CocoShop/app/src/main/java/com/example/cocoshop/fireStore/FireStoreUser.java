@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -36,22 +37,43 @@ public class FireStoreUser {
     private static final FirebaseStorage storage = FirebaseStorage.getInstance();
     private static final StorageReference ref = storage.getReference();
     private static Map<String, Object> user = new HashMap<>();
-    public static void addUser(String account,String email, String avata,String uid,Context context) throws IOException {
-        user.put("account",account);
-        user.put("email",email);
-        user.put("avata",avata);
-        user.put("uid",uid);
-        firestore.collection("users").document(currentUser.getUid()).set(user);
+    public static void addUser(final UserAccount account,Context context) throws IOException {
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.defaultavata);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] data = baos.toByteArray();
-        ref.child("avatas").child(uid).putBytes(data).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+        ref.child("avatas").child(account.getUid()).putBytes(data).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                Log.d("Uploading","Successfully");
+                new CreateUserAsyncTask().execute(account);
             }
         });
+    }
+
+    static class CreateUserAsyncTask extends AsyncTask<UserAccount,Void,Void>{
+        @Override
+        protected Void doInBackground(UserAccount... userAccounts) {
+            final UserAccount account = userAccounts[0];
+            ref.child("avatas").child(account.getUid()).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if(task.isSuccessful()){
+                        user.put("account",account.getAccount());
+                        user.put("email",account.getEmail());
+                        user.put("avata",task.getResult().toString());
+                        user.put("uid",account.getUid());
+                        firestore.collection("users").document(currentUser.getUid()).set(user);
+                    }
+                }
+            });
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Log.d("Successfully","Thành công...");
+        }
     }
     public static void updateUser(UserAccount userAccount,final Context context){
         user = null;

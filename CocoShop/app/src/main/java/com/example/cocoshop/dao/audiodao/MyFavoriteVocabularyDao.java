@@ -18,18 +18,20 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class MyFavoriteVocabularyDao extends AsyncTask<Void, List<Map<String,Object>>,Void> {
+public class MyFavoriteVocabularyDao extends AsyncTask<Void, ArrayList<Map<String,Object>>,Void> {
     private static final FirebaseFirestore store;
     private static final FirebaseUser user;
-    private List<Map<String,Object>> data;
+    private ArrayList<Map<String,Object>> data;
     private RecyclerView vocabulary_recycler_view;
     private Context context;
     public MyFavoriteVocabularyDao(RecyclerView vocabulary_recycler_view, Context context) {
         this.vocabulary_recycler_view = vocabulary_recycler_view;
         this.context = context;
+        data = new ArrayList<>();
     }
 
     static {
@@ -44,9 +46,8 @@ public class MyFavoriteVocabularyDao extends AsyncTask<Void, List<Map<String,Obj
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                    for(DocumentSnapshot i : task.getResult().getDocuments()){
-                       Map<String,Object> item = i.getData();
-                       //Vocabulary vocabulary = new Vocabulary(item.get("mean").toString(),item.get("vocabulary").toString(),item.get("read").toString(),item.get("spelling").toString(),Integer.valueOf(item.get("id").toString()));
-                       data.add(i.getData());
+                       Log.d("Value:",""+i.getData());
+                       data.add((Map<String, Object>) i.getData());
                    }
                     publishProgress(data);
                 }
@@ -56,7 +57,7 @@ public class MyFavoriteVocabularyDao extends AsyncTask<Void, List<Map<String,Obj
     }
 
     @Override
-    protected void onProgressUpdate(List<Map<String, Object>>... values) {
+    protected void onProgressUpdate(ArrayList<Map<String, Object>>... values) {
         super.onProgressUpdate(values);
         MyFavoriteAdapter adapter = new MyFavoriteAdapter(values[0]);
         vocabulary_recycler_view.setAdapter(adapter);

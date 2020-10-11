@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.cocoshop.Auth.AuthGoogle;
 import com.example.cocoshop.Models.User;
+import com.example.cocoshop.Models.UserAccount;
 import com.example.cocoshop.R;
 import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
 import com.example.cocoshop.fireStore.FireStoreUser;
@@ -80,12 +81,14 @@ public class SignUpScreenActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 Toast.makeText(SignUpScreenActivity.this, "Register a successfuly ", Toast.LENGTH_SHORT).show();
+                                currentUser = task.getResult().getUser();
                                 // Login into Screen home
                                 // Lưu tài khoản và mật khẩu vào User
                                 User.setEmail(email);
                                 User.setKind("Basic");
                                 try {
-                                    FireStoreUser.addUser("basic",email.isEmpty() ? currentUser.getEmail() : email,"",task.getResult().getUser().getUid(),SignUpScreenActivity.this);
+                                    UserAccount userAccount = new UserAccount("basic",email.isEmpty()? currentUser.getEmail() : email,String.valueOf(R.drawable.defaultavata),currentUser.getUid());
+                                    FireStoreUser.addUser(userAccount,SignUpScreenActivity.this);
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
@@ -195,7 +198,8 @@ public class SignUpScreenActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     FirebaseUser firebaseUser = task.getResult().getUser();
                     try {
-                        FireStoreUser.addUser("basic",email==null ? firebaseUser.getEmail() : email,"",firebaseUser.getUid(),SignUpScreenActivity.this);
+                        UserAccount userAccount = new UserAccount("basic",email==null ? firebaseUser.getEmail() : email,String.valueOf(R.drawable.defaultavata),firebaseUser.getUid());
+                        FireStoreUser.addUser(userAccount,SignUpScreenActivity.this);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.cocoshop.Auth.AuthGoogle;
 import com.example.cocoshop.Models.User;
+import com.example.cocoshop.Models.UserAccount;
 import com.example.cocoshop.Models.topicsmodel.Levels;
 import com.example.cocoshop.R;
 import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
@@ -26,6 +27,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
@@ -107,6 +109,14 @@ public class LoginScreen extends AppCompatActivity {
                     }else{
                         mAuth.signOut();
                     }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    mAuth.signOut();
+                    Intent intent = new Intent(LoginScreen.this,LoginScreen.class);
+                    startActivity(intent);
+                    finish();
                 }
             });
         }
@@ -232,7 +242,9 @@ public class LoginScreen extends AppCompatActivity {
                     dialog.dismiss();
                     FirebaseUser firebaseUser = task.getResult().getUser();
                     try {
-                        FireStoreUser.addUser("basic",email==null ? firebaseUser.getEmail() : email,"",firebaseUser.getUid(),LoginScreen.this);
+                        UserAccount userAccount = new UserAccount("basic",email==null ? firebaseUser.getEmail() : email,String.valueOf(R.drawable.defaultavata),firebaseUser.getUid());
+                        FireStoreUser.addUser(userAccount,LoginScreen.this);
+                        //FireStoreUser.addUser("basic",email==null ? firebaseUser.getEmail() : email,"",firebaseUser.getUid(),LoginScreen.this);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

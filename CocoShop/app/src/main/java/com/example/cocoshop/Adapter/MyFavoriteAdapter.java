@@ -15,13 +15,14 @@ import com.example.cocoshop.R;
 import com.example.cocoshop.listener.Listener;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class MyFavoriteAdapter extends RecyclerView.Adapter<MyFavoriteAdapter.ViewHolder>{
-    private List<Map<String,Object>> myFavorite;
+    private ArrayList<Map<String,Object>> myFavorite;
 
-    public MyFavoriteAdapter(List<Map<String, Object>> myFavorite) {
+    public MyFavoriteAdapter(ArrayList<Map<String, Object>> myFavorite) {
         this.myFavorite = myFavorite;
     }
 
@@ -62,7 +63,7 @@ public class MyFavoriteAdapter extends RecyclerView.Adapter<MyFavoriteAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return 10;
+        return myFavorite.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
