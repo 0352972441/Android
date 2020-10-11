@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -28,14 +30,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.cocoshop.Adapter.Item_Profile_Adapter;
 import com.example.cocoshop.Models.User;
 import com.example.cocoshop.Models.UserAccount;
 import com.example.cocoshop.R;
 import com.example.cocoshop.Screen.ChangePasswordScreen.ChangePasswordScreen;
 import com.example.cocoshop.Screen.AuthScreen.LoginScreen;
 import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
+import com.example.cocoshop.Screen.profileActivity.MyFavoriteActivity;
 import com.example.cocoshop.fireStore.FireStoreUser;
 import com.example.cocoshop.firebaseStorange.FirebaseStorangeUser;
+import com.example.cocoshop.listener.Listener;
 import com.example.cocoshop.permission.PermissionReadExternalStorage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -75,6 +80,9 @@ public class FragmentProfile extends Fragment {
     private static final StorageReference storeRef;
     private static Uri filePath;
     private Context context;
+    private RecyclerView itemProfile;
+    private Item_Profile_Adapter item_profile_adapter;
+    private static final Object[] activity = {MyFavoriteActivity.class};
     static {
         user = FirebaseAuth.getInstance().getCurrentUser();
         store =  FirebaseStorage.getInstance();
@@ -91,13 +99,28 @@ public class FragmentProfile extends Fragment {
                 v.showContextMenu();
             }
         });
-        viewContentProfile = view.findViewById(R.id.ltcontentProfile);
-        tvNameDisplay = (TextView)viewContentProfile.findViewById(R.id.tvNameDisplay);
-        tvEmailDisplay = (TextView)viewContentProfile.findViewById(R.id.tvemailDisplay);
+        //viewContentProfile = view.findViewById(R.id.ltcontentProfile);
+        tvNameDisplay = (TextView)view.findViewById(R.id.tvNameDisplay);
+        tvEmailDisplay = (TextView)view.findViewById(R.id.tvemailDisplay);
+        itemProfile = (RecyclerView)view.findViewById(R.id.item_profile);
+        item_profile_adapter = new Item_Profile_Adapter();
+        itemProfile.setAdapter(item_profile_adapter);
+        itemProfile.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
         tvNameDisplay.setText("Unknow");
         //firestore = FirebaseFirestore.getInstance();
         this.context = getContext();
         setUpProfile();
+        onClickItemListener();
+    }
+
+    private void onClickItemListener(){
+        item_profile_adapter.setOnClickItemListener(new Listener() {
+            @Override
+            public void listener(int position) {
+                Intent intent = new Intent(getContext(), (Class<?>) activity[position]);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -153,27 +176,31 @@ public class FragmentProfile extends Fragment {
 
     private void setUpProfile(){
         handler = new Handler();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                tvEmailDisplay.setText(User.getEmail()==null ? "Unknow" : User.getEmail());
-                tvNameDisplay.setText(User.getKind() == null ?"Unknow" :User.getKind());
-                if(uriAvata == null){
-                    if(context != null){
-                        storeRef.child("avatas/"+user.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                Picasso.with(context).load(uri).error(R.drawable.defaultavata).placeholder(R.drawable.defaultavata).into(imgAvata);
-                                uriAvata = uri;
-                                Log.d("Url:",""+uri);
-                            }
-                        });
+        try {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    tvEmailDisplay.setText(User.getEmail() == null ? "Unknow" : User.getEmail());
+                    tvNameDisplay.setText(User.getKind() == null ? "Unknow" : User.getKind());
+                    if (uriAvata == null) {
+                        if (context != null) {
+                            storeRef.child("avatas/" + user.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    Picasso.with(context).load(uri).error(R.drawable.defaultavata).placeholder(R.drawable.defaultavata).into(imgAvata);
+                                    uriAvata = uri;
+                                    Log.d("Url:", "" + uri);
+                                }
+                            });
+                        }
+                    } else {
+                        Picasso.with(getContext()).load(uriAvata).error(R.drawable.defaultavata).into(imgAvata);
                     }
-                }else{
-                    Picasso.with(getContext()).load(uriAvata).error(R.drawable.defaultavata).into(imgAvata);
                 }
-            }
-        });
+            });
+        }catch (Exception ex){
+            Log.d("Error",ex.getMessage());
+        }
     }
 
     @Override

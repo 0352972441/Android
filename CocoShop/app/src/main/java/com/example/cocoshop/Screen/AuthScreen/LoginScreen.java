@@ -35,6 +35,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -230,7 +231,11 @@ public class LoginScreen extends AppCompatActivity {
                 if(task.isSuccessful()){
                     dialog.dismiss();
                     FirebaseUser firebaseUser = task.getResult().getUser();
-                    FireStoreUser.addUser("basic",email==null ? firebaseUser.getEmail() : email,firebaseUser.getPhotoUrl().toString(),firebaseUser.getUid());
+                    try {
+                        FireStoreUser.addUser("basic",email==null ? firebaseUser.getEmail() : email,"",firebaseUser.getUid(),LoginScreen.this);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     User.setKind("Basic");
                     User.setEmail(task.getResult().getUser().getEmail());
                     loginSuccessed();

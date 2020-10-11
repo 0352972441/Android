@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".screens.courseactivity.CourseRegistrationActivity">
+    <!--<EditText
+        android:background="@drawable/border_radiu_ed"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_50dp"
+        android:id="@+id/ed_title"
+        android:hint="@string/label_hint_title"/>
+    <EditText
+        android:background="@drawable/border_radiu_ed"
+        android:layout_marginTop="@dimen/margin_top_10dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_50dp"
+        android:id="@+id/ed_subscriber"
+        android:hint="@string/label_hint_subscriber"/>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:background="@drawable/border_radiu_ed"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_50dp"
+        android:text="@string/label_button_register"/>-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/card_course_register"/>
+</LinearLayout>

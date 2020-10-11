@@ -16,6 +16,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.cocoshop.Models.vocabularysmodel.Vocabulary;
 import com.example.cocoshop.R;
+import com.example.cocoshop.dao.audiodao.FavoriteVocabularyDao;
+import com.example.cocoshop.dao.audiodao.VocabularyLikedDao;
 import com.example.cocoshop.listener.Listener;
 import com.squareup.picasso.Picasso;
 
@@ -26,18 +28,30 @@ import java.util.List;
 import java.util.Map;
 
 public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabulary.ViewHolder> {
-    private ArrayList<Vocabulary> vocabularies = new ArrayList<>();
+    private ArrayList<Vocabulary> vocabularies;
     private Listener onClickNextVocabulary;
+    private Listener onClickFavariteVocabulary;
+    private FavoriteVocabularyDao favoriteVocabularyDao;
     private boolean isReaded = false;
     private boolean isFavorite = false;
     public ViewPagerVocabulary(ArrayList<Vocabulary> vocabularies) {
         this.vocabularies = vocabularies;
     }
 
+    public ViewPagerVocabulary() {
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
     public void setOnClickNextVocabulary(Listener onClickNextVocabulary) {
         this.onClickNextVocabulary = onClickNextVocabulary;
     }
 
+    public void setOnClickFavariteVocabulary(Listener onClickFavariteVocabulary) {
+        this.onClickFavariteVocabulary = onClickFavariteVocabulary;
+    }
 
     @NonNull
     @Override
@@ -48,17 +62,22 @@ public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabular
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         if(vocabularies!= null){
-            Map<String,Object> item = (Map<String, Object>) vocabularies.get(position);
+            final Map<String,Object> item = (Map<String, Object>) vocabularies.get(position);
             holder.txSpelling.setText(item.get("spelling").toString());
             holder.txVocabulary.setText(item.get("vocabulary").toString());
             holder.txMeans.setText(item.get("mean").toString());
+            new VocabularyLikedDao(holder.imgFavoriteVocabulary).execute(item.get("vocabulary").toString());
             holder.imgFavoriteVocabulary.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(isFavorite) {
+                        favoriteVocabularyDao= new FavoriteVocabularyDao(true);
                         holder.imgFavoriteVocabulary.setImageResource(R.drawable.ic_un_favorite_audio_24dp);
+                        favoriteVocabularyDao.execute(item);
                         isFavorite = false;
                     }else{
+                        favoriteVocabularyDao = new FavoriteVocabularyDao(false);
+                        favoriteVocabularyDao.execute(item);
                         holder.imgFavoriteVocabulary.setImageResource(R.drawable.ic_on_favorite_audio_24dp);
                         isFavorite = true;
                     }
@@ -69,8 +88,8 @@ public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabular
                 @Override
                 public void onClick(View v) {
                     holder.bottomSheet.setVisibility(View.VISIBLE);
-                    holder.imgNextVocabulary.setVisibility(View.INVISIBLE);
-                    holder.imgFavoriteVocabulary.setVisibility(View.INVISIBLE);
+                    /*holder.imgNextVocabulary.setVisibility(View.INVISIBLE);
+                    holder.imgFavoriteVocabulary.setVisibility(View.INVISIBLE);*/
                     holder.layoutNextvocabulary.setVisibility(View.INVISIBLE);
                     holder.txDetail.setVisibility(View.INVISIBLE);
                 }
@@ -80,9 +99,11 @@ public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabular
                 @Override
                 public void onClick(View v) {
                     holder.bottomSheet.setVisibility(View.INVISIBLE);
-                    holder.imgNextVocabulary.setVisibility(View.VISIBLE);
-                    holder.imgFavoriteVocabulary.setVisibility(View.VISIBLE);
-                    holder.layoutNextvocabulary.setVisibility(View.VISIBLE);
+                    if(isReaded){
+                       /* holder.imgNextVocabulary.setVisibility(View.VISIBLE);
+                        holder.imgFavoriteVocabulary.setVisibility(View.VISIBLE);*/
+                        holder.layoutNextvocabulary.setVisibility(View.VISIBLE);
+                    }
                     holder.txDetail.setVisibility(View.VISIBLE);
                 }
             });
@@ -92,6 +113,7 @@ public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabular
                 @Override
                 public void onClick(View v) {
                     onClickNextVocabulary.listener(position);
+                    isReaded = false;
                     holder.layoutNextvocabulary.setVisibility(View.INVISIBLE);
                 }
             });
@@ -105,7 +127,7 @@ public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabular
                     @Override
                     public void onPrepared(MediaPlayer mp) {
                         // Bắt đầu(Chạy file Phát âm thanh)
-                        mp.start();
+                        //mp.start();
                     }
                 });
                 mediaPlayer.prepare();
@@ -114,8 +136,12 @@ public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabular
                     @Override
                     public void onClick(View v) {
                         mediaPlayer.start();
+                        isReaded = true;
                         // Sau khi phát xong hiển thị nút click từ vựng kế tiếp và thích từ vựng
-                        holder.layoutNextvocabulary.setVisibility(View.VISIBLE);
+                        if(isReaded){
+                            holder.layoutNextvocabulary.setVisibility(View.VISIBLE);
+                            //isReaded = false;
+                        }
                     }
                 });
             } catch (IOException e) {

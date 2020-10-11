@@ -10,7 +10,7 @@ import android.os.Bundle;
 import com.example.assignmentandroid.adapter.MainItemAdapter;
 import com.example.assignmentandroid.listener.Listener;
 import com.example.assignmentandroid.models.MainItem;
-import com.example.assignmentandroid.screens.CourseActivity;
+import com.example.assignmentandroid.screens.courseactivity.CourseActivity;
 import com.example.assignmentandroid.screens.MapsActivity;
 import com.example.assignmentandroid.screens.newsactivity.NewsActivity;
 import com.example.assignmentandroid.screens.SocialActivity;

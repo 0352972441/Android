@@ -7,4 +7,12 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_menu_item_add">Add</string>
+    <string name="label_card_student">Students</string>
+    <string name="label_card_student_resgistration">Student Register</string>
+    <string name="label_card_registration_course">Register the course</string>
+    <string name="label_card_my_course">My course</string>
+    <string name="label_hint_title">Title</string>
+    <string name="label_hint_subscriber">Subscriber</string>
+    <string name="label_button_register">Register</string>
 </resources>

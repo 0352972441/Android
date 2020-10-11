@@ -8,12 +8,4 @@
         android:icon="@drawable/icon_main_item_course"
         android:title="@string/label_menu_item_bottom_navigator_resgistration"
         android:id="@+id/register"/>
-    <item
-        android:icon="@drawable/icon_main_item_course"
-        android:id="@+id/schedule"
-        android:title="@string/label_menu_item_bottom_navigator_schedule"/>
-    <item
-        android:icon="@drawable/icon_main_item_course"
-        android:title="@string/label_menu_item_bottom_navigator_test_schedule"
-        android:id="@+id/test_schedule"/>
 </menu>

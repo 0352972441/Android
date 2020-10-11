@@ -59,4 +59,10 @@
     <string name="label_level_advanced">Advanced</string>
     <string name="label_level_high_advanced">High advanced</string>
     <string name="label_define">Define</string>
+    <string name="label_title_terms_of_use">terms of use</string>
+    <string name="label_title_policy">Policy</string>
+    <string name="label_title_statistical">Statistical</string>
+    <string name="label_title_account_information">Information</string>
+    <string name="label_title_vocabulary">Vocabulary</string>
+    <string name="label_title_logout">Logout</string>
 </resources>

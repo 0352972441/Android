@@ -3,4 +3,12 @@
     <dimen name="height_main_item_card_view_120dp">120dp</dimen>
     <dimen name="padding_10dp">10dp</dimen>
     <dimen name="height_150dp">150dp</dimen>
+    <dimen name="corner_radius_10dp">10dp</dimen>
+    <dimen name="text_size_label_title_20sp">20sp</dimen>
+    <dimen name="text_size_label_30sp">30sp</dimen>
+    <dimen name="height_50dp">50dp</dimen>
+    <dimen name="margin_top_10dp">10dp</dimen>
+    <dimen name="margin_15dp">15dp</dimen>
+    <dimen name="text_size_20sp">20sp</dimen>
+    <dimen name="text_size_25sp">25sp</dimen>
 </resources>

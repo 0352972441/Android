@@ -41,4 +41,5 @@
     <dimen name="height_text_input_edittext_40dp">40dp</dimen>
     <dimen name="margin_25dp">25dp</dimen>
     <dimen name="text_size_vocabulary_40dp">40dp</dimen>
+    <dimen name="text_size_label_level_16sp">16sp</dimen>
 </resources>
