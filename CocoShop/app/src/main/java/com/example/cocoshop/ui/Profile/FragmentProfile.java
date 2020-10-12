@@ -55,6 +55,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
@@ -109,8 +110,8 @@ public class FragmentProfile extends Fragment {
         tvNameDisplay.setText("Unknow");
         //firestore = FirebaseFirestore.getInstance();
         this.context = getContext();
-        setUpProfile();
         onClickItemListener();
+        HomeScreen.setThemeFragment(R.style.ActionBarProfile);
     }
 
     private void onClickItemListener(){
@@ -142,6 +143,7 @@ public class FragmentProfile extends Fragment {
     public void onStart() {
         super.onStart();
         HomeScreen.isCurrentFragment = "Profile";
+        setUpProfile();
     }
 
     @Override
@@ -188,8 +190,7 @@ public class FragmentProfile extends Fragment {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     Picasso.with(context).load(uri).error(R.drawable.defaultavata).placeholder(R.drawable.defaultavata).into(imgAvata);
-                                    uriAvata = uri;
-                                    Log.d("Url:", "" + uri);
+                                    //uriAvata = uri;
                                 }
                             });
                         }
@@ -233,7 +234,7 @@ public class FragmentProfile extends Fragment {
                     filePath = data.getData();
                     if (filePath != null) {
                         imgAvata.setImageURI(filePath);
-                        new FirebaseStorangeUser(filePath,storeRef).execute();
+                        new FirebaseStorangeUser(filePath,storeRef,getContext()).execute();
                     }
                 }catch(Exception ex){
                     Log.d("Eorror=============",ex.getMessage(),ex.getCause());

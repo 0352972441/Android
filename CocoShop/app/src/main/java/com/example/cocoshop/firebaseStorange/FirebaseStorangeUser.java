@@ -2,8 +2,11 @@ package com.example.cocoshop.firebaseStorange;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -20,6 +23,9 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.util.HashMap;
 
@@ -35,17 +41,27 @@ public class FirebaseStorangeUser extends AsyncTask<Void, Void,Boolean> {
         firestore = FirebaseFirestore.getInstance();
     }
     private Uri filePath;
-
-    public FirebaseStorangeUser(Uri filePath,StorageReference storeRef) {
+    private Context context;
+    public FirebaseStorangeUser(Uri filePath,StorageReference storeRef,Context context) {
         this.filePath = filePath;
         this.storeRef = storeRef;
+        this.context = context;
     }
 
     @Override
     protected Boolean doInBackground(Void... voids) {
         StorageReference ref =  storeRef.child("avatas").child(mAuth.getCurrentUser().getUid());
+        Bitmap bitmap = null;
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(),filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,10,baos);
+        byte[] bytes = baos.toByteArray();
         if(filePath!= null){
-            ref.putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            ref.putBytes(bytes).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot task) {
                     storeRef.child("avatas/"+mAuth.getCurrentUser().getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {

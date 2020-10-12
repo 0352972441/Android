@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/padding_10dp"
+    android:layout_height="wrap_content">
+    <androidx.cardview.widget.CardView
+        android:layout_below="@id/tx_user_name"
+        app:cardCornerRadius="@dimen/cardView_radiu_100dp"
+        android:layout_width="@dimen/icon_size_36dp"
+        android:layout_height="@dimen/icon_size_36dp"
+        android:id="@+id/card_avata">
+        <ImageView
+            android:scaleType="centerCrop"
+            android:background="@drawable/avataprofile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/defaultavata"
+            android:id="@+id/avata_message"/>
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:textStyle="bold"
+        android:layout_marginStart="@dimen/margin_left_10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/card_avata"
+        android:text="name"
+        android:id="@+id/tx_user_name"/>
+    <TextView
+        android:padding="@dimen/padding_5dp"
+        android:layout_marginTop="@dimen/margin_top_5dp"
+        android:layout_below="@id/tx_user_name"
+        android:layout_marginStart="@dimen/margin_left_10dp"
+        android:background="@drawable/custom_message_left"
+        android:paddingStart="@dimen/padding_left_15dp"
+        android:layout_toEndOf="@id/card_avata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_text_skip"
+        android:id="@+id/tx_message"
+        tools:ignore="RtlSymmetry" />
+
+</RelativeLayout>

@@ -87,16 +87,18 @@ public class TopicDao extends AsyncTask<Void, ArrayList<Topic>,Boolean> {
         super.onProgressUpdate(values);
         RecyclerView cardItemTopic = (RecyclerView)activity.findViewById(R.id.cardTopic);
         CardItemTopicAdapter cardAdapter = new CardItemTopicAdapter(values[0]);
-        cardItemTopic.setAdapter(cardAdapter);
-        cardItemTopic.setLayoutManager(new LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false));
-        cardAdapter.setListenerItem(new Listener() {
-            @Override
-            public void listener(int position) {
-                Intent intent = new Intent(activity, LearningTopicActivity.class);
-                intent.putExtra(LearningTopicActivity.KEYPOSITION,position);
-                activity.startActivity(intent);
-            }
-        });
+        if(cardAdapter!= null && cardItemTopic!= null){
+            cardItemTopic.setAdapter(cardAdapter);
+            cardItemTopic.setLayoutManager(new LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false));
+            cardAdapter.setListenerItem(new Listener() {
+                @Override
+                public void listener(int position) {
+                    Intent intent = new Intent(activity, LearningTopicActivity.class);
+                    intent.putExtra(LearningTopicActivity.KEYPOSITION,position);
+                    activity.startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override

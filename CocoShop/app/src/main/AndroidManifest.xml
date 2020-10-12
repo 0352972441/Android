@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Screen.profileActivity.MyFavoriteActivity"></activity>
+        <activity android:name=".Screen.topicsscreen.MultipleChoiceActivity"></activity>
+        <activity android:name=".Screen.profileActivity.MyFavoriteActivity" />
         <activity android:name=".Screen.topicsscreen.LearningTopicActivity" />
         <activity
             android:name=".Screen.audioscreen.PlayAudioActivity"
@@ -34,9 +35,7 @@
             android:screenOrientation="fullSensor"
             android:theme="@style/noActionBar" />
         <activity android:name=".Screen.ChangePasswordScreen.ChangePasswordScreen" />
-        <activity
-            android:name=".Screen.HomeScreen.HomeScreen"
-            android:theme="@style/noActionBar" />
+        <activity android:name=".Screen.HomeScreen.HomeScreen" /> <!-- android:theme="@style/noActionBar" -->
         <activity
             android:name=".Screen.AuthScreen.LoginScreen"
             android:theme="@style/noActionBar" />

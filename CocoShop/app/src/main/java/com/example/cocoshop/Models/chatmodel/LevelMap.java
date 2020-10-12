@@ -1,4 +1,4 @@
-package com.example.cocoshop.Models.ProgressiveModels;
+package com.example.cocoshop.Models.chatmodel;
 
 public class LevelMap {
     private String lesson;

@@ -30,7 +30,7 @@ import java.util.Map;
 public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabulary.ViewHolder> {
     private ArrayList<Vocabulary> vocabularies;
     private Listener onClickNextVocabulary;
-    private Listener onClickFavariteVocabulary;
+    private Listener onClickMultipleChoice;
     private FavoriteVocabularyDao favoriteVocabularyDao;
     private boolean isReaded = false;
     private boolean isFavorite = false;
@@ -49,8 +49,8 @@ public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabular
         this.onClickNextVocabulary = onClickNextVocabulary;
     }
 
-    public void setOnClickFavariteVocabulary(Listener onClickFavariteVocabulary) {
-        this.onClickFavariteVocabulary = onClickFavariteVocabulary;
+    public void setOnClickMultipleChoice(Listener onClickMultipleChoice) {
+        this.onClickMultipleChoice = onClickMultipleChoice;
     }
 
     @NonNull
@@ -140,7 +140,15 @@ public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabular
                         // Sau khi phát xong hiển thị nút click từ vựng kế tiếp và thích từ vựng
                         if(isReaded){
                             holder.layoutNextvocabulary.setVisibility(View.VISIBLE);
-                            //isReaded = false;
+                            if(position == vocabularies.size()-1){
+                                //holder.imgNextVocabulary.setVisibility(View.INVISIBLE);
+                                holder.imgNextVocabulary.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        onClickMultipleChoice.listener(position);
+                                    }
+                                });
+                            }
                         }
                     }
                 });
@@ -149,6 +157,7 @@ public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabular
             }
         }
     }
+
 
     @Override
     public int getItemCount() {

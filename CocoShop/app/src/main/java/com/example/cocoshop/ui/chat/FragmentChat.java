@@ -1,11 +1,10 @@
-package com.example.cocoshop.ui.Progressivelearning;
+package com.example.cocoshop.ui.chat;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,13 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.cocoshop.Models.UserAccount;
 import com.example.cocoshop.R;
 import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
-import com.example.cocoshop.firebaseStorange.FirebaseStorangeUser;
+import com.example.cocoshop.dao.audiodao.MessageDao;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,14 +28,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.UUID;
 
 
 public class FragmentChat extends Fragment {
-    private RecyclerView message;
+    private static final String[] keywordForbid = {"dm","du ma","lon","cac","fack","di me may"};
+    private RecyclerView messageRecycerView;
     private EditText edBoxMessage;
     private ImageView imgSend;
     private ImageView imgrecord;
-    private FirebaseUser user;
+    private MessageDao messageDao;
     private static final FirebaseFirestore firestore;
     private static final FirebaseAuth mAuth;
     private UserAccount userAccount;
@@ -48,41 +47,44 @@ public class FragmentChat extends Fragment {
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        message = (RecyclerView)view.findViewById(R.id.message);
+        messageRecycerView = (RecyclerView)view.findViewById(R.id.chat_item);
         edBoxMessage = (EditText)view.findViewById(R.id.box_message);
         imgSend = (ImageView)view.findViewById(R.id.img_send);
         imgrecord = (ImageView)view.findViewById(R.id.img_record);
         new getUserAsyncTask(firestore,mAuth).execute();
         onClickSendMessage();
+        messageDao = new MessageDao(messageRecycerView,getContext());
+        messageDao.execute();
     }
+
 
     private void onClickSendMessage(){
         imgSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                user = FirebaseAuth.getInstance().getCurrentUser();
-                firestore.collection("users").document(user.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if(task.isSuccessful()){
-                            String message = edBoxMessage.getText().toString();
-                            if(!message.isEmpty() && !message.contains("du ma")){
-                                HashMap<String,Object> userMessage = new HashMap<>();
-                                userMessage.put("me",user.getUid());
-                                userMessage.put("message",message);
-                                userMessage.put("imgUrl",task.getResult().get("urlImage"));
-                                userMessage.put("userName",task.getResult().get("email").toString());
-                                userMessage.put("time", Calendar.getInstance().getTime());
-                                firestore.collection("messages").document(user.getUid()).set(userMessage).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        Log.d("Thành công",""+task.getResult());
-                                    }
-                                });
-                            }
+                String message = edBoxMessage.getText().toString();
+                if (!message.isEmpty()) {
+                    for(int i=0; i<keywordForbid.length;i++){
+                        if (message.contains(keywordForbid[i])){
+                            message = "I'm really sorry";
                         }
                     }
-                });
+                    HashMap<String, Object> userMessage = new HashMap<>();
+                    userMessage.put("me", userAccount.getUid());
+                    userMessage.put("message", message);
+                    userMessage.put("imgUrl", userAccount.getImage());
+                    userMessage.put("userName", userAccount.getEmail().split("@")[0]);
+                    userMessage.put("time", Calendar.getInstance().getTime());
+                    userMessage.put("accounttype",userAccount.getAccount());
+                    firestore.collection("messages").document(UUID.randomUUID().toString()).set(userMessage).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            messageDao = new MessageDao(messageRecycerView,getContext());
+                            messageDao.execute();
+                            edBoxMessage.setText("");
+                        }
+                    });
+                }
             }
         });
     }
@@ -114,13 +116,11 @@ public class FragmentChat extends Fragment {
                     if(task.isSuccessful()){
                         DocumentSnapshot snapshot = task.getResult();
                         Log.d("Data:",""+snapshot.getData());
-                        if(snapshot != null){
-                            String email = snapshot.getData().get("email").toString();
-                            String avata = snapshot.getData().get("avata").toString();
-                            String account = snapshot.getData().get("account").toString();
-                            String uid = snapshot.getData().get("uid").toString();
-                            userAccount = new UserAccount(email,avata,account,uid);
-                        }
+                        String email = snapshot.getData().get("email").toString();
+                        String avata = snapshot.getData().get("avata").toString();
+                        String account = snapshot.getData().get("account").toString();
+                        String uid = snapshot.getData().get("uid").toString();
+                        userAccount = new UserAccount(account,email,avata,uid);
                     }
                 }
             });

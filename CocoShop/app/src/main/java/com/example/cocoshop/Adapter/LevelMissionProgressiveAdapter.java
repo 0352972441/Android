@@ -1,20 +1,17 @@
 package com.example.cocoshop.Adapter;
 
-import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocoshop.Models.ProgressiveModels.LevelMap;
-import com.example.cocoshop.Models.ProgressiveModels.Star;
+import com.example.cocoshop.Models.chatmodel.LevelMap;
+import com.example.cocoshop.Models.chatmodel.Star;
 import com.example.cocoshop.R;
 
 import java.util.ArrayList;
