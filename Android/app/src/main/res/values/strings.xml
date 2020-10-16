@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Android</string>
+    <string name="facebook_app_id">652042265748424</string>
+    <string name="label_menu_item_add">Add</string>
+    <string name="label_card_student">Students</string>
+    <string name="label_card_student_resgistration">Student Register</string>
+    <string name="label_card_registration_course">Register the course</string>
+    <string name="label_card_my_course">My course</string>
+    <string name="label_hint_title">Title</string>
+    <string name="label_hint_subscriber">Subscriber</string>
+    <string name="label_button_register">Register</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="text_label_hint_name">Name</string>
+    <string name="text_label_hint_date_of_birth">Date of birth</string>
+</resources>
