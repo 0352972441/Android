@@ -1,38 +1,43 @@
 package com.example.android.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.android.Activity.courseactivity.StudentActivity;
 import com.example.android.R;
 import com.example.android.entity.StudentEntity;
 import com.example.android.listener.Listener;
+
 import java.util.List;
 
-public class Card_Student_Adapter extends RecyclerView.Adapter<Card_Student_Adapter.ViewHolder> {
+public class Student_Course_Register_Adapter extends RecyclerView.Adapter<Student_Course_Register_Adapter.ViewHolder> {
     private List<StudentEntity> studentEntities;
-    private Listener onClickShowMenu;
-    public Card_Student_Adapter(List<StudentEntity> studentEntities) {
+    private Listener onClickCardStudent;
+    private boolean isFlagItem = false;
+    public Student_Course_Register_Adapter(List<StudentEntity> studentEntities) {
         this.studentEntities = studentEntities;
     }
 
-    public void setOnClickShowMenu(Listener onClickShowMenu) {
-        this.onClickShowMenu = onClickShowMenu;
+    public void setOnClickCardStudent(Listener onClickCardStudent) {
+        this.onClickCardStudent = onClickCardStudent;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_student,parent,false));
+    public Student_Course_Register_Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new Student_Course_Register_Adapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_student,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull Student_Course_Register_Adapter.ViewHolder holder, final int position) {
         if(studentEntities!= null){
             StudentEntity entity = studentEntities.get(position);
             if(entity.isGender()){
@@ -47,14 +52,19 @@ public class Card_Student_Adapter extends RecyclerView.Adapter<Card_Student_Adap
             holder.txName.setText(entity.getName());
             holder.txDate.setText(entity.getDayOfBirth());
             holder.txRegistrationDate.setText(entity.getRegisterDate());
-            StudentActivity.registerForContextMenus(holder.img_menu);
-            holder.img_menu.setOnClickListener(new View.OnClickListener() {
+            holder.img_menu.setVisibility(View.INVISIBLE);
+            holder.cardStudent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onClickShowMenu.lintener(position);
-                    v.showContextMenu();
+                    onClickCardStudent.lintener(position);
                 }
             });
+            if (!isFlagItem){
+                holder.cardStudent.setBackgroundResource(R.color.card);
+                isFlagItem = true;
+            }else {
+                holder.cardStudent.setBackgroundColor(Color.WHITE);
+            }
         }
     }
 

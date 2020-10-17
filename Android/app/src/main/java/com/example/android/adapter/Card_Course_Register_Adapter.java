@@ -53,8 +53,6 @@ public class Card_Course_Register_Adapter extends RecyclerView.Adapter<Card_Cour
                 @Override
                 public void onClick(View v) {
                     onClickRegister.lintener(position);
-                    /*MyCourseEntity entity = new MyCourseEntity(courseRegister.getId(),courseRegister.getName(),courseRegister.getImage(),courseRegister.getRate(),courseRegister.getByAuthor(),1);
-                    new MyCourseResponsive(holder.btnRegister.getContext()).insert(entity);*/
                 }
             });
             switch (Rate.valueOf(courseRegister.getRate())){
@@ -84,7 +82,7 @@ public class Card_Course_Register_Adapter extends RecyclerView.Adapter<Card_Cour
         }
     }
 
-    private void rates(LinearLayout layoutRate,int rate){
+    public void rates(LinearLayout layoutRate,int rate){
         for(int i=0; i<rate; i++){
             ImageView star = new ImageView(layoutRate.getContext());
             star.setImageResource(R.drawable.ic_star_black_24dp);

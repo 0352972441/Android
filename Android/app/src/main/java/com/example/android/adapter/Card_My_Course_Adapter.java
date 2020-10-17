@@ -36,6 +36,8 @@ public class Card_My_Course_Adapter extends RecyclerView.Adapter<Card_My_Course_
             holder.txTitle.setText(courseRegister.getName());
             holder.txByAuthor.setText("By "+courseRegister.getByAuthor());
             holder.img_Couser.setImageResource(courseRegister.getImage());
+            holder.txNameStudent.setText("Name"+courseRegister.getStudentName());
+            holder.txId.setText("Student code:"+courseRegister.getStudentId());
             switch (Rate.valueOf(courseRegister.getRate())){
                 case BAD:
                     rates(holder.rates,1);
@@ -70,7 +72,7 @@ public class Card_My_Course_Adapter extends RecyclerView.Adapter<Card_My_Course_
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView txTitle, txByAuthor;
+        private TextView txTitle, txByAuthor,txNameStudent,txId;
         //private Button btnRegister;
         private LinearLayout rates;
         private ImageView img_Couser;
@@ -79,6 +81,8 @@ public class Card_My_Course_Adapter extends RecyclerView.Adapter<Card_My_Course_
             super(view);
             img_Couser = (ImageView) view.findViewById(R.id.img_course);
             txTitle = (TextView) view.findViewById(R.id.tx_course_title);
+            txNameStudent = view.findViewById(R.id.tx_name_student);
+            txId = view.findViewById(R.id.tx_id);
             txByAuthor = (TextView) view.findViewById(R.id.tx_author);
             //btnRegister = (Button) view.findViewById(R.id.btn_course_register);
             rates = (LinearLayout) view.findViewById(R.id.rates);

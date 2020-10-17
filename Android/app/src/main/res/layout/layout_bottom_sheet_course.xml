@@ -2,8 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <TextView
+    <!--<TextView
         android:id="@+id/tx_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -11,21 +12,74 @@
         android:textSize="40dp"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_marginTop="@dimen/margin_top_10dp"/>
-    <View
+        android:layout_marginTop="@dimen/margin_top_10dp"/>-->
+    <!--<View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:id="@+id/view_divice"
         android:layout_marginBottom="10dp"
-        android:background="@color/colorPrimary"
-        android:layout_below="@id/tx_title"/>
+        android:background="@color/colorPrimary"/>-->
 
     <androidx.cardview.widget.CardView
-        android:layout_below="@id/view_divice"
+        android:layout_marginBottom="10dp"
         app:cardCornerRadius="@dimen/corner_radius_10dp"
         android:id="@+id/card_course"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="180dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/tx_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Java"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:layout_marginBottom="20dp"
+                android:textStyle="bold"/>
+            <LinearLayout
+                android:layout_below="@id/tx_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="by Toán"
+                    android:paddingLeft="20dp"
+                    android:textSize="18dp"
+                    android:id="@+id/tx_author"/>
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/linear_star"/>
+            </LinearLayout>
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/card_course"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recycler_student"/>
+    <View
+        android:layout_marginBottom="10dp"
+        android:layout_below="@id/recycler_student"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view_divice2"/>
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_button_register"
+        android:layout_below="@id/view_divice2"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/button_bottom_sheet"/>
 </RelativeLayout>

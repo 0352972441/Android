@@ -19,14 +19,16 @@ public class MyCourseEntity {
     private String byAuthor;
     @ColumnInfo
     private int studentId;
+    @ColumnInfo
+    private String studentName;
 
-    public MyCourseEntity(int id, String name, int image, String rate, String byAuthor, int studentId) {
-        this.id = id;
+    public MyCourseEntity(String name, int image, String rate, String byAuthor, int studentId, String studentName) {
         this.name = name;
         this.image = image;
         this.rate = rate;
         this.byAuthor = byAuthor;
         this.studentId = studentId;
+        this.studentName = studentName;
     }
 
     public int getId() {
@@ -75,5 +77,13 @@ public class MyCourseEntity {
 
     public void setStudentId(int studentId) {
         this.studentId = studentId;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 }

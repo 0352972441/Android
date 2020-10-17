@@ -29,6 +29,7 @@
                 android:maxLines="1"
                 android:id="@+id/tx_course_title"/>
             <LinearLayout
+                android:id="@+id/linear_course_info"
                 android:layout_below="@id/tx_course_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,6 +55,24 @@
                     android:orientation="horizontal"
                     android:id="@+id/rates"/>
             </LinearLayout>
+            <TextView
+                android:paddingLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Nguyễn Văn An"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear_course_info"
+                android:textSize="25dp"
+                android:id="@+id/tx_name_student"/>
+            <TextView
+                android:paddingLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tx_name_student"
+                android:textSize="25dp"
+                android:id="@+id/tx_id"/>
         </RelativeLayout>
     </FrameLayout>
 </androidx.cardview.widget.CardView>
