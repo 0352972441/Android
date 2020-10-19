@@ -2,10 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/item_home"
-        android:title="@string/lable_item_menu_bottomnavigator_home"
-        android:icon="@drawable/icon_item_bottom_navigator_home_24"/>
-    <item
         android:id="@+id/item_learnig_topic"
         android:title="@string/lable_item_menu_bottomnavigator_topic"
         android:icon="@drawable/icon_bottom_navigator_topic_24"/>
@@ -13,6 +9,10 @@
         android:id="@+id/item_audio"
         android:title="@string/lable_item_menu_bottomnavigator_audio"
         android:icon="@drawable/icon_item_bottom_navigator_voice_24"/>
+    <item
+        android:id="@+id/item_home"
+        android:title="@string/lable_item_menu_bottomnavigator_home"
+        android:icon="@drawable/icon_item_bottom_navigator_home_24"/>
     <item
         android:id="@+id/item_chat"
         android:title="@string/label_item_menu_bottomnavigator_chat"

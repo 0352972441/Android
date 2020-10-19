@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.example.cocoshop.R;
 import com.example.cocoshop.dao.audiodao.Sound;
+import com.example.cocoshop.dao.audiodao.TopicDao;
 import com.example.cocoshop.ui.Learnbytopic.FragmentLearningTopic;
 import com.example.cocoshop.ui.chat.FragmentChat;
 import com.example.cocoshop.ui.Audio.FragmentAudio;
@@ -27,7 +28,6 @@ public class HomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-        new Sound().execute();
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavigatorView);
         bottomNavigationView.setItemIconTintList(null);
         //tabBar = getSupportActionBar();

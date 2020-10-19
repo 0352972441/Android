@@ -6,7 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Rect;
+import android.graphics.drawable.AnimatedImageDrawable;
+import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -48,7 +52,7 @@ public class LoginScreen extends AppCompatActivity {
     private String password ;
     private Button mbtnLogin;
     private TextView mtxChange;
-    private ImageView imgSignInWithGoogle;
+    private ImageView imgSignInWithGoogle, imgLogo;
     private TextInputEditText medPassword,medEmail;
     //private EditText medConfirmPassword;
     public static final FirebaseAuth mAuth;
@@ -69,6 +73,7 @@ public class LoginScreen extends AppCompatActivity {
         medPassword = (TextInputEditText)findViewById(R.id.medPassword);
         medEmail = (TextInputEditText)findViewById(R.id.medGmail);
         imgSignInWithGoogle = (ImageView)findViewById(R.id.imgSignInGoogle);
+        imgLogo = (ImageView)findViewById(R.id.logo);
         authGoogle = new AuthGoogle(mAuth,this,getString(R.string.default_web_client_id));
         setOnClickButtonLogin();
         setOnClickTextSwitch();

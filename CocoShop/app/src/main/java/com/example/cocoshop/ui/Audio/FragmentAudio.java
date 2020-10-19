@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class FragmentAudio extends Fragment {
     private RecyclerView cardItemAudioRecycler;
-    private RecyclerView getCardItemAudioPopularRecycler;
+    private RecyclerView cardItemAudioPopularRecycler;
     private CardItemAudioPopularAdapter audioPopularAdapter;
     private CardItemAudioApdapter audioApdapter;
     private TextView txViewAll; // View_all Click show All category audio//
@@ -41,16 +41,18 @@ public class FragmentAudio extends Fragment {
         // Declare //Initialization variable widget
         txViewAll = (TextView)view.findViewById(R.id.view_all);
         cardItemAudioRecycler = (RecyclerView)view.findViewById(R.id.card_item_audio_recycler);
-        getCardItemAudioPopularRecycler = (RecyclerView)view.findViewById(R.id.card_item_audio_popular_recycler);
-        audioApdapter = new CardItemAudioApdapter(Sound.listAllData);
-        data = Sound.getAllAudioPopular();
+        cardItemAudioPopularRecycler = (RecyclerView)view.findViewById(R.id.card_item_audio_popular_recycler);
+        //audioApdapter = new CardItemAudioApdapter(Sound.listAllData);
+        /*data = Sound.getAllAudioPopular();
         audioPopularAdapter = new CardItemAudioPopularAdapter(data);
         cardItemAudioRecycler.setAdapter(audioApdapter);
         getCardItemAudioPopularRecycler.setAdapter(audioPopularAdapter);
         getCardItemAudioPopularRecycler.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        cardItemAudioRecycler.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        cardItemAudioRecycler.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));*/
+        new Sound(cardItemAudioPopularRecycler,cardItemAudioRecycler).execute();
+        //new Sound(cardItemAudioPopularRecycler).execute();
         onClickViewAll();
-        onClickPlayAudio();
+        //onClickPlayAudio();
     }
 
     @Override
@@ -75,7 +77,7 @@ public class FragmentAudio extends Fragment {
         });
     }
 
-    private void onClickPlayAudio(){
+    /*private void onClickPlayAudio(){
         final Intent intent = new Intent(getContext(), PlayAudioActivity.class);
         audioPopularAdapter.setPlayAudioListener(new Listener() {
             @Override
@@ -95,5 +97,5 @@ public class FragmentAudio extends Fragment {
                 startActivity(intent);
             }
         });
-    }
+    }*/
 }

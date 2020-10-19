@@ -12,14 +12,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.assignmentandroid.R;
+import com.example.assignmentandroid.entity.CourseEntity;
+import com.example.assignmentandroid.entity.MyCourseEntity;
 import com.example.assignmentandroid.models.CourseRegister;
+import com.example.assignmentandroid.models.Rate;
+import com.example.assignmentandroid.responsive.MyCourseResponsive;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Card_Course_Register_Adapter extends RecyclerView.Adapter<Card_Course_Register_Adapter.ViewHolder> {
-    private ArrayList<CourseRegister> courseRegisters;
+    private List<CourseEntity> courseRegisters;
 
-    public Card_Course_Register_Adapter(ArrayList<CourseRegister> courseRegisters) {
+    public Card_Course_Register_Adapter(List<CourseEntity> courseRegisters) {
         this.courseRegisters = courseRegisters;
     }
 
@@ -30,13 +35,20 @@ public class Card_Course_Register_Adapter extends RecyclerView.Adapter<Card_Cour
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         if(courseRegisters != null){
-            CourseRegister courseRegister = courseRegisters.get(position);
-            holder.txTitle.setText(courseRegister.getTitle());
+            final CourseEntity courseRegister = courseRegisters.get(position);
+            holder.txTitle.setText(courseRegister.getName());
             holder.txByAuthor.setText("By "+courseRegister.getByAuthor());
-            holder.img_Couser.setImageResource(courseRegister.getImgCourse());
-            switch (courseRegister.getRate()){
+            holder.img_Couser.setImageResource(courseRegister.getImage());
+            holder.btnRegister.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyCourseEntity entity = new MyCourseEntity(courseRegister.getName(),courseRegister.getByAuthor(),courseRegister.getRate(),courseRegister.getImage());
+                    new MyCourseResponsive(holder.btnRegister.getContext()).insert(entity);
+                }
+            });
+            switch (Rate.valueOf(courseRegister.getRate())){
                 case BAD:
                     rates(holder.rates,1);
                     break;
@@ -66,6 +78,7 @@ public class Card_Course_Register_Adapter extends RecyclerView.Adapter<Card_Cour
 
     @Override
     public int getItemCount() {
+        notifyDataSetChanged();
         return courseRegisters.size();
     }
 

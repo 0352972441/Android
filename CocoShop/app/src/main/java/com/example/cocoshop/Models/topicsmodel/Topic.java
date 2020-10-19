@@ -12,15 +12,19 @@ public class Topic {
     private long topicCode;
     private Levels level;
     private ArrayList<Vocabulary> vocabularies;
+    private long popular;
+    private String iddocument;
 
 
-    public Topic(String name, String description, long topicCode, Levels level, ArrayList<Vocabulary> vocabularies, String urlImage) {
+    public Topic(String name, String description, long topicCode, Levels level, ArrayList<Vocabulary> vocabularies, String urlImage,long popular, String iddocument) {
         this.name = name;
         this.description = description;
         this.topicCode = topicCode;
         this.level = level;
         this.vocabularies = vocabularies;
         this.urlImage = urlImage;
+        this.popular = popular;
+        this.iddocument = iddocument;
     }
 
    /* public Topic() {
@@ -73,5 +77,25 @@ public class Topic {
 
     public void setVocabularies(ArrayList<Vocabulary> vocabularies) {
         this.vocabularies = vocabularies;
+    }
+
+    public void setTopicCode(long topicCode) {
+        this.topicCode = topicCode;
+    }
+
+    public long getPopular() {
+        return popular;
+    }
+
+    public void setPopular(long popular) {
+        this.popular = popular;
+    }
+
+    public String getIddocument() {
+        return iddocument;
+    }
+
+    public void setIddocument(String iddocument) {
+        this.iddocument = iddocument;
     }
 }

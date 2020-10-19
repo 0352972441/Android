@@ -65,4 +65,7 @@
     <string name="label_title_account_information">Information</string>
     <string name="label_title_vocabulary">Vocabulary</string>
     <string name="label_title_logout">Logout</string>
+    <string name="text_label_recommend">Recommend</string>
+    <string name="text_label_popular">Popular</string>
+    <string name="text_label_new">New</string>
 </resources>

@@ -57,12 +57,12 @@
             </LinearLayout>
             <TextView
                 android:paddingLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:text="Nguyễn Văn An"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/linear_course_info"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:id="@+id/tx_name_student"/>
             <TextView
                 android:paddingLeft="20dp"
@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tx_name_student"
-                android:textSize="25dp"
+                android:textSize="16dp"
                 android:id="@+id/tx_id"/>
         </RelativeLayout>
     </FrameLayout>

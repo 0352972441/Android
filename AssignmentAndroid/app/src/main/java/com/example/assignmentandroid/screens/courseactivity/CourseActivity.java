@@ -24,7 +24,10 @@ public class CourseActivity extends AppCompatActivity {
         CardView card = (CardView)view;
         Intent intent = null;
         switch (card.getId()){
-            case R.id.card_my_course:break;
+            case R.id.card_my_course:
+                intent = new Intent(this,MyCourseActivity.class);
+                startActivity(intent);
+                break;
             case R.id.card_registration:
                 intent = new Intent(this,CourseRegistrationActivity.class);
                 startActivity(intent);

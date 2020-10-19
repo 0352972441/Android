@@ -25,8 +25,6 @@ import com.example.cocoshop.listener.Listener;
 import java.util.ArrayList;
 
 public class FragmentLearningTopic extends Fragment {
-    private RecyclerView cardItemTopic;
-//    private CardItemTopicAdapter cardAdapter;
     public static TopicDao dao;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -50,5 +48,6 @@ public class FragmentLearningTopic extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        TopicDao.countPopular = 1;
     }
 }

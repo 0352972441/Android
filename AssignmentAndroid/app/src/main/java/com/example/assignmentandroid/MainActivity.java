@@ -10,8 +10,9 @@ import android.os.Bundle;
 import com.example.assignmentandroid.adapter.MainItemAdapter;
 import com.example.assignmentandroid.listener.Listener;
 import com.example.assignmentandroid.models.MainItem;
-import com.example.assignmentandroid.screens.courseactivity.CourseActivity;
+import com.example.assignmentandroid.screens.LoginActivity;
 import com.example.assignmentandroid.screens.MapsActivity;
+import com.example.assignmentandroid.screens.courseactivity.CourseActivity;
 import com.example.assignmentandroid.screens.newsactivity.NewsActivity;
 import com.example.assignmentandroid.screens.SocialActivity;
 
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerViewItem;
     private MainItemAdapter itemAdapter;
     private static final Object[] listActivity= {
-            CourseActivity.class, MapsActivity.class, NewsActivity.class, SocialActivity.class
+            CourseActivity.class, MapsActivity.class, NewsActivity.class, LoginActivity.class
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {

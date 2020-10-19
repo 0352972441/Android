@@ -27,7 +27,7 @@ public class CourseResponsive {
     static class insertAsyncTask extends AsyncTask<CourseEntity, Void, Void>{
         private CourseDao courseDao;
 
-        public insertAsyncTask(CourseDao courseDao) {
+        insertAsyncTask(CourseDao courseDao) {
             this.courseDao = courseDao;
         }
 

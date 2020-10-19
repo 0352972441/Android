@@ -31,13 +31,10 @@ import java.util.HashMap;
 
 public class FirebaseStorangeUser extends AsyncTask<Void, Void,Boolean> {
     private static final FirebaseAuth mAuth;
-    //private static final FirebaseStorage store;
     private  StorageReference storeRef;
     private static final FirebaseFirestore firestore;
     static {
         mAuth = FirebaseAuth.getInstance();
-        //store =  FirebaseStorage.getInstance();
-        //storeRef = store.getReference();
         firestore = FirebaseFirestore.getInstance();
     }
     private Uri filePath;

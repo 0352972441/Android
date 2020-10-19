@@ -1,14 +1,22 @@
 package com.example.cocoshop.dao.audiodao;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cocoshop.Adapter.audioadapter.CardItemAudioApdapter;
+import com.example.cocoshop.Adapter.audioadapter.CardItemAudioPopularAdapter;
 import com.example.cocoshop.Models.audiomodels.Audio;
 import com.example.cocoshop.Models.audiomodels.Category;
+import com.example.cocoshop.Screen.audioscreen.PlayAudioActivity;
 import com.example.cocoshop.firebaseStorange.FirebaseStorangeAudio;
+import com.example.cocoshop.listener.Listener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,6 +32,16 @@ public class Sound extends AsyncTask<Void,ArrayList<Audio>,Void> {
     public static ArrayList<Audio> listAllData = new ArrayList<>();
     private static final FirebaseStorage storage;
     private static final StorageReference mRef;
+    private RecyclerView popularAudioRecyclerView;
+    private RecyclerView recommendAudioRecyclerView;
+    private CardItemAudioPopularAdapter popularAudioAdapter;
+    private CardItemAudioApdapter recommendAudioApdapter;
+    private ArrayList<Audio> listAudio;
+    public Sound(RecyclerView popularAudioRecyclerView, RecyclerView recommendAudioRecyclerView) {
+        this.popularAudioRecyclerView = popularAudioRecyclerView;
+        this.recommendAudioRecyclerView = recommendAudioRecyclerView;
+    }
+
     static {
         storage = FirebaseStorage.getInstance();
         mRef = storage.getReference();
@@ -52,13 +70,47 @@ public class Sound extends AsyncTask<Void,ArrayList<Audio>,Void> {
         return null;
     }
 
-    /*public static ArrayList<Audio> getAllAudio(){
-            final ArrayList<Audio> listAudio = new ArrayList<>();
-            for(com.example.cocoshop.Models.audiomodels.Sound i : FirebaseStorangeAudio.callAudio()){
-                listAudio.add(new Audio("null","Anana",i,2, Category.MUSIC));
+    @Override
+    protected void onProgressUpdate(ArrayList<Audio>... values) {
+        super.onProgressUpdate(values);
+        if(values[0] != null){
+            listAudio = new ArrayList<>();
+            for(int i=0; i< listAllData.size() - (listAllData.size() /3); i++){
+                listAudio.add(listAllData.get(i));
             }
-            return listAudio;
-        }*/
+            popularAudioAdapter = new CardItemAudioPopularAdapter(listAudio);
+            recommendAudioApdapter = new CardItemAudioApdapter(listAllData);
+
+            recommendAudioRecyclerView.setAdapter(recommendAudioApdapter);
+            recommendAudioRecyclerView.setLayoutManager(new LinearLayoutManager(recommendAudioRecyclerView.getContext(),RecyclerView.HORIZONTAL,false));
+            popularAudioRecyclerView.setAdapter(popularAudioAdapter);
+            popularAudioRecyclerView.setLayoutManager(new LinearLayoutManager(popularAudioRecyclerView.getContext(),LinearLayoutManager.VERTICAL,false));
+            onClickPlayAudio();
+        }
+    }
+
+    private void onClickPlayAudio(){
+        final Intent intent = new Intent(popularAudioRecyclerView.getContext(), PlayAudioActivity.class);
+        popularAudioAdapter.setPlayAudioListener(new Listener() {
+            @Override
+            public void listener(int position) {
+                Bundle bundle = new Bundle();
+                Audio audio = listAudio.get(position);
+                intent.putExtra(PlayAudioActivity.KEYAUDIO, BundleData.sendData(audio));
+                popularAudioRecyclerView.getContext().startActivity(intent);
+            }
+        });
+        recommendAudioApdapter.setPlayAudioListener(new Listener() {
+            @Override
+            public void listener(int position) {
+                Bundle bundle = new Bundle();
+                Audio audio = listAllData.get(position);
+                intent.putExtra(PlayAudioActivity.KEYAUDIO, BundleData.sendData(audio));
+                recommendAudioRecyclerView.getContext().startActivity(intent);
+            }
+        });
+    }
+
     public static ArrayList<Audio> getAllAudioPopular(){
         final ArrayList<Audio> listAudio = new ArrayList<>();
         for(int i=0; i< listAllData.size() - (listAllData.size() /3); i++){

@@ -12,17 +12,20 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cocoshop.Models.CardHomeModel.Card;
+import com.example.cocoshop.Models.topicsmodel.Topic;
 import com.example.cocoshop.R;
 import com.example.cocoshop.listener.Listener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class CardItemAdapter extends RecyclerView.Adapter<CardItemAdapter.ViewHolder> {
     private Listener cardListener;
-    private List<Card> card = new ArrayList<>();
+    private ArrayList<Topic> card = new ArrayList<>();
     private static View view;
-    public CardItemAdapter(List<Card> card) {
+    public CardItemAdapter(ArrayList<Topic> card) {
         this.card = card;
     }
 
@@ -37,16 +40,16 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull CardItemAdapter.ViewHolder holder, final int position) {
         if(card != null){
-            holder.mtxTitleCard.setText(card.get(position).getTitle());
-            holder.imgLogo.setImageResource(card.get(position).getLogo());
-            holder.mtxCountCard.setText(card.get(position).getCountCard());
+            //Map<String,Object> item = card.get(position);
+            holder.tx_Level.setText(card.get(position).getLevel().toString());
+            holder.mTxName.setText(card.get(position).getName().toString());
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     cardListener.listener(position);
                 }
             });
-            holder.mFrameLayout.setBackgroundResource(card.get(position).getBackground());
+            Picasso.with(holder.cardView.getContext()).load(card.get(position).getUrlImage().toString()).into(holder.imgBackground);
         }
     }
 
@@ -60,15 +63,18 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private FrameLayout mFrameLayout;
-        private TextView mtxTitleCard,mtxCountCard;
-        private ImageView imgLogo;
+        private TextView tx_Level,mtxCountCard,mTxName;
+        private ImageView imgBackground;
         private CardView cardView;
         public ViewHolder(@NonNull View view) {
             super(view);
             mFrameLayout = (FrameLayout) view.findViewById(R.id.cardBackground);
-            mtxTitleCard = (TextView)view.findViewById(R.id.txTitleCard);
-            mtxCountCard = (TextView)view.findViewById(R.id.txCountCard);
-            imgLogo = (ImageView)view.findViewById(R.id.imgLogo);
+
+            tx_Level = (TextView)view.findViewById(R.id.tx_level);
+            //mtxCountCard = (TextView)view.findViewById(R.id.txCountCard);
+            mTxName = (TextView)view.findViewById(R.id.tx_name);
+
+            imgBackground = (ImageView)view.findViewById(R.id.img_background);
             cardView = (CardView)view.findViewById(R.id.cardview);
         }
     }

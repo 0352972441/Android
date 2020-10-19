@@ -37,7 +37,10 @@ import com.example.cocoshop.R;
 import com.example.cocoshop.Screen.ChangePasswordScreen.ChangePasswordScreen;
 import com.example.cocoshop.Screen.AuthScreen.LoginScreen;
 import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
+import com.example.cocoshop.Screen.profileActivity.InfomationActivity;
 import com.example.cocoshop.Screen.profileActivity.MyFavoriteActivity;
+import com.example.cocoshop.Screen.profileActivity.PolicyActivity;
+import com.example.cocoshop.Screen.profileActivity.TermOfUseActivity;
 import com.example.cocoshop.fireStore.FireStoreUser;
 import com.example.cocoshop.firebaseStorange.FirebaseStorangeUser;
 import com.example.cocoshop.listener.Listener;
@@ -69,13 +72,10 @@ import static android.app.Activity.RESULT_OK;
 
 
 public class FragmentProfile extends Fragment {
-    private static Uri uriAvata = null;
     private ImageView mImgSetting,imgAvata;
     private Handler handler;
-    private View viewContentProfile;
     private TextView tvNameDisplay,tvEmailDisplay;
     private static final FirebaseUser user;
-    //private FirebaseFirestore firestore;
     public static final int CODE_ID_IMAGE = 1000;
     private static final FirebaseStorage store;
     private static final StorageReference storeRef;
@@ -83,7 +83,8 @@ public class FragmentProfile extends Fragment {
     private Context context;
     private RecyclerView itemProfile;
     private Item_Profile_Adapter item_profile_adapter;
-    private static final Object[] activity = {MyFavoriteActivity.class};
+    private Intent intent;
+    private static final Object[] activity = {MyFavoriteActivity.class, InfomationActivity.class, PolicyActivity.class, TermOfUseActivity.class};
     static {
         user = FirebaseAuth.getInstance().getCurrentUser();
         store =  FirebaseStorage.getInstance();
@@ -100,7 +101,6 @@ public class FragmentProfile extends Fragment {
                 v.showContextMenu();
             }
         });
-        //viewContentProfile = view.findViewById(R.id.ltcontentProfile);
         tvNameDisplay = (TextView)view.findViewById(R.id.tvNameDisplay);
         tvEmailDisplay = (TextView)view.findViewById(R.id.tvemailDisplay);
         itemProfile = (RecyclerView)view.findViewById(R.id.item_profile);
@@ -108,7 +108,6 @@ public class FragmentProfile extends Fragment {
         itemProfile.setAdapter(item_profile_adapter);
         itemProfile.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
         tvNameDisplay.setText("Unknow");
-        //firestore = FirebaseFirestore.getInstance();
         this.context = getContext();
         onClickItemListener();
         HomeScreen.setThemeFragment(R.style.ActionBarProfile);
@@ -118,8 +117,17 @@ public class FragmentProfile extends Fragment {
         item_profile_adapter.setOnClickItemListener(new Listener() {
             @Override
             public void listener(int position) {
-                Intent intent = new Intent(getContext(), (Class<?>) activity[position]);
-                startActivity(intent);
+                if(position== activity.length){
+                    intent = new Intent(getContext(), LoginScreen.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                    LoginScreen.mAuth.signOut();
+                    User.setKind("");
+                    User.setEmail("");
+                }else{
+                    intent = new Intent(getContext(), (Class<?>) activity[position]);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -137,18 +145,17 @@ public class FragmentProfile extends Fragment {
         MenuInflater inflater = getActivity().getMenuInflater();
         inflater.inflate(R.menu.menu_item_setting,menu);
         menu.setHeaderTitle("Your choose!");
+        setUpProfile();
     }
 
     @Override
     public void onStart() {
         super.onStart();
         HomeScreen.isCurrentFragment = "Profile";
-        setUpProfile();
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        Intent intent;
         switch (item.getItemId()) {
             case R.id.changeAvata:
                 Toast.makeText(getContext(), "Change Avata", Toast.LENGTH_SHORT).show();
@@ -170,7 +177,6 @@ public class FragmentProfile extends Fragment {
                 LoginScreen.mAuth.signOut();
                 User.setKind("");
                 User.setEmail("");
-                uriAvata = null;
                 return true;
         }
         return super.onContextItemSelected(item);
@@ -184,18 +190,13 @@ public class FragmentProfile extends Fragment {
                 public void run() {
                     tvEmailDisplay.setText(User.getEmail() == null ? "Unknow" : User.getEmail());
                     tvNameDisplay.setText(User.getKind() == null ? "Unknow" : User.getKind());
-                    if (uriAvata == null) {
                         if (context != null) {
                             storeRef.child("avatas/" + user.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     Picasso.with(context).load(uri).error(R.drawable.defaultavata).placeholder(R.drawable.defaultavata).into(imgAvata);
-                                    //uriAvata = uri;
                                 }
                             });
-                        }
-                    } else {
-                        Picasso.with(getContext()).load(uriAvata).error(R.drawable.defaultavata).into(imgAvata);
                     }
                 }
             });
@@ -233,7 +234,7 @@ public class FragmentProfile extends Fragment {
                 try {
                     filePath = data.getData();
                     if (filePath != null) {
-                        imgAvata.setImageURI(filePath);
+                        Picasso.with(context).load(filePath).into(imgAvata);
                         new FirebaseStorangeUser(filePath,storeRef,getContext()).execute();
                     }
                 }catch(Exception ex){

@@ -46,6 +46,8 @@ public class TopicDao extends AsyncTask<Void, ArrayList<Topic>,Boolean> {
     private static final FirebaseFirestore firestore;
     private static final FirebaseStorage storage;
     private static final StorageReference mRef;
+    public static long countPopular = 1;
+    public static final String MODEL = "TOPIC";
     //private static Topic topic = new Topic();
     private ArrayList<Topic> topics = new ArrayList<>();
 
@@ -72,7 +74,7 @@ public class TopicDao extends AsyncTask<Void, ArrayList<Topic>,Boolean> {
                 if(task.isSuccessful()){
                     for(DocumentSnapshot items : task.getResult().getDocuments()){
                         Map<String,Object> item = items.getData();
-                        Topic topic = new Topic(item.get("title").toString(),item.get("description").toString(),(long)item.get("id"),Levels.valueOf(item.get("level").toString()),(ArrayList<Vocabulary>)item.get("vocabuary"),item.get("urlImage").toString());
+                        Topic topic = new Topic(item.get("title").toString(),item.get("description").toString(),(long)item.get("id"),Levels.valueOf(item.get("level").toString()),(ArrayList<Vocabulary>)item.get("vocabuary"),item.get("urlImage").toString(),(long)item.get("popular"),item.get("iddocument").toString());
                         topics.add(topic);
                     }
                     publishProgress(topics);
@@ -83,7 +85,7 @@ public class TopicDao extends AsyncTask<Void, ArrayList<Topic>,Boolean> {
     }
 
     @Override
-    protected void onProgressUpdate(ArrayList<Topic>... values) {
+    protected void onProgressUpdate(final ArrayList<Topic>... values) {
         super.onProgressUpdate(values);
         RecyclerView cardItemTopic = (RecyclerView)activity.findViewById(R.id.cardTopic);
         CardItemTopicAdapter cardAdapter = new CardItemTopicAdapter(values[0]);
@@ -95,7 +97,9 @@ public class TopicDao extends AsyncTask<Void, ArrayList<Topic>,Boolean> {
                 public void listener(int position) {
                     Intent intent = new Intent(activity, LearningTopicActivity.class);
                     intent.putExtra(LearningTopicActivity.KEYPOSITION,position);
+                    intent.putExtra(LearningTopicActivity.MODEL,MODEL);
                     activity.startActivity(intent);
+                    new PopularAsycnTask().execute(values[0].get(position));
                 }
             });
         }
@@ -104,6 +108,32 @@ public class TopicDao extends AsyncTask<Void, ArrayList<Topic>,Boolean> {
     @Override
     protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);
+    }
+
+
+
+    public static class PopularAsycnTask extends AsyncTask<Topic,Topic,Void>{
+        @SuppressLint("WrongThread")
+        @Override
+        protected Void doInBackground(Topic... maps) {
+            onProgressUpdate(maps[0]);
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Topic... values) {
+            super.onProgressUpdate(values);
+            if(values[0] != null){
+                countPopular = countPopular + values[0].getPopular();
+                HashMap<String,Object> popular = new HashMap<>();
+                popular.put("popular",countPopular);
+                firestore.collection("topics").document(values[0].getIddocument()).update(popular).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                    }
+                });
+            }
+        }
     }
 
     /*public static void getAllTopic(){

@@ -36,8 +36,8 @@ public class Card_My_Course_Adapter extends RecyclerView.Adapter<Card_My_Course_
             holder.txTitle.setText(courseRegister.getName());
             holder.txByAuthor.setText("By "+courseRegister.getByAuthor());
             holder.img_Couser.setImageResource(courseRegister.getImage());
-            holder.txNameStudent.setText("Name"+courseRegister.getStudentName());
-            holder.txId.setText("Student code:"+courseRegister.getStudentId());
+            holder.txNameStudent.setText("Name: "+courseRegister.getStudentName());
+            holder.txId.setText("Student code: "+courseRegister.getStudentId());
             switch (Rate.valueOf(courseRegister.getRate())){
                 case BAD:
                     rates(holder.rates,1);
