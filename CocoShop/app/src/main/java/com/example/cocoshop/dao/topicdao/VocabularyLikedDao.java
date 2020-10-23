@@ -5,7 +5,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import com.example.cocoshop.Adapter.topicsadapter.ViewPagerVocabulary;
+import com.example.cocoshop.adapter.topicsadapter.ViewPagerVocabulary;
 import com.example.cocoshop.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

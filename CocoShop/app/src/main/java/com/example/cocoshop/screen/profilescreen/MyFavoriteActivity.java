@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.cocoshop.R;
+import com.example.cocoshop.animation.Animations;
 import com.example.cocoshop.dao.audiodao.MyFavoriteVocabularyDao;
 
 public class MyFavoriteActivity extends AppCompatActivity {

@@ -1,6 +1,5 @@
 package com.example.cocoshop.Screen.ChangePasswordScreen;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -10,14 +9,9 @@ import android.widget.Toast;
 
 import com.example.cocoshop.Models.User;
 import com.example.cocoshop.R;
-import com.example.cocoshop.fireStore.FireStoreUser;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ChangePasswordScreen extends AppCompatActivity {
     private TextInputEditText edOldPassword,edNewPassword,edConfirmPassword;

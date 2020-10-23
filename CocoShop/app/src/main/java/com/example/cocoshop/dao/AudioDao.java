@@ -4,32 +4,28 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocoshop.Adapter.audioadapter.CardItemAudioApdapter;
-import com.example.cocoshop.Adapter.audioadapter.CardItemAudioPopularAdapter;
-import com.example.cocoshop.Models.audiomodels.Audio;
-import com.example.cocoshop.Models.audiomodels.Category;
+import com.example.cocoshop.adapter.audioadapter.CardItemAudioApdapter;
+import com.example.cocoshop.adapter.audioadapter.CardItemAudioPopularAdapter;
+import com.example.cocoshop.models.audiomodels.Audio;
+import com.example.cocoshop.models.audiomodels.Category;
 import com.example.cocoshop.Screen.audioscreen.PlayAudioActivity;
-import com.example.cocoshop.firebaseStorange.FirebaseStorangeAudio;
+import com.example.cocoshop.dao.BundleData;
 import com.example.cocoshop.listener.Listener;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 
 public class Sound extends AsyncTask<Void,ArrayList<Audio>,Void> {
-    public static ArrayList<Audio> listAllData = new ArrayList<>();
+    public  static ArrayList<Audio> listAllData = new ArrayList<>();
     private static final FirebaseStorage storage;
     private static final StorageReference mRef;
     private RecyclerView popularAudioRecyclerView;
@@ -59,7 +55,7 @@ public class Sound extends AsyncTask<Void,ArrayList<Audio>,Void> {
                         item.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
-                                listAllData.add(new Audio("Unknow","Anana",new com.example.cocoshop.Models.audiomodels.Sound(name,task.getResult().toString()),2,Category.MUSIC));
+                                listAllData.add(new Audio("Unknow","Anana",new com.example.cocoshop.models.audiomodels.Sound(name,task.getResult().toString()),2,Category.MUSIC));
                                 publishProgress(listAllData);
                             }
                         });
@@ -111,13 +107,13 @@ public class Sound extends AsyncTask<Void,ArrayList<Audio>,Void> {
         });
     }
 
-    public static ArrayList<Audio> getAllAudioPopular(){
+    /*public static ArrayList<Audio> getAllAudioPopular(){
         final ArrayList<Audio> listAudio = new ArrayList<>();
         for(int i=0; i< listAllData.size() - (listAllData.size() /3); i++){
             listAudio.add(listAllData.get(i));
         }
         return listAudio;
-    }
+    }*/
 
 
    /* public static void callAudio(){

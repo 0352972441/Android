@@ -1,25 +1,12 @@
 package com.example.cocoshop.dao.audiodao;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
-
-import com.example.cocoshop.Adapter.topicsadapter.Multiple_Choice_Adapter;
-import com.example.cocoshop.R;
-import com.example.cocoshop.listener.OnClickListener;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
 
 public class Multiple_Choice_Dao extends AsyncTask<Void,Void,Void> {
     private CardView cardAnswer;
@@ -39,7 +26,7 @@ public class Multiple_Choice_Dao extends AsyncTask<Void,Void,Void> {
 
     @Override
     protected Void doInBackground(Void... maps) {
-        onProgressUpdate(null);
+        onProgressUpdate();
         return null;
     }
 

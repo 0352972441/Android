@@ -1,4 +1,4 @@
-package com.example.cocoshop.Models.chatmodel;
+package com.example.cocoshop.models.chatmodel;
 
 public class Message {
     private String message;

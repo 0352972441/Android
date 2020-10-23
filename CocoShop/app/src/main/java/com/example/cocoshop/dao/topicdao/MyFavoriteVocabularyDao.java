@@ -2,14 +2,12 @@ package com.example.cocoshop.dao.audiodao;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocoshop.Adapter.MyFavoriteAdapter;
-import com.example.cocoshop.Models.vocabularysmodel.Vocabulary;
+import com.example.cocoshop.adapter.MyFavoriteAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,7 +17,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class MyFavoriteVocabularyDao extends AsyncTask<Void, ArrayList<Map<String,Object>>,Void> {
@@ -46,7 +43,6 @@ public class MyFavoriteVocabularyDao extends AsyncTask<Void, ArrayList<Map<Strin
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                    for(DocumentSnapshot i : task.getResult().getDocuments()){
-                       Log.d("Value:",""+i.getData());
                        data.add((Map<String, Object>) i.getData());
                    }
                     publishProgress(data);
@@ -61,6 +57,6 @@ public class MyFavoriteVocabularyDao extends AsyncTask<Void, ArrayList<Map<Strin
         super.onProgressUpdate(values);
         MyFavoriteAdapter adapter = new MyFavoriteAdapter(values[0]);
         vocabulary_recycler_view.setAdapter(adapter);
-        vocabulary_recycler_view.setLayoutManager(new LinearLayoutManager(context,RecyclerView.VERTICAL,false));
+        vocabulary_recycler_view.setLayoutManager(new GridLayoutManager(context,2));
     }
 }

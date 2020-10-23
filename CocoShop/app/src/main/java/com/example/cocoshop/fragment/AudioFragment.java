@@ -1,4 +1,4 @@
-package com.example.cocoshop.ui.Audio;
+package com.example.cocoshop.Fragment.Audio;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -17,14 +16,10 @@ import android.widget.TextView;
 import com.example.cocoshop.Adapter.audioadapter.CardItemAudioApdapter;
 import com.example.cocoshop.Adapter.audioadapter.CardItemAudioPopularAdapter;
 import com.example.cocoshop.Models.audiomodels.Audio;
-import com.example.cocoshop.Models.audiomodels.Category;
 import com.example.cocoshop.R;
 import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
 import com.example.cocoshop.Screen.audioscreen.MainAudioActivity;
-import com.example.cocoshop.Screen.audioscreen.PlayAudioActivity;
-import com.example.cocoshop.dao.audiodao.BundleData;
 import com.example.cocoshop.dao.audiodao.Sound;
-import com.example.cocoshop.listener.Listener;
 
 import java.util.ArrayList;
 

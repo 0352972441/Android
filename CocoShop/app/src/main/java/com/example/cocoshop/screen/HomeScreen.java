@@ -10,13 +10,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.cocoshop.R;
-import com.example.cocoshop.dao.audiodao.Sound;
-import com.example.cocoshop.dao.audiodao.TopicDao;
-import com.example.cocoshop.ui.Learnbytopic.FragmentLearningTopic;
-import com.example.cocoshop.ui.chat.FragmentChat;
-import com.example.cocoshop.ui.Audio.FragmentAudio;
-import com.example.cocoshop.ui.Profile.FragmentProfile;
-import com.example.cocoshop.ui.Home.FragmentHome;
+import com.example.cocoshop.Fragment.TopicFragment;
+import com.example.cocoshop.Fragment.ChatFragment;
+import com.example.cocoshop.Fragment.AudioFragment;
+import com.example.cocoshop.Fragment.ProfileFragment;
+import com.example.cocoshop.Fragment.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeScreen extends AppCompatActivity {
@@ -33,7 +31,7 @@ public class HomeScreen extends AppCompatActivity {
         //tabBar = getSupportActionBar();
         //tabBar.setTitle("Home");
         bottomNavigationView.setOnNavigationItemSelectedListener(new onNavigatoritemSelectListener());
-        FragmentHome home = new FragmentHome();
+        HomeFragment home = new HomeFragment();
         loadFragment(home);
         context = this;
     }
@@ -59,14 +57,14 @@ public class HomeScreen extends AppCompatActivity {
                         return true;
                     }*/
                     if(!isCurrentFragment.equals("Chat")){
-                        fragment = new FragmentChat();
+                        fragment = new ChatFragment();
                         loadFragment(fragment);
                         return true;
                     }
                     return false;
                 case R.id.item_profile:
                     if(!isCurrentFragment.equals("Profile")){
-                        fragment = new FragmentProfile();
+                        fragment = new ProfileFragment();
                         //tabBar.setTitle("Profile");
                         loadFragment(fragment);
                         return true;
@@ -75,19 +73,19 @@ public class HomeScreen extends AppCompatActivity {
                 case R.id.item_home:
                     //tabBar.setTitle("Home");
                     if(!isCurrentFragment.equals("HOME")){
-                        loadFragment(new FragmentHome());
+                        loadFragment(new HomeFragment());
                     }
                     return true;
                 case R.id.item_learnig_topic:
                     //tabBar.setTitle("Learning by topic");
                     if(!isCurrentFragment.equals("TOPIC")){
-                        loadFragment(new FragmentLearningTopic());
+                        loadFragment(new TopicFragment());
                     }
                     return true;
                 case R.id.item_audio:
                     //tabBar.setTitle("Audio");
                     if(!isCurrentFragment.equals("AUDIO")){
-                        loadFragment(new FragmentAudio());
+                        loadFragment(new AudioFragment());
                     }
                     return true;
             }

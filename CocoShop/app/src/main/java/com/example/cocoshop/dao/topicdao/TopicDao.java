@@ -2,44 +2,32 @@ package com.example.cocoshop.dao.audiodao;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.signature.ObjectKey;
-import com.example.cocoshop.Adapter.topicsadapter.CardItemTopicAdapter;
-import com.example.cocoshop.Models.topicsmodel.Levels;
-import com.example.cocoshop.Models.topicsmodel.Topic;
-import com.example.cocoshop.Models.vocabularysmodel.Vocabulary;
+import com.example.cocoshop.adapter.topicsadapter.CardItemTopicAdapter;
+import com.example.cocoshop.models.topicsmodel.Levels;
+import com.example.cocoshop.models.topicsmodel.Topic;
+import com.example.cocoshop.models.Vocabulary;
 import com.example.cocoshop.R;
-import com.example.cocoshop.Screen.topicsscreen.LearningTopicActivity;
+import com.example.cocoshop.screen.topicsscreen.LearningTopicActivity;
 import com.example.cocoshop.listener.Listener;
-import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public class TopicDao extends AsyncTask<Void, ArrayList<Topic>,Boolean> {
     @SuppressLint("StaticFieldLeak")
