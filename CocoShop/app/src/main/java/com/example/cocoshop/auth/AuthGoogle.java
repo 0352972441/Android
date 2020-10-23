@@ -1,4 +1,4 @@
-package com.example.cocoshop.Auth;
+package com.example.cocoshop.auth;
 
 import android.app.Activity;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.example.cocoshop.Screen.ChangePasswordScreen;
+package com.example.cocoshop.screen.authscreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.cocoshop.Models.User;
+import com.example.cocoshop.models.User;
 import com.example.cocoshop.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;

@@ -1,23 +1,18 @@
-package com.example.cocoshop.ui.Profile;
+package com.example.cocoshop.fragment;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -29,49 +24,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.example.cocoshop.Adapter.Item_Profile_Adapter;
-import com.example.cocoshop.Models.User;
-import com.example.cocoshop.Models.UserAccount;
+import com.example.cocoshop.adapter.Item_Profile_Adapter;
+import com.example.cocoshop.models.User;
 import com.example.cocoshop.R;
-import com.example.cocoshop.Screen.ChangePasswordScreen.ChangePasswordScreen;
-import com.example.cocoshop.Screen.AuthScreen.LoginScreen;
-import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
-import com.example.cocoshop.Screen.profileActivity.InfomationActivity;
-import com.example.cocoshop.Screen.profileActivity.MyFavoriteActivity;
-import com.example.cocoshop.Screen.profileActivity.PolicyActivity;
-import com.example.cocoshop.Screen.profileActivity.TermOfUseActivity;
-import com.example.cocoshop.fireStore.FireStoreUser;
-import com.example.cocoshop.firebaseStorange.FirebaseStorangeUser;
+import com.example.cocoshop.screen.authscreen.ChangePasswordScreen;
+import com.example.cocoshop.screen.authscreen.LoginScreen;
+import com.example.cocoshop.screen.HomeScreen;
+import com.example.cocoshop.screen.profilescreen.InfomationActivity;
+import com.example.cocoshop.screen.profilescreen.MyFavoriteActivity;
+import com.example.cocoshop.screen.profilescreen.PolicyActivity;
+import com.example.cocoshop.screen.profilescreen.TermOfUseActivity;
+import com.example.cocoshop.firebase.FirebaseStorangeUser;
 import com.example.cocoshop.listener.Listener;
 import com.example.cocoshop.permission.PermissionReadExternalStorage;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.HashMap;
 
 import static android.app.Activity.RESULT_OK;
 
 
-public class FragmentProfile extends Fragment {
+public class ProfileFragment extends Fragment {
     private ImageView mImgSetting,imgAvata;
     private Handler handler;
     private TextView tvNameDisplay,tvEmailDisplay;

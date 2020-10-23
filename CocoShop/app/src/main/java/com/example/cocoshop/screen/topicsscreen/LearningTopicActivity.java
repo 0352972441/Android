@@ -1,21 +1,20 @@
-package com.example.cocoshop.Screen.topicsscreen;
+package com.example.cocoshop.screen.topicsscreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.example.cocoshop.Adapter.topicsadapter.ViewPagerVocabulary;
-import com.example.cocoshop.Models.vocabularysmodel.Vocabulary;
+import com.example.cocoshop.adapter.topicsadapter.ViewPagerVocabulary;
+import com.example.cocoshop.models.Vocabulary;
 import com.example.cocoshop.R;
 import com.example.cocoshop.dao.PopularDao;
 import com.example.cocoshop.dao.RecommendDao;
-import com.example.cocoshop.dao.audiodao.TopicDao;
+import com.example.cocoshop.dao.topicdao.TopicDao;
 import com.example.cocoshop.listener.Listener;
-import com.example.cocoshop.ui.Home.FragmentHome;
-import com.example.cocoshop.ui.Learnbytopic.FragmentLearningTopic;
+import com.example.cocoshop.fragment.HomeFragment;
+import com.example.cocoshop.fragment.TopicFragment;
 
 import java.util.ArrayList;
 
@@ -34,9 +33,9 @@ public class LearningTopicActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learning_topic);
-        dao = FragmentLearningTopic.dao;
-        recommendDao = FragmentHome.recommendDao;
-        popularDao = FragmentHome.popularDao;
+        dao = TopicFragment.dao;
+        recommendDao = HomeFragment.recommendDao;
+        popularDao = HomeFragment.popularDao;
 
         position = (int)getIntent().getExtras().get(KEYPOSITION);
         switch ((String)getIntent().getExtras().get(MODEL)){
@@ -63,7 +62,7 @@ public class LearningTopicActivity extends AppCompatActivity {
             vocabularyAdapter.setOnClickNextVocabulary(new Listener() {
                 @Override
                 public void listener(int position) {
-                    viewPagerVocabulary.setCurrentItem(vocabularies.size()-1/*viewPagerVocabulary.getCurrentItem()+1*/);
+                    viewPagerVocabulary.setCurrentItem(/*vocabularies.size()-1*/viewPagerVocabulary.getCurrentItem()+1);
                 }
             });
             vocabularyAdapter.setOnClickMultipleChoice(new Listener() {

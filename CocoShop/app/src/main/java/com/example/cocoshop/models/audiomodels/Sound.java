@@ -1,6 +1,4 @@
-package com.example.cocoshop.Models.audiomodels;
-
-import android.net.Uri;
+package com.example.cocoshop.models.audiomodels;
 
 public class Sound {
     private String title;

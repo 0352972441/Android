@@ -1,30 +1,20 @@
-package com.example.cocoshop.ui.Learnbytopic;
+package com.example.cocoshop.fragment;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.cocoshop.Adapter.topicsadapter.CardItemTopicAdapter;
-import com.example.cocoshop.Models.topicsmodel.Topic;
 import com.example.cocoshop.R;
-import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
-import com.example.cocoshop.Screen.topicsscreen.LearningTopicActivity;
-import com.example.cocoshop.dao.audiodao.TopicDao;
-import com.example.cocoshop.listener.Listener;
+import com.example.cocoshop.screen.HomeScreen;
+import com.example.cocoshop.dao.topicdao.TopicDao;
 
-import java.util.ArrayList;
-
-public class FragmentLearningTopic extends Fragment {
+public class TopicFragment extends Fragment {
     public static TopicDao dao;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

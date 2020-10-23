@@ -1,4 +1,4 @@
-package com.example.cocoshop.Adapter.topicsadapter;
+package com.example.cocoshop.adapter.topicsadapter;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.util.Log;
@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.cocoshop.Models.vocabularysmodel.Vocabulary;
+import com.example.cocoshop.models.Vocabulary;
 import com.example.cocoshop.R;
 import com.example.cocoshop.listener.OnClickListener;
 import java.io.IOException;
@@ -67,7 +67,7 @@ public class Multiple_Choice_Adapter extends RecyclerView.Adapter<Multiple_Choic
             answer.add(String.valueOf(vocabuary.charAt(vocabuary.length()-1))+vocabuary);
             Collections.shuffle(number);
             if(vocabuary.length() > number.get(0)) {
-                answer.add(vocabuary.substring(0, number.get(1))+String.valueOf(vocabuary.charAt(vocabuary.length()-number.get(0)))+vocabuary.substring(number.get(0) + 1, vocabuary.length()));
+                answer.add(vocabuary.substring(0, number.get(1))+String.valueOf(vocabuary.charAt(vocabuary.length() - vocabuary.length() < number.get(0) ? 1 : number.get(0)))+vocabuary.substring(number.get(0) + 1, vocabuary.length()));
                 answer.add(vocabuary.substring(0, number.get(0)) + vocabuary.substring(number.get(0) + 1, vocabuary.length()));
             }
 
@@ -151,6 +151,8 @@ public class Multiple_Choice_Adapter extends RecyclerView.Adapter<Multiple_Choic
                         for(int i=0; i< number.size(); i++){
                             cardAnswer[i].setBackgroundColor(Color.WHITE);
                         }
+                        mediaPlayer.stop();
+                        answerSound.stop();
                         holder.bottom_sheet.setVisibility(View.INVISIBLE);
                     }
                 });

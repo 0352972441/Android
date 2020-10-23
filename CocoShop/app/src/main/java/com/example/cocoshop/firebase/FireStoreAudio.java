@@ -1,14 +1,13 @@
-package com.example.cocoshop.fireStore;
+package com.example.cocoshop.firebase;
 
-import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.cocoshop.Adapter.audioadapter.CardItemAudioPopularAdapter;
-import com.example.cocoshop.Models.audiomodels.Audio;
-import com.example.cocoshop.Models.audiomodels.Category;
-import com.example.cocoshop.Models.audiomodels.Sound;
+import com.example.cocoshop.adapter.audioadapter.CardItemAudioPopularAdapter;
+import com.example.cocoshop.models.audiomodels.Audio;
+import com.example.cocoshop.models.audiomodels.Category;
+import com.example.cocoshop.models.audiomodels.Sound;
 import com.example.cocoshop.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

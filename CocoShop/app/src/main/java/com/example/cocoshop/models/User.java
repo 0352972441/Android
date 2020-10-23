@@ -1,4 +1,4 @@
-package com.example.cocoshop.Models;
+package com.example.cocoshop.models;
 
 public class User {
     private static String email;

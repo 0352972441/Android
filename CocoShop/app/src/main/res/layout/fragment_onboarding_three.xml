@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="6"
-    tools:context=".ui.Onboarding.OnboardingThree">
+    tools:context=".fragment.Onboarding.OnboardingThree">
 
     <ImageView
         android:id="@+id/im"

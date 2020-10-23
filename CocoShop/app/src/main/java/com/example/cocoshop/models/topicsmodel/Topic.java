@@ -1,9 +1,8 @@
-package com.example.cocoshop.Models.topicsmodel;
+package com.example.cocoshop.models.topicsmodel;
 
-import com.example.cocoshop.Models.vocabularysmodel.Vocabulary;
+import com.example.cocoshop.models.Vocabulary;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class Topic {
     private String urlImage;

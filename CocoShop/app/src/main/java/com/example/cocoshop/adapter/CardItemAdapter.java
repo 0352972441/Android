@@ -1,4 +1,4 @@
-package com.example.cocoshop.Adapter;
+package com.example.cocoshop.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,19 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocoshop.Models.CardHomeModel.Card;
-import com.example.cocoshop.Models.topicsmodel.Topic;
+import com.example.cocoshop.models.topicsmodel.Topic;
 import com.example.cocoshop.R;
 import com.example.cocoshop.listener.Listener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class CardItemAdapter extends RecyclerView.Adapter<CardItemAdapter.ViewHolder> {
     private Listener cardListener;
-    private ArrayList<Topic> card = new ArrayList<>();
+    private ArrayList<Topic> card;
     private static View view;
     public CardItemAdapter(ArrayList<Topic> card) {
         this.card = card;

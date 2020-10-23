@@ -33,7 +33,7 @@
     <string name="label_hint_confirm_password">Confirm Password</string>
     <string name="description_image_logo">Logo</string>
     <!--    Home Fragment -->
-    <string name="label_hint_search">Search</string>
+    <string name="label_hint_search">Sound,Topic …</string>
     <string name="label_new">New</string>
     <string name="label_audio">Audio</string>
     <string name="label_recommend">Recommed</string>

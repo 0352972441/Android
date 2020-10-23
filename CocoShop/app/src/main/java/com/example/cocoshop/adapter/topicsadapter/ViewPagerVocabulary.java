@@ -1,7 +1,6 @@
-package com.example.cocoshop.Adapter.topicsadapter;
+package com.example.cocoshop.adapter.topicsadapter;
 
 import android.media.MediaPlayer;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +10,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.cocoshop.Models.vocabularysmodel.Vocabulary;
+import com.example.cocoshop.models.Vocabulary;
 import com.example.cocoshop.R;
-import com.example.cocoshop.dao.audiodao.FavoriteVocabularyDao;
-import com.example.cocoshop.dao.audiodao.VocabularyLikedDao;
+import com.example.cocoshop.animation.Animations;
+import com.example.cocoshop.dao.topicdao.FavoriteVocabularyDao;
+import com.example.cocoshop.dao.topicdao.VocabularyLikedDao;
 import com.example.cocoshop.listener.Listener;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabulary.ViewHolder> {
@@ -34,6 +29,7 @@ public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabular
     private FavoriteVocabularyDao favoriteVocabularyDao;
     private boolean isReaded = false;
     private boolean isFavorite = false;
+    private Animations animations;
     public ViewPagerVocabulary(ArrayList<Vocabulary> vocabularies) {
         this.vocabularies = vocabularies;
     }
@@ -62,6 +58,7 @@ public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabular
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         if(vocabularies!= null){
+            animations = new Animations(holder.imgFavoriteVocabulary.getContext());
             final Map<String,Object> item = (Map<String, Object>) vocabularies.get(position);
             holder.txSpelling.setText(item.get("spelling").toString());
             holder.txVocabulary.setText(item.get("vocabulary").toString());
@@ -74,10 +71,12 @@ public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabular
                         favoriteVocabularyDao= new FavoriteVocabularyDao(true);
                         holder.imgFavoriteVocabulary.setImageResource(R.drawable.ic_un_favorite_audio_24dp);
                         favoriteVocabularyDao.execute(item);
+                        holder.imgFavoriteVocabulary.startAnimation(animations.zoomOut(200));
                         isFavorite = false;
                     }else{
                         favoriteVocabularyDao = new FavoriteVocabularyDao(false);
                         favoriteVocabularyDao.execute(item);
+                        holder.imgFavoriteVocabulary.startAnimation(animations.zoonIn(200));
                         holder.imgFavoriteVocabulary.setImageResource(R.drawable.ic_on_favorite_audio_24dp);
                         isFavorite = true;
                     }
@@ -92,6 +91,7 @@ public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabular
                     holder.imgFavoriteVocabulary.setVisibility(View.INVISIBLE);*/
                     holder.layoutNextvocabulary.setVisibility(View.INVISIBLE);
                     holder.txDetail.setVisibility(View.INVISIBLE);
+                    holder.txDetail.startAnimation(animations.zoonIn(200));
                 }
             });
             // Click ẩn băng chi tiết từ vựng
@@ -115,6 +115,7 @@ public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabular
                     onClickNextVocabulary.listener(position);
                     isReaded = false;
                     holder.layoutNextvocabulary.setVisibility(View.INVISIBLE);
+                    holder.imgNextVocabulary.startAnimation(animations.zoonIn(200));
                 }
             });
             // Khởi tao mediaPlay
@@ -135,6 +136,7 @@ public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabular
                 holder.imgSpeaker.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        holder.imgSpeaker.startAnimation(animations.zoonIn(200));
                         mediaPlayer.start();
                         isReaded = true;
                         // Sau khi phát xong hiển thị nút click từ vựng kế tiếp và thích từ vựng

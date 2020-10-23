@@ -6,7 +6,7 @@
     android:padding="10dp"
     android:orientation="vertical"
     android:weightSum="6"
-    tools:context=".ui.Onboarding.OnboardingOne">
+    tools:context=".fragment.Onboarding.OnboardingOne">
 
     <ImageView
     android:id="@+id/im"

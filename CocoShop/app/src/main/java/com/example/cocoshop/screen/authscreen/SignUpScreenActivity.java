@@ -1,4 +1,4 @@
-package com.example.cocoshop.Screen.AuthScreen;
+package com.example.cocoshop.screen.authscreen;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,12 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.cocoshop.Auth.AuthGoogle;
-import com.example.cocoshop.Models.User;
-import com.example.cocoshop.Models.UserAccount;
+import com.example.cocoshop.auth.AuthGoogle;
+import com.example.cocoshop.models.User;
+import com.example.cocoshop.models.UserAccount;
 import com.example.cocoshop.R;
-import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
-import com.example.cocoshop.fireStore.FireStoreUser;
+import com.example.cocoshop.screen.HomeScreen;
+import com.example.cocoshop.animation.Animations;
+import com.example.cocoshop.firebase.FireStoreUser;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
@@ -39,11 +40,12 @@ public class SignUpScreenActivity extends AppCompatActivity {
     private String password ;
     private Button mbtnRegister;
     private TextView mtxChange;
-    private ImageView imgSignInWithGoogle;
+    private ImageView imgSignInWithGoogle,img_logo;
     private TextInputEditText medPassword,medEmail,medConfirmPassword;
     public static final FirebaseAuth mAuth;
     public static FirebaseUser currentUser;
     private static final int RC_SIGN_IN = 9001;
+    private Animations animations;
     private AuthGoogle authGoogle;
     static {
         mAuth = FirebaseAuth.getInstance();
@@ -58,7 +60,9 @@ public class SignUpScreenActivity extends AppCompatActivity {
         medPassword = (TextInputEditText)findViewById(R.id.medPassword);
         medEmail = (TextInputEditText)findViewById(R.id.medGmail);
         imgSignInWithGoogle = (ImageView)findViewById(R.id.imgSignInGoogle);
+        img_logo = (ImageView)findViewById(R.id.logo);
         medConfirmPassword = (TextInputEditText)findViewById(R.id.medConfirmPassword);
+        animations = new Animations(this);
         authGoogle = new AuthGoogle(mAuth,this,getString(R.string.default_web_client_id));
         setOnClickButtonLogin();
         setOnClickTextSwitch();
@@ -74,7 +78,7 @@ public class SignUpScreenActivity extends AppCompatActivity {
         mbtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if(modeAuth.LOGIN == currentMode){
+                mbtnRegister.startAnimation(animations.zoomOut(100));
                 if(signUp()){
                     mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(SignUpScreenActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -130,6 +134,7 @@ public class SignUpScreenActivity extends AppCompatActivity {
         mtxChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mtxChange.startAnimation(animations.zoonIn(100));
                 Intent intent = new Intent(SignUpScreenActivity.this, LoginScreen.class);
                 startActivity(intent);
                 finish();

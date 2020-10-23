@@ -1,6 +1,5 @@
-package com.example.cocoshop.Adapter.Chat;
+package com.example.cocoshop.adapter.Chat;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocoshop.Models.chatmodel.Message;
+import com.example.cocoshop.models.Message;
 import com.example.cocoshop.R;
 import com.squareup.picasso.Picasso;
 

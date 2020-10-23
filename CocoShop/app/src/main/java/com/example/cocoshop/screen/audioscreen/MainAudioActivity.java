@@ -1,71 +1,84 @@
-package com.example.cocoshop.Screen.audioscreen;
+package com.example.cocoshop.screen.audioscreen;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
-import com.example.cocoshop.Adapter.audioadapter.CardItemAudioPopularAdapter;
-import com.example.cocoshop.Adapter.audioadapter.ItemCategoryAudioAdapter;
-import com.example.cocoshop.Models.audiomodels.Audio;
-import com.example.cocoshop.Models.audiomodels.Category;
+import com.example.cocoshop.adapter.ViewPageAdapter;
+import com.example.cocoshop.models.audiomodels.Category;
 import com.example.cocoshop.R;
-import com.example.cocoshop.dao.audiodao.BundleData;
-import com.example.cocoshop.dao.audiodao.Sound;
-import com.example.cocoshop.fireStore.FireStoreAudio;
-import com.example.cocoshop.firebaseStorange.FirebaseStorangeAudio;
-import com.example.cocoshop.listener.Listener;
-import com.google.firebase.storage.FirebaseStorage;
+import com.example.cocoshop.fragment.AudioCategoryFragment;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MainAudioActivity extends AppCompatActivity {
-    private RecyclerView cardItemAudioRecycler;
+    /*private RecyclerView cardItemAudioRecycler;
     private RecyclerView itemCategoryRecycler;
     private ItemCategoryAudioAdapter categoryAdapter;
     private CardItemAudioPopularAdapter cardItemAdapter;
     private static int previousPosition = 0;
     private View viewItemCategory;
     private ArrayList<Audio> data;
+    private int afterChangeState =0;
+    private int beforeChangeState = 0;
+    private boolean isChange = false;
+    RelativeLayout background;*/
+
+    private ViewPager2 viewPager2;
+    private TabLayout tabCategory;
+    List<Map<String,Object>> page;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_audio);
-        cardItemAudioRecycler = (RecyclerView)findViewById(R.id.card_item_audio_recycler);
-        //itemCategoryRecycler = (RecyclerView)findViewById(R.id.item_category_recycler);
-        categoryAdapter = new ItemCategoryAudioAdapter();
-        data = Sound.listAllData;// This is data
-        cardItemAdapter = new CardItemAudioPopularAdapter(data);
-        /*itemCategoryRecycler.setAdapter(categoryAdapter);
-        itemCategoryRecycler.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        */cardItemAudioRecycler.setAdapter(cardItemAdapter);
-        cardItemAudioRecycler.setLayoutManager(new LinearLayoutManager(MainAudioActivity.this,LinearLayoutManager.VERTICAL,false));
-        displayAudioByGenre();
-        onClickPlayAudio();
+        tabCategory = findViewById(R.id.tab_bar_layout);
+        viewPager2 = findViewById(R.id.viewPage);
+        page = tab();
+        ViewPageAdapter adapter = new ViewPageAdapter(this,page);
+        viewPager2.setAdapter(adapter);
+        new TabLayoutMediator(tabCategory, viewPager2, new TabLayoutMediator.OnConfigureTabCallback() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                tab.setText((String)page.get(position).get("name"));
+                tab.setIcon((int) page.get(position).get("icon"));
+            }
+        }).attach();
     }
 
-    private void displayAudioByGenre(){
-        //final ArrayList<Audio> dataCategory = new ArrayList<>();
+    private List<Map<String,Object>> tab(){
+        List<Map<String,Object>> data = new ArrayList<>();
+        int[] icon = {R.drawable.ic_format_list_bulleted_black_24dp,R.drawable.ic_account_balance_black_24dp,
+                R.drawable.ic_airplanemode_active_black_24dp,R.drawable.ic_build_black_24dp,R.drawable.ic_directions_run_black_24dp,
+        R.drawable.ic_music_note_black_24dp,R.drawable.ic_laptop_mac_black_24dp};
+        for(int i=0; i< Category.values().length; i++){
+            Map<String,Object> item = new HashMap<>();
+            String nameCategory = Category.values()[i].toString();
+            AudioCategoryFragment categoryFragment = new AudioCategoryFragment(nameCategory);
+            item.put("icon",icon[i]);
+            item.put("name",nameCategory);
+            item.put("fragment",categoryFragment);
+            data.add(item);
+        }
+        return data;
+    }
+
+    /*private void displayAudioByGenre(){
         categoryAdapter.setCardItemCategoryListener(new Listener() {
             @Override
             public void listener(int position) {
-                RelativeLayout background;
                 if(position == previousPosition){
                     if(itemCategoryRecycler.findViewHolderForAdapterPosition(position) != null){
                         viewItemCategory = itemCategoryRecycler.findViewHolderForAdapterPosition(position).itemView;
                         background = (RelativeLayout)viewItemCategory.findViewById(R.id.background_item_card_category);
                         background.setBackgroundResource(R.color.colorPrimary);
                         previousPosition = position;
-                        //dataCategory.clear();
-                        data.clear();
                     }
                 }else{
                     if(itemCategoryRecycler.findViewHolderForAdapterPosition(previousPosition) != null){
@@ -77,8 +90,6 @@ public class MainAudioActivity extends AppCompatActivity {
                     background = (RelativeLayout)viewItemCategory.findViewById(R.id.background_item_card_category);
                     background.setBackgroundResource(R.color.colorPrimary);
                     previousPosition = position;
-                    //dataCategory.clear();
-                    data.clear();
                 }
                 if(Category.values()[position] != Category.ALL){
                     for(Audio i : Sound.listAllData){
@@ -86,22 +97,18 @@ public class MainAudioActivity extends AppCompatActivity {
                             data.add(i);
                         }
                     }
-                    //cardItemAdapter.setAudioPopulars(data);
                     cardItemAdapter.notifyDataSetChanged();
-                    cardItemAudioRecycler.invalidate();
                 }else{
-                    /*cardItemAdapter = new CardItemAudioPopularAdapter(data());
-                    cardItemAudioRecycler.setAdapter(cardItemAdapter);*/
-                    data = Sound.listAllData;
-                    cardItemAdapter.setAudioPopulars(data);
+                    for(int i=0; i< Sound.listAllData.size(); i++){
+                        data.add(Sound.listAllData.get(i));
+                    }
                     cardItemAdapter.notifyDataSetChanged();
-                    cardItemAudioRecycler.invalidate();
                 }
             }
         });
-    }
+    }*/
 
-    private void onClickPlayAudio(){
+    /*private void onClickPlayAudio(){
         cardItemAdapter.setPlayAudioListener(new Listener() {
             @Override
             public void listener(int position) {
@@ -111,5 +118,5 @@ public class MainAudioActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
+    }*/
 }

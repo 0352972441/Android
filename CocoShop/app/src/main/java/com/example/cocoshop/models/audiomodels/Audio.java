@@ -1,4 +1,4 @@
-package com.example.cocoshop.Models.audiomodels;
+package com.example.cocoshop.models.audiomodels;
 
 public class Audio {
     //private String title;// Tên của bài đọc

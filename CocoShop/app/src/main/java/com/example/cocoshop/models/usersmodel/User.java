@@ -1,4 +1,4 @@
-package com.example.cocoshop.Models.usersmodel;
+package com.example.cocoshop.models.usersmodel;
 
 public class User {
     private String kindAccount;

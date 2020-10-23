@@ -1,4 +1,4 @@
-package com.example.cocoshop.Models.vocabularysmodel;
+package com.example.cocoshop.models;
 
 public class Vocabulary {
     private String mean;

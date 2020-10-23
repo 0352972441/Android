@@ -116,7 +116,36 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="BuzzBee"/>
+                        <!--<FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_top_20dp"
+                            android:layout_below="@id/txAppName">
+                            <EditText
+                                android:id="@+id/ed_search"
+                                android:maxLines="1"
+                                android:focusable="true"
+                                android:paddingStart="@dimen/padding_left_10dp"
+                                android:textColorHint="#000000"
+                                android:background="@drawable/search_ed"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/height_text_input_edittext_50dp"
+                                android:drawableStart="@drawable/ic_search_black_24dp"
+                                android:hint="@string/label_hint_search"
+                                android:drawablePadding="@dimen/padding_left_15dp"
+                                tools:ignore="RtlSymmetry" />
+                            <ImageView
+                                android:visibility="invisible"
+                                android:id="@+id/img_search"
+                                android:paddingRight="@dimen/padding_10dp"
+                                android:layout_gravity="center|right"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_search_black_24dp"/>
+                        </FrameLayout>-->
+
                         <EditText
+                            android:id="@+id/ed_search"
                             android:maxLines="1"
                             android:focusable="true"
                             android:defaultFocusHighlightEnabled="true"

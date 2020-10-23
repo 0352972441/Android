@@ -12,13 +12,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.cocoshop.Adapter.ViewPagerOnboarding;
-import com.example.cocoshop.Screen.AuthScreen.LoginScreen;
-import com.example.cocoshop.Screen.SplashScreen.SplashScreen;
-import com.example.cocoshop.dao.audiodao.Sound;
-import com.example.cocoshop.ui.Onboarding.OnboardingOne;
-import com.example.cocoshop.ui.Onboarding.OnboardingThree;
-import com.example.cocoshop.ui.Onboarding.OnboardingTwo;
+import com.example.cocoshop.adapter.ViewPagerOnboarding;
+import com.example.cocoshop.screen.authscreen.LoginScreen;
+import com.example.cocoshop.fragment.Onboarding.OnboardingOne;
+import com.example.cocoshop.fragment.Onboarding.OnboardingThree;
+import com.example.cocoshop.fragment.Onboarding.OnboardingTwo;
 
 public class MainActivity extends AppCompatActivity {
     private ViewPager2 mViewPager;

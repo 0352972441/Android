@@ -1,6 +1,5 @@
-package com.example.cocoshop.Adapter.audioadapter;
+package com.example.cocoshop.adapter.audioadapter;
 
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocoshop.Models.audiomodels.Audio;
+import com.example.cocoshop.models.audiomodels.Audio;
 import com.example.cocoshop.R;
 import com.example.cocoshop.listener.Listener;
 

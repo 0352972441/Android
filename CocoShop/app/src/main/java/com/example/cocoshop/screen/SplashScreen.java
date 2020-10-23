@@ -1,4 +1,4 @@
-package com.example.cocoshop.Screen.SplashScreen;
+package com.example.cocoshop.screen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.example.cocoshop.MainActivity;
 import com.example.cocoshop.R;
-import com.example.cocoshop.Screen.AuthScreen.LoginScreen;
+import com.example.cocoshop.screen.authscreen.LoginScreen;
 
 public class SplashScreen extends AppCompatActivity {
 

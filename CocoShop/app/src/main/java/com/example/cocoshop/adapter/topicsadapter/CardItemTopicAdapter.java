@@ -1,4 +1,4 @@
-package com.example.cocoshop.Adapter.topicsadapter;
+package com.example.cocoshop.adapter.topicsadapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocoshop.Models.topicsmodel.Topic;
+import com.example.cocoshop.models.topicsmodel.Topic;
 import com.example.cocoshop.R;
+import com.example.cocoshop.animation.Animations;
 import com.example.cocoshop.listener.Listener;
 import com.squareup.picasso.Picasso;
 
@@ -37,7 +38,7 @@ public class CardItemTopicAdapter extends RecyclerView.Adapter<CardItemTopicAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         if(topics != null){
             Topic topic = topics.get(position);
             holder.mtxTitle.setText(topic.getName());
@@ -59,6 +60,7 @@ public class CardItemTopicAdapter extends RecyclerView.Adapter<CardItemTopicAdap
             holder.cardItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    holder.cardItem.startAnimation(new Animations(holder.cardItem.getContext()).zoomOut(500));
                     listenerItem.listener(position);
                 }
             });

@@ -1,4 +1,4 @@
-package com.example.cocoshop.ui.chat;
+package com.example.cocoshop.fragment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,14 +15,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.example.cocoshop.Models.UserAccount;
+import com.example.cocoshop.models.UserAccount;
 import com.example.cocoshop.R;
-import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
-import com.example.cocoshop.dao.audiodao.MessageDao;
+import com.example.cocoshop.screen.HomeScreen;
+import com.example.cocoshop.dao.MessageDao;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -31,7 +30,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 
-public class FragmentChat extends Fragment {
+public class ChatFragment extends Fragment {
     private static final String[] keywordForbid = {"dm","du ma","lon","cac","fack","di me may"};
     private RecyclerView messageRecycerView;
     private EditText edBoxMessage;

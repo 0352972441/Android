@@ -5,19 +5,30 @@
     android:layout_width="match_parent"
     android:layout_margin="@dimen/margin_10dp"
     android:layout_height="match_parent"
-    tools:context=".Screen.audioscreen.PlayAudioActivity">
+    tools:context=".screen.audioscreen.PlayAudioActivity">
     <androidx.cardview.widget.CardView
-        android:layout_marginTop="@dimen/margin_top_80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_top_30dp"
         android:id="@+id/card_img_audio"
-        android:layout_width="match_parent"
-        app:cardCornerRadius="@dimen/radiu_10dp"
-        android:layout_height="300dp">
-        <ImageView
+        android:layout_width="350dp"
+        app:cardCornerRadius="@dimen/radiu_1000dp"
+        android:layout_height="350dp">
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:src="@drawable/background_card_item"
-            android:scaleType="centerCrop"
-            android:id="@+id/img_audio"/>
+            android:layout_height="350dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:src="@drawable/background_card_item"
+                android:scaleType="centerCrop"
+                android:id="@+id/img_audio"/>
+            <androidx.cardview.widget.CardView
+                app:cardCornerRadius="@dimen/cardView_radiu_100dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="@color/white"
+                android:layout_width="@dimen/width_text_70dp"
+                android:layout_height="@dimen/height_text_70dp"/>
+        </FrameLayout>
     </androidx.cardview.widget.CardView>
     <TextView
         android:maxLines="1"

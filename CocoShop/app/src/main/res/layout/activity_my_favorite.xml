@@ -5,10 +5,17 @@
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Screen.profileActivity.MyFavoriteActivity">
+    tools:context=".screen.profilescreen.MyFavoriteActivity">
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_above="@id/btnOntap"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/vocabulary_recycler_view"/>
+    <Button
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ôn tập"
+        android:id="@+id/btnOntap"/>
 
 </RelativeLayout>

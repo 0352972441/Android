@@ -1,4 +1,4 @@
-package com.example.cocoshop.dao.audiodao;
+package com.example.cocoshop.dao;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -13,8 +13,7 @@ import com.example.cocoshop.adapter.audioadapter.CardItemAudioApdapter;
 import com.example.cocoshop.adapter.audioadapter.CardItemAudioPopularAdapter;
 import com.example.cocoshop.models.audiomodels.Audio;
 import com.example.cocoshop.models.audiomodels.Category;
-import com.example.cocoshop.Screen.audioscreen.PlayAudioActivity;
-import com.example.cocoshop.dao.BundleData;
+import com.example.cocoshop.screen.audioscreen.PlayAudioActivity;
 import com.example.cocoshop.listener.Listener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,7 +23,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class Sound extends AsyncTask<Void,ArrayList<Audio>,Void> {
+public class AudioDao extends AsyncTask<Void,ArrayList<Audio>,Void> {
     public  static ArrayList<Audio> listAllData = new ArrayList<>();
     private static final FirebaseStorage storage;
     private static final StorageReference mRef;
@@ -33,9 +32,14 @@ public class Sound extends AsyncTask<Void,ArrayList<Audio>,Void> {
     private CardItemAudioPopularAdapter popularAudioAdapter;
     private CardItemAudioApdapter recommendAudioApdapter;
     private ArrayList<Audio> listAudio;
-    public Sound(RecyclerView popularAudioRecyclerView, RecyclerView recommendAudioRecyclerView) {
+    private boolean isCreate = false;
+    public AudioDao(RecyclerView popularAudioRecyclerView, RecyclerView recommendAudioRecyclerView) {
         this.popularAudioRecyclerView = popularAudioRecyclerView;
         this.recommendAudioRecyclerView = recommendAudioRecyclerView;
+    }
+
+    public AudioDao() {
+        isCreate = true;
     }
 
     static {
@@ -50,6 +54,7 @@ public class Sound extends AsyncTask<Void,ArrayList<Audio>,Void> {
             @Override
             public void onComplete(@NonNull Task<ListResult> task) {
                 if(task.isSuccessful()){
+                    listAllData.clear();// Clear
                     for (final StorageReference item : task.getResult().getItems()) {
                         final String name = (String) item.getName().subSequence(0,item.getName().length() - 4);
                         item.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
@@ -70,18 +75,20 @@ public class Sound extends AsyncTask<Void,ArrayList<Audio>,Void> {
     protected void onProgressUpdate(ArrayList<Audio>... values) {
         super.onProgressUpdate(values);
         if(values[0] != null){
-            listAudio = new ArrayList<>();
-            for(int i=0; i< listAllData.size() - (listAllData.size() /3); i++){
-                listAudio.add(listAllData.get(i));
-            }
-            popularAudioAdapter = new CardItemAudioPopularAdapter(listAudio);
-            recommendAudioApdapter = new CardItemAudioApdapter(listAllData);
+            if(!isCreate){
+                listAudio = new ArrayList<>();
+                for(int i=0; i< listAllData.size() - (listAllData.size() /3); i++){
+                    listAudio.add(listAllData.get(i));
+                }
+                popularAudioAdapter = new CardItemAudioPopularAdapter(listAudio);
+                recommendAudioApdapter = new CardItemAudioApdapter(listAllData);
 
-            recommendAudioRecyclerView.setAdapter(recommendAudioApdapter);
-            recommendAudioRecyclerView.setLayoutManager(new LinearLayoutManager(recommendAudioRecyclerView.getContext(),RecyclerView.HORIZONTAL,false));
-            popularAudioRecyclerView.setAdapter(popularAudioAdapter);
-            popularAudioRecyclerView.setLayoutManager(new LinearLayoutManager(popularAudioRecyclerView.getContext(),LinearLayoutManager.VERTICAL,false));
-            onClickPlayAudio();
+                recommendAudioRecyclerView.setAdapter(recommendAudioApdapter);
+                recommendAudioRecyclerView.setLayoutManager(new LinearLayoutManager(recommendAudioRecyclerView.getContext(),RecyclerView.HORIZONTAL,false));
+                popularAudioRecyclerView.setAdapter(popularAudioAdapter);
+                popularAudioRecyclerView.setLayoutManager(new LinearLayoutManager(popularAudioRecyclerView.getContext(),LinearLayoutManager.VERTICAL,false));
+                onClickPlayAudio();
+            }
         }
     }
 
@@ -90,7 +97,6 @@ public class Sound extends AsyncTask<Void,ArrayList<Audio>,Void> {
         popularAudioAdapter.setPlayAudioListener(new Listener() {
             @Override
             public void listener(int position) {
-                Bundle bundle = new Bundle();
                 Audio audio = listAudio.get(position);
                 intent.putExtra(PlayAudioActivity.KEYAUDIO, BundleData.sendData(audio));
                 popularAudioRecyclerView.getContext().startActivity(intent);
@@ -99,7 +105,7 @@ public class Sound extends AsyncTask<Void,ArrayList<Audio>,Void> {
         recommendAudioApdapter.setPlayAudioListener(new Listener() {
             @Override
             public void listener(int position) {
-                Bundle bundle = new Bundle();
+                //Bundle bundle = new Bundle();
                 Audio audio = listAllData.get(position);
                 intent.putExtra(PlayAudioActivity.KEYAUDIO, BundleData.sendData(audio));
                 recommendAudioRecyclerView.getContext().startActivity(intent);

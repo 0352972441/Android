@@ -1,14 +1,12 @@
-package com.example.cocoshop.Screen.topicsscreen;
+package com.example.cocoshop.screen.topicsscreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-import android.os.Handler;
 
-import com.example.cocoshop.Adapter.topicsadapter.Multiple_Choice_Adapter;
+import com.example.cocoshop.adapter.topicsadapter.Multiple_Choice_Adapter;
 import com.example.cocoshop.R;
-import com.example.cocoshop.listener.Listener;
 import com.example.cocoshop.listener.OnClickListener;
 
 public class MultipleChoiceActivity extends AppCompatActivity {

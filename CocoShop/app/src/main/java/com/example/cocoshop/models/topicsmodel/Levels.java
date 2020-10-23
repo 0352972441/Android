@@ -1,4 +1,4 @@
-package com.example.cocoshop.Models.topicsmodel;
+package com.example.cocoshop.models.topicsmodel;
 
 public enum Levels {
    BEGINER,HIGHTBEGINER,LOWINTERMADIATE,INTERMADIATE,HIGHINTERMADIATE,LOWADVANCED,ADVANCED,HIGHADVANCED

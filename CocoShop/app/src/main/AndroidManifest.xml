@@ -12,20 +12,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Screen.profileActivity.TermOfUseActivity"></activity>
-        <activity android:name=".Screen.profileActivity.InfomationActivity" />
-        <activity android:name=".Screen.profileActivity.PolicyActivity" />
-        <activity android:name=".Screen.topicsscreen.MultipleChoiceActivity" />
-        <activity android:name=".Screen.profileActivity.MyFavoriteActivity" />
-        <activity android:name=".Screen.topicsscreen.LearningTopicActivity" />
+        <activity android:name=".screen.SearchActivity" android:theme="@style/HomeAppTheme"></activity>
+        <activity android:name=".screen.profilescreen.TermOfUseActivity" />
+        <activity android:name=".screen.profilescreen.InfomationActivity" />
+        <activity android:name=".screen.profilescreen.PolicyActivity" />
+        <activity android:name=".screen.topicsscreen.MultipleChoiceActivity" />
         <activity
-            android:name=".Screen.audioscreen.PlayAudioActivity"
+            android:name=".screen.profilescreen.MyFavoriteActivity"
+            android:theme="@style/HomeAppTheme" />
+        <activity android:name=".screen.topicsscreen.LearningTopicActivity" />
+        <activity
+            android:name=".screen.audioscreen.PlayAudioActivity"
             android:theme="@style/noActionBar" />
         <activity
-            android:name=".Screen.audioscreen.MainAudioActivity"
+            android:name=".screen.audioscreen.MainAudioActivity"
             android:theme="@style/noActionBar" />
         <activity
-            android:name=".Screen.SplashScreen.SplashScreen"
+            android:name=".screen.SplashScreen"
             android:theme="@style/splashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,13 +37,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Screen.AuthScreen.SignUpScreenActivity"
+            android:name=".screen.authscreen.SignUpScreenActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/noActionBar" />
-        <activity android:name=".Screen.ChangePasswordScreen.ChangePasswordScreen" />
-        <activity android:name=".Screen.HomeScreen.HomeScreen" android:theme="@style/HomeAppTheme"/> <!-- android:theme="@style/noActionBar" -->
+        <activity android:name=".screen.authscreen.ChangePasswordScreen" />
         <activity
-            android:name=".Screen.AuthScreen.LoginScreen"
+            android:name=".screen.HomeScreen"
+            android:theme="@style/HomeAppTheme" /> <!-- android:theme="@style/noActionBar" -->
+        <activity
+            android:name=".screen.authscreen.LoginScreen"
             android:theme="@style/noActionBar" />
         <activity
             android:name=".MainActivity"

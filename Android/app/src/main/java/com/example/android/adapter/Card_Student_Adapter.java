@@ -59,7 +59,10 @@ public class Card_Student_Adapter extends RecyclerView.Adapter<Card_Student_Adap
     }
 
     public StudentEntity getSingleStudentEntity(int position){
-        return studentEntities.get(position);
+        if(studentEntities != null){
+            return studentEntities.get(position);
+        }
+        return null;
     }
 
     @Override

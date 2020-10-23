@@ -1,4 +1,4 @@
-package com.example.cocoshop.Screen.profileActivity;
+package com.example.cocoshop.screen.profilescreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -6,8 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.cocoshop.R;
-import com.example.cocoshop.animation.Animations;
-import com.example.cocoshop.dao.audiodao.MyFavoriteVocabularyDao;
+import com.example.cocoshop.dao.topicdao.MyFavoriteVocabularyDao;
 
 public class MyFavoriteActivity extends AppCompatActivity {
     private RecyclerView my_favorite_recycler_view;

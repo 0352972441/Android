@@ -1,4 +1,4 @@
-package com.example.cocoshop.ui.Onboarding;
+package com.example.cocoshop.fragment.Onboarding;
 
 import android.os.Bundle;
 

@@ -2,18 +2,17 @@ package com.example.cocoshop.dao;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocoshop.Adapter.CardItemAdapter;
-import com.example.cocoshop.Models.topicsmodel.Levels;
-import com.example.cocoshop.Models.topicsmodel.Topic;
-import com.example.cocoshop.Models.vocabularysmodel.Vocabulary;
-import com.example.cocoshop.Screen.topicsscreen.LearningTopicActivity;
-import com.example.cocoshop.dao.audiodao.TopicDao;
+import com.example.cocoshop.adapter.CardItemAdapter;
+import com.example.cocoshop.models.topicsmodel.Levels;
+import com.example.cocoshop.models.topicsmodel.Topic;
+import com.example.cocoshop.models.Vocabulary;
+import com.example.cocoshop.screen.topicsscreen.LearningTopicActivity;
+import com.example.cocoshop.dao.topicdao.TopicDao;
 import com.example.cocoshop.listener.Listener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

@@ -1,9 +1,9 @@
-package com.example.cocoshop.dao.audiodao;
+package com.example.cocoshop.dao;
 
 import android.os.Bundle;
 
-import com.example.cocoshop.Models.audiomodels.Audio;
-import com.example.cocoshop.Screen.audioscreen.PlayAudioActivity;
+import com.example.cocoshop.models.audiomodels.Audio;
+import com.example.cocoshop.screen.audioscreen.PlayAudioActivity;
 
 public class BundleData {
     public static Bundle sendData(Audio audio){

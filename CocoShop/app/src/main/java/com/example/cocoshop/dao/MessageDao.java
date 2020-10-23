@@ -1,26 +1,22 @@
-package com.example.cocoshop.dao.audiodao;
+package com.example.cocoshop.dao;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocoshop.Adapter.Chat.MessageAdapter;
-import com.example.cocoshop.Models.chatmodel.Message;
+import com.example.cocoshop.adapter.Chat.MessageAdapter;
+import com.example.cocoshop.models.Message;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
 
 public class MessageDao extends AsyncTask<Void, ArrayList<Message>,Void> {

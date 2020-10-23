@@ -1,4 +1,4 @@
-package com.example.cocoshop.Screen.HomeScreen;
+package com.example.cocoshop.screen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,11 +10,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.cocoshop.R;
-import com.example.cocoshop.Fragment.TopicFragment;
-import com.example.cocoshop.Fragment.ChatFragment;
-import com.example.cocoshop.Fragment.AudioFragment;
-import com.example.cocoshop.Fragment.ProfileFragment;
-import com.example.cocoshop.Fragment.HomeFragment;
+import com.example.cocoshop.dao.AudioDao;
+import com.example.cocoshop.fragment.TopicFragment;
+import com.example.cocoshop.fragment.ChatFragment;
+import com.example.cocoshop.fragment.AudioFragment;
+import com.example.cocoshop.fragment.ProfileFragment;
+import com.example.cocoshop.fragment.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeScreen extends AppCompatActivity {
@@ -30,6 +31,7 @@ public class HomeScreen extends AppCompatActivity {
         bottomNavigationView.setItemIconTintList(null);
         //tabBar = getSupportActionBar();
         //tabBar.setTitle("Home");
+        new AudioDao().execute();
         bottomNavigationView.setOnNavigationItemSelectedListener(new onNavigatoritemSelectListener());
         HomeFragment home = new HomeFragment();
         loadFragment(home);

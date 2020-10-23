@@ -1,11 +1,11 @@
-package com.example.cocoshop.firebaseStorange;
+package com.example.cocoshop.firebase;
 
 import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.cocoshop.Models.audiomodels.Sound;
+import com.example.cocoshop.models.audiomodels.Sound;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;

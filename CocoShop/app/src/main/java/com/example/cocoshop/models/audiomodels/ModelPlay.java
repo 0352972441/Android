@@ -1,4 +1,4 @@
-package com.example.cocoshop.Models.audiomodels;
+package com.example.cocoshop.models.audiomodels;
 
 public enum ModelPlay {
     PLAY,PAUSE

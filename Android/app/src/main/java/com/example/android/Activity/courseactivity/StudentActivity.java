@@ -60,6 +60,7 @@ public class StudentActivity extends AppCompatActivity {
     private Type type = Type.INSERT;
     private static Activity activity;
     private static int index;
+    private StudentEntity student;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,9 +118,22 @@ public class StudentActivity extends AppCompatActivity {
 
     private void showBottomDialog(){
         setUpWidget();
-
         final StudentEntity studentEntity = new StudentEntity();
-        imgFemale.setImageResource(R.drawable.female_color);
+        if(type == Type.UPDATE){
+            student = student_adapter.getSingleStudentEntity(index);
+            if(student.isGender()){
+                imgMale.setImageResource(R.drawable.male_color);
+                isMale = true;
+            }else{
+                imgFemale.setImageResource(R.drawable.female_color);
+                isMale = false;
+            }
+            edName.setText(student.getName());
+            edDateOfBirth.setText(student.getRegisterDate());
+        }else{
+            imgFemale.setImageResource(R.drawable.female_color);
+        }
+
         edDateOfBirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,7 +175,6 @@ public class StudentActivity extends AppCompatActivity {
                         studentEntityList.add(studentEntity);
                         student_adapter.notifyDataSetChanged();
                     }else if(type == Type.UPDATE){
-                        StudentEntity student = student_adapter.getSingleStudentEntity(index);
                         int id = student.getId();
                         String registrationDate = student.getRegisterDate();
                         studentEntity.setId(id);

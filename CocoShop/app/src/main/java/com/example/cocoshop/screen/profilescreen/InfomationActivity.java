@@ -1,4 +1,4 @@
-package com.example.cocoshop.Screen.profileActivity;
+package com.example.cocoshop.screen.profilescreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 

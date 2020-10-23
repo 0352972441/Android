@@ -1,4 +1,4 @@
-package com.example.cocoshop.Fragment.Audio;
+package com.example.cocoshop.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,17 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.cocoshop.Adapter.audioadapter.CardItemAudioApdapter;
-import com.example.cocoshop.Adapter.audioadapter.CardItemAudioPopularAdapter;
-import com.example.cocoshop.Models.audiomodels.Audio;
+import com.example.cocoshop.adapter.audioadapter.CardItemAudioApdapter;
+import com.example.cocoshop.adapter.audioadapter.CardItemAudioPopularAdapter;
+import com.example.cocoshop.models.audiomodels.Audio;
 import com.example.cocoshop.R;
-import com.example.cocoshop.Screen.HomeScreen.HomeScreen;
-import com.example.cocoshop.Screen.audioscreen.MainAudioActivity;
-import com.example.cocoshop.dao.audiodao.Sound;
+import com.example.cocoshop.screen.HomeScreen;
+import com.example.cocoshop.screen.audioscreen.MainAudioActivity;
+import com.example.cocoshop.dao.AudioDao;
 
 import java.util.ArrayList;
 
-public class FragmentAudio extends Fragment {
+public class AudioFragment extends Fragment {
     private RecyclerView cardItemAudioRecycler;
     private RecyclerView cardItemAudioPopularRecycler;
     private CardItemAudioPopularAdapter audioPopularAdapter;
@@ -44,7 +44,7 @@ public class FragmentAudio extends Fragment {
         getCardItemAudioPopularRecycler.setAdapter(audioPopularAdapter);
         getCardItemAudioPopularRecycler.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         cardItemAudioRecycler.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));*/
-        new Sound(cardItemAudioPopularRecycler,cardItemAudioRecycler).execute();
+        new AudioDao(cardItemAudioPopularRecycler,cardItemAudioRecycler).execute();
         //new Sound(cardItemAudioPopularRecycler).execute();
         onClickViewAll();
         //onClickPlayAudio();

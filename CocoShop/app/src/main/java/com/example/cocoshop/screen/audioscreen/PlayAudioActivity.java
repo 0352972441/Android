@@ -1,34 +1,27 @@
-package com.example.cocoshop.Screen.audioscreen;
+package com.example.cocoshop.screen.audioscreen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.media.Image;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Html;
 import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.cocoshop.Adapter.audioadapter.CardItemAudioApdapter;
-import com.example.cocoshop.Models.audiomodels.Audio;
-import com.example.cocoshop.Models.audiomodels.ModelPlay;
+import com.example.cocoshop.models.audiomodels.ModelPlay;
 import com.example.cocoshop.R;
+import com.example.cocoshop.animation.Animations;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class PlayAudioActivity extends AppCompatActivity {
     // Key get Bunder
@@ -42,9 +35,11 @@ public class PlayAudioActivity extends AppCompatActivity {
     public static final String FAVORITE = "FAVORITE";
     public  String urlAudio;
     private MediaPlayer player  = new MediaPlayer();
-
+    private Animations animations;
+    private Animation rotate;
     private ImageView img_Audio,img_Favorite,img_Play_Audio,img_Bnt_Next_Audio,img_Bnt_Priveous_Audio,img_Bnt_content_Audio;
     private TextView txTitleAudio,txReaderNameAudio,txRemainTimeAudio,txTotalTimeAudio;
+    private CardView cardImgCD;
     private SeekBar seekBarAudio;
     private ModelPlay modelPlay = ModelPlay.PLAY;
     private Bundle audio;
@@ -64,7 +59,10 @@ public class PlayAudioActivity extends AppCompatActivity {
         img_Bnt_content_Audio = (ImageView)findViewById(R.id.img_content_audio);
         txRemainTimeAudio = (TextView)findViewById(R.id.remain_time_of_audio);
         txTotalTimeAudio = (TextView)findViewById(R.id.total_time_of_audio);
+        cardImgCD = (CardView)findViewById(R.id.card_img_audio);
+        animations = new Animations(this);
         handler = new Handler();
+        setSeekBarAudio();
     }
 
     private void onClickPlay(){
@@ -74,6 +72,8 @@ public class PlayAudioActivity extends AppCompatActivity {
                 @Override
                 public void onPrepared(final MediaPlayer mp) {
                     mp.start();
+                    rotate = animations.rotate(mp.getDuration());
+                    cardImgCD.startAnimation(rotate);
                     seekBarAudio.setMax(mp.getDuration());
                     handler.post(new Runnable() {
                         @Override
@@ -96,6 +96,16 @@ public class PlayAudioActivity extends AppCompatActivity {
                 }
             });
             player.prepare();
+            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    Log.d("Duration:",mp.getCurrentPosition()+" \n PostionDuration:"+mp.getCurrentPosition());
+                    img_Play_Audio.setImageResource(R.drawable.ic_play_circle_audio_bluesky_24dp);
+                    seekBarAudio.setProgress(0);
+                    cardImgCD.clearAnimation();
+                    player.reset();
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -107,10 +117,13 @@ public class PlayAudioActivity extends AppCompatActivity {
                         player.start();
                         return;
                     }
+                    cardImgCD.clearAnimation();
                     player.pause();
                     img_Play_Audio.setImageResource(R.drawable.ic_play_circle_audio_bluesky_24dp);
                     modelPlay = ModelPlay.PAUSE;
                 }else{
+                    rotate = animations.rotate(player.getDuration()-player.getCurrentPosition());
+                    cardImgCD.startAnimation(rotate);
                     player.start();
                     img_Play_Audio.setImageResource(R.drawable.ic_pause_circle_filled_pause_audio_24dp);
                     modelPlay = ModelPlay.PLAY;
@@ -180,6 +193,26 @@ public class PlayAudioActivity extends AppCompatActivity {
                 }else{
                     img_Favorite.setImageResource(R.drawable.ic_un_favorite_audio_24dp);
                 }
+            }
+        });
+    }
+
+    public void setSeekBarAudio(){
+        seekBarAudio.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                player.seekTo(progress);
+                rotate.setDuration(player.getDuration() - progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
     }

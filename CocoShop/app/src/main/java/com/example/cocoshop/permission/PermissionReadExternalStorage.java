@@ -2,17 +2,11 @@ package com.example.cocoshop.permission;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 
 import androidx.core.app.ActivityCompat;
-
-import com.example.cocoshop.ui.Profile.FragmentProfile;
-
-import static androidx.core.app.ActivityCompat.startActivityForResult;
 
 public class PermissionReadExternalStorage {
     public static final int PERMISSION_CODE = 1001;

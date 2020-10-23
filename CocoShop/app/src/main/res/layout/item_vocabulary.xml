@@ -1,22 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="@dimen/padding_10dp"
-    android:layout_height="wrap_content">
-    <TextView
-        android:layout_gravity="center"
-        android:paddingStart="@dimen/padding_left_15dp"
-        android:text="@string/label_text_skip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tx_vocabulary"
-        android:textSize="@dimen/text_size_label_level_16sp"
-        tools:ignore="SpUsage" />
-    <ImageView
-        android:src="@drawable/icon_speaker"
-        android:layout_width="@dimen/icon_size_36dp"
-        android:layout_height="@dimen/icon_size_36dp"
-        android:layout_gravity="end|center"
-        android:id="@+id/img_sound"/>
-</FrameLayout>
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_margin="@dimen/margin_10dp"
+        android:layout_width="192dp"
+        android:layout_height="180dp"
+        android:orientation="horizontal">
+        <androidx.cardview.widget.CardView
+            app:cardBackgroundColor="#BBDEFB"
+            android:id="@+id/card_vocabulary"
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="@dimen/radiu_10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:textColor="#000000"
+                    android:layout_marginTop="@dimen/margin_top_5dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:paddingStart="@dimen/padding_left_15dp"
+                    android:text="@string/label_text_skip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tx_vocabulary"
+                    android:textSize="@dimen/text_size_label_title_20sp"
+                    tools:ignore="SpUsage" />
+                <FrameLayout
+                    android:id="@+id/frame_layout_speeling_and_audio"
+                    android:layout_below="@id/tx_vocabulary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_10dp">
+                    <TextView
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:paddingStart="@dimen/padding_left_15dp"
+                        android:text="@string/label_text_skip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tx_spelling"
+                        android:textSize="@dimen/text_size_label_level_16sp"
+                        tools:ignore="SpUsage" />
+                </FrameLayout>
+                <TextView
+                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/tx_mean"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:textSize="22dp"
+                    android:text="text"
+                    android:gravity="center"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</RelativeLayout>
