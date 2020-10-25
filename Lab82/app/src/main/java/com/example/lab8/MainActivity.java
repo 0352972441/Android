@@ -4,13 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,7 +17,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -31,7 +26,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
     private ImageButton imgBtnTakePicture;
     private ImageView image;
-    private Uri file;
+    File photoFile;
     String currentPhotoPath;
     private static final int codePermission = 1311;
     private static final int code = 8998;
@@ -82,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (intent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
-            File photoFile = null;
+            photoFile = null;
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
@@ -91,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-                file = Uri.fromFile(photoFile);
                 startActivityForResult(intent, code);
             }
         }
@@ -110,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == code){
             if(resultCode == RESULT_OK){
-                if(file != null){
-                    image.setImageURI(file);
+                if(photoFile != null){
+                    image.setImageURI(Uri.fromFile(photoFile));
                     galleryAddPic();
                 }else{
                     Toast.makeText(this, "null", Toast.LENGTH_SHORT).show();
@@ -121,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean checkPermission(){
-        if(Build.VERSION.SDK_INT >= 24){
+        if(Build.VERSION.SDK_INT >= 25){
             try {
                 Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
                 m.invoke(null);

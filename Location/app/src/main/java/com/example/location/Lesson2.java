@@ -32,9 +32,9 @@ public class Lesson2 extends AppCompatActivity {
         else
         {
             if(is3g){
-                currentStatus.setText("Current Status 3G:"+ String.valueOf(is3g));
+                currentStatus.setText("3g:"+ "Đang bật");
             }else{
-                currentStatus.setText("Current Status Wifi:"+ String.valueOf(isWifi));
+                currentStatus.setText("Wifi:"+ "Đang bật");
             }
         }
     }

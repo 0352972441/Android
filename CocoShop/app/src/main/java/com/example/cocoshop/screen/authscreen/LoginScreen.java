@@ -4,9 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +22,7 @@ import com.example.cocoshop.auth.AuthGoogle;
 import com.example.cocoshop.models.User;
 import com.example.cocoshop.models.UserAccount;
 import com.example.cocoshop.R;
+import com.example.cocoshop.permission.InternetPermission;
 import com.example.cocoshop.screen.HomeScreen;
 import com.example.cocoshop.animation.Animations;
 import com.example.cocoshop.firebase.FireStoreUser;
@@ -44,17 +49,17 @@ import java.util.Date;
 public class LoginScreen extends AppCompatActivity {
     private String email;
     private String password ;
+
     private Button mbtnLogin;
     private TextView mtxChange,mTxTitle;
     private ImageView imgSignInWithGoogle, imgLogo;
     private TextInputEditText medPassword,medEmail;
-    //private EditText medConfirmPassword;
     private Animations animations;
+
     public static final FirebaseAuth mAuth;
     public static FirebaseUser currentUser;
     private static final int RC_SIGN_IN = 9001;
     private AuthGoogle authGoogle;
-    private com.example.cocoshop.models.usersmodel.User user;
     static {
         mAuth = FirebaseAuth.getInstance();
     }
@@ -70,8 +75,8 @@ public class LoginScreen extends AppCompatActivity {
         imgSignInWithGoogle = (ImageView)findViewById(R.id.imgSignInGoogle);
         imgLogo = (ImageView)findViewById(R.id.logo);
         animations = new Animations(this);
-
         authGoogle = new AuthGoogle(mAuth,this,getString(R.string.default_web_client_id));
+
         setOnClickButtonLogin();
         setOnClickTextSwitch();
         signInWithGoogle();
@@ -83,46 +88,58 @@ public class LoginScreen extends AppCompatActivity {
         imgLogo.startAnimation(animations.fadeIn(2000));
         mTxTitle.startAnimation(animations.move(2000));
         currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            currentUser.getIdToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
-                @Override
-                public void onComplete(@NonNull Task<GetTokenResult> task) {
-                    if(task.getResult().getExpirationTimestamp() > 0){
-                    Calendar calendar = Calendar.getInstance();
-                    Date now = calendar.getTime();
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
-                    String localTime = sdf.format(new Date(task.getResult().getExpirationTimestamp() * 1000));
-                    Date date = new Date();
-                    try {
-                        date = sdf.parse(localTime);//get local date
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                        if(date.after(now)) {
-                            User.setKind("Basic");
-                            User.setEmail(currentUser.getEmail());
-                            Intent intent = new Intent(LoginScreen.this, HomeScreen.class);
-                            startActivity(intent);
-                            finish();
-                        }else{
-                            mAuth.signOut();
-                            Intent intent = new Intent(LoginScreen.this,HomeScreen.class);
-                            startActivity(intent);
-                            finish();
+        if(currentUser != null) {
+                currentUser.getIdToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<GetTokenResult> task) {
+                        if(task.isSuccessful()){
+                            if (task.getResult().getExpirationTimestamp() > 0) {
+                                Calendar calendar = Calendar.getInstance();
+                                Date now = calendar.getTime();
+                                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+                                String localTime = sdf.format(new Date(task.getResult().getExpirationTimestamp() * 1000));
+                                Date date = new Date();
+                                try {
+                                    date = sdf.parse(localTime);//get local date
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                if (date.after(now)) {
+                                    User.setKind("Basic");
+                                    User.setEmail(currentUser.getEmail());
+                                    Intent intent = new Intent(LoginScreen.this, HomeScreen.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    mAuth.signOut();
+                                    Intent intent = new Intent(LoginScreen.this, HomeScreen.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            } else {
+                                mAuth.signOut();
+                            }
                         }
-                    }else{
-                        mAuth.signOut();
                     }
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    mAuth.signOut();
-                    Intent intent = new Intent(LoginScreen.this,LoginScreen.class);
-                    startActivity(intent);
-                    finish();
-                }
-            });
+
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        mAuth.signOut();
+                        Intent intent = new Intent(LoginScreen.this, LoginScreen.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        mAuth.signOut();
+                        Intent intent = new Intent(LoginScreen.this, LoginScreen.class);
+                        startActivity(intent);
+                        finish();
+                        Log.d("tag",e.getMessage());
+                    }
+                });
         }
     }
 
@@ -264,5 +281,8 @@ public class LoginScreen extends AppCompatActivity {
             }
         });
     }
+
+
+
 
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/layout_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="#000000"
+            android:textSize="@dimen/text_size_label_title_28sp"
+            android:layout_marginTop="@dimen/margin_top_20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tx_mean"
+            android:gravity="center"
+            android:text="Hello"/>
+    </RelativeLayout>
+<!--    ô để điền-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/margin_top_50dp"
+        android:id="@+id/line_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_question">
+
+    </androidx.recyclerview.widget.RecyclerView>
+<!--    Nút để chọn chữ-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/margin_top_100dp"
+        android:layout_below="@id/line_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/word_recycler"/>
+
+<!--    Button nhấn vào kiểm tra đáp án-->
+    <Button
+        android:text="@string/lable_button_check"
+        android:layout_margin="@dimen/margin_20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_custom"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btn_check_answer"/>
+<!--    answer correct-->
+    <pl.droidsonroids.gif.GifImageView
+        android:scaleType="centerCrop"
+        android:visibility="invisible"
+        android:id="@+id/img_correction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/correction"/>
+
+</RelativeLayout>

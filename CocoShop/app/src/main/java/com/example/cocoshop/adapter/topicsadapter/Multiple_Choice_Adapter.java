@@ -34,6 +34,7 @@ public class Multiple_Choice_Adapter extends RecyclerView.Adapter<Multiple_Choic
     public Multiple_Choice_Adapter(ArrayList<Vocabulary> vocabularies) {
         this.vocabularies = vocabularies;
         Collections.shuffle(vocabularies);
+        // 4 vị trí tương đương 4 câu trả lời
         number.add(0);
         number.add(1);
         number.add(2);
@@ -53,19 +54,22 @@ public class Multiple_Choice_Adapter extends RecyclerView.Adapter<Multiple_Choic
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         if(vocabularies != null){
+            // 4 câu trả lời
             final TextView[] textViews = {holder.txAnswer1,holder.txAnswer2,holder.txAnswer3,holder.txAnswer4};
             final CardView[] cardAnswer = {holder.cardAnswer1,holder.cardAnswer2,holder.cardAnswer3,holder.cardAnswer4};
             final MediaPlayer mediaPlayer = new MediaPlayer();
+            // Lấy map vị trí position
             Map<String,Object> item = (Map<String, Object>) vocabularies.get(position);
 
-            Log.d("Data",""+item);
+            // Set nghĩa của từ vựng
             holder.tx_Mean.setText(item.get("mean").toString());
+            // Tạo array list thêm vào 4 câu trả lời
             final ArrayList<String> answer = new ArrayList<>();
             final String vocabuary = item.get("vocabulary").toString();
             Log.d("Vocabulary:",vocabuary);
             answer.add(vocabuary);
             answer.add(String.valueOf(vocabuary.charAt(vocabuary.length()-1))+vocabuary);
-            Collections.shuffle(number);
+            Collections.shuffle(number);// Xáo trộn vị trí
             if(vocabuary.length() > number.get(0)) {
                 answer.add(vocabuary.substring(0, number.get(1))+String.valueOf(vocabuary.charAt(vocabuary.length() - vocabuary.length() < number.get(0) ? 1 : number.get(0)))+vocabuary.substring(number.get(0) + 1, vocabuary.length()));
                 answer.add(vocabuary.substring(0, number.get(0)) + vocabuary.substring(number.get(0) + 1, vocabuary.length()));
@@ -86,7 +90,6 @@ public class Multiple_Choice_Adapter extends RecyclerView.Adapter<Multiple_Choic
                                 cardAnswer[index[0]].setBackgroundColor(Color.GREEN);
                                 score+=10;
                                 correctAnswer +=1;
-                                //new Multiple_Choice_Dao(cardAnswer[index[0]],holder.tx_score,holder.bottom_sheet,Color.GREEN,R.raw.correct_answer).execute();
                                 isAnswered = true;
                             }
                         }else{
@@ -170,9 +173,7 @@ public class Multiple_Choice_Adapter extends RecyclerView.Adapter<Multiple_Choic
         }
         for(int i=0; i< n; i++){
             ImageView achieved = star[i];
-            achieved.setImageResource(R.drawable.ic_star_yellow_finish_24dp);
-            /*achieved.setMinimumWidth(R.dimen.icon_size_48dp);
-            achieved.setMinimumHeight(R.dimen.icon_size_48dp);*/
+            achieved.setImageResource(R.drawable.ic_star_black_80dp);
             linearLayout.addView(star[i]);
         }
     }

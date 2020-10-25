@@ -42,8 +42,8 @@ public class Lesson1 extends AppCompatActivity implements LocationListener {
         if (location != null) {
             onLocationChanged(location);
         } else {
-            txLongtutide.setText("Location not avaiable");
-            txlatutide.setText("Location not avaiable");
+            txLongtutide.setText("Vị trí không có sẵn");
+            txlatutide.setText("Vị trí không có sẵn");
         }
     }
 
@@ -81,8 +81,8 @@ public class Lesson1 extends AppCompatActivity implements LocationListener {
     public void onLocationChanged(Location location) {
         int lat = (int)location.getLatitude();
         int lng = (int)location.getLongitude();
-        txlatutide.setText("Latutide:" + String.valueOf(lat));
-        txLongtutide.setText("Longtutide: "+String.valueOf(lng));
+        txlatutide.setText("Vĩ độ:" + String.valueOf(lat));
+        txLongtutide.setText("Tung độ: "+String.valueOf(lng));
     }
 
     @Override

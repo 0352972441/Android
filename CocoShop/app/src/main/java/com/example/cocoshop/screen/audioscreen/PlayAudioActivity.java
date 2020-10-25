@@ -78,11 +78,11 @@ public class PlayAudioActivity extends AppCompatActivity {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            long sencond = mp.getCurrentPosition()/1000L;
+                            long sencond = mp.getCurrentPosition()/1000L; // Chia 1000 chuyển về s
                            /* long hour = sencond / 60;*/
-                            long sec = sencond% 60;
-                            long minute = (sencond/3600)/60;
-                            String timeTotal = String.format(Locale.getDefault(),"%02d:%02d",minute,sec);
+                            long sec = sencond% 60; // 1 s tương tương 1s /60
+                            long minute = (sencond/3600)/60; // 1 phút bằng 1s/3600 tất cả chia 60
+                            String timeTotal = String.format(Locale.getDefault(),"%02d:%02d",minute,sec);// Format
                             txRemainTimeAudio.setText(timeTotal);
                             sencond = (mp.getDuration() - mp.getCurrentPosition())/1000L;
                             /*hour = sencond / 60;*/
@@ -217,4 +217,10 @@ public class PlayAudioActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        player.stop();
+        handler.removeMessages(0);
+    }
 }

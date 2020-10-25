@@ -12,10 +12,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/seek_bar"/>
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/seek_bar"
+        android:id="@+id/layout_time">
+        <TextView
+            android:text="00:00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tx_remain"/>
+        <TextView
+            android:layout_alignParentRight="true"
+            android:text="00:00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tx_total"/>
+    </RelativeLayout>
     <LinearLayout
+        android:id="@+id/layout_function"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_below="@id/seek_bar"
+        android:layout_below="@id/layout_time"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ImageView
@@ -37,4 +56,9 @@
             android:id="@+id/img_stop"/>
     </LinearLayout>
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_function"
+        android:id="@+id/list_item"/>
 </RelativeLayout>

@@ -7,12 +7,20 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon_luncher_app"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".screen.SearchActivity" android:theme="@style/HomeAppTheme"></activity>
+        <activity
+            android:name=".screen.FinishReviewScreen"
+            android:label="@string/title_activity_finish_review_screen">
+        </activity>
+
+        <activity android:name=".screen.ReviewActivity" />
+        <activity
+            android:name=".screen.SearchActivity"
+            android:theme="@style/HomeAppTheme" />
         <activity android:name=".screen.profilescreen.TermOfUseActivity" />
         <activity android:name=".screen.profilescreen.InfomationActivity" />
         <activity android:name=".screen.profilescreen.PolicyActivity" />

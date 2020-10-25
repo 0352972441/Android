@@ -24,7 +24,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.cocoshop.adapter.Item_Profile_Adapter;
+import com.example.cocoshop.adapter.ProfileAdapter;
+import com.example.cocoshop.dao.LoadAvataDao;
 import com.example.cocoshop.models.User;
 import com.example.cocoshop.R;
 import com.example.cocoshop.screen.authscreen.ChangePasswordScreen;
@@ -58,7 +59,7 @@ public class ProfileFragment extends Fragment {
     private static Uri filePath;
     private Context context;
     private RecyclerView itemProfile;
-    private Item_Profile_Adapter item_profile_adapter;
+    private ProfileAdapter item_profile_adapter;
     private Intent intent;
     private static final Object[] activity = {MyFavoriteActivity.class, InfomationActivity.class, PolicyActivity.class, TermOfUseActivity.class};
     static {
@@ -80,13 +81,13 @@ public class ProfileFragment extends Fragment {
         tvNameDisplay = (TextView)view.findViewById(R.id.tvNameDisplay);
         tvEmailDisplay = (TextView)view.findViewById(R.id.tvemailDisplay);
         itemProfile = (RecyclerView)view.findViewById(R.id.item_profile);
-        item_profile_adapter = new Item_Profile_Adapter();
+        item_profile_adapter = new ProfileAdapter();
         itemProfile.setAdapter(item_profile_adapter);
         itemProfile.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
         tvNameDisplay.setText("Unknow");
         this.context = getContext();
         onClickItemListener();
-        HomeScreen.setThemeFragment(R.style.ActionBarProfile);
+        setUpProfile();
     }
 
     private void onClickItemListener(){
@@ -121,7 +122,6 @@ public class ProfileFragment extends Fragment {
         MenuInflater inflater = getActivity().getMenuInflater();
         inflater.inflate(R.menu.menu_item_setting,menu);
         menu.setHeaderTitle("Your choose!");
-        setUpProfile();
     }
 
     @Override
@@ -161,21 +161,9 @@ public class ProfileFragment extends Fragment {
     private void setUpProfile(){
         handler = new Handler();
         try {
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    tvEmailDisplay.setText(User.getEmail() == null ? "Unknow" : User.getEmail());
-                    tvNameDisplay.setText(User.getKind() == null ? "Unknow" : User.getKind());
-                        if (context != null) {
-                            storeRef.child("avatas/" + user.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    Picasso.with(context).load(uri).error(R.drawable.defaultavata).placeholder(R.drawable.defaultavata).into(imgAvata);
-                                }
-                            });
-                    }
-                }
-            });
+            new LoadAvataDao(imgAvata).execute();
+            tvEmailDisplay.setText(User.getEmail() == null ? "Unknow" : User.getEmail());
+            tvNameDisplay.setText(User.getKind() == null ? "Unknow" : User.getKind());
         }catch (Exception ex){
             Log.d("Error",ex.getMessage());
         }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screen.FinishReviewScreen">
+    <ImageView
+        android:src="@drawable/buzzbee"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/img_complete"/>
+    <!--Đánh giá người dùng-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/review_rate"/>
+    <!--    Số câu trả lời đúng-->
+    <TextView
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_label_title_28sp"
+        android:layout_below="@id/review_rate"
+        android:text="BAD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tx_player_review"
+        tools:ignore="SpUsage" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_complete"
+        android:text="@string/label_button_complete"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button_custom"
+        android:layout_margin="@dimen/margin_20dp"/>
+</RelativeLayout>

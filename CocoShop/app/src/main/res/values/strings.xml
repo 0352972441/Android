@@ -68,4 +68,13 @@
     <string name="text_label_recommend">Recommend</string>
     <string name="text_label_popular">Popular</string>
     <string name="text_label_new">New</string>
+    <string name="label_button_review">Review</string>
+    <string name="lable_button_check">Check</string>
+    <string name="title_activity_finish_review_screen">FinishReviewScreen</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="label_button_complete">Complete</string>
 </resources>

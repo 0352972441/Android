@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 
 import com.example.cocoshop.R;
@@ -16,12 +18,12 @@ import com.example.cocoshop.fragment.ChatFragment;
 import com.example.cocoshop.fragment.AudioFragment;
 import com.example.cocoshop.fragment.ProfileFragment;
 import com.example.cocoshop.fragment.HomeFragment;
+import com.example.cocoshop.permission.InternetPermission;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeScreen extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     public static String isCurrentFragment = "";
-    private static Context context;
     //private ActionBar tabBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,24 @@ public class HomeScreen extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new onNavigatoritemSelectListener());
         HomeFragment home = new HomeFragment();
         loadFragment(home);
-        context = this;
+
+        // Kiểm tra kết nối internet
+        final Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                ProgressDialog progressDialog = new ProgressDialog(HomeScreen.this);
+                InternetPermission internetPermission = new InternetPermission(HomeScreen.this);
+                internetPermission.run();
+                if(internetPermission.isOccurred()){
+                    progressDialog.show();
+                }else{
+                    progressDialog.dismiss();
+                    progressDialog.cancel();
+                }
+                handler.postDelayed(this,3000);
+            }
+        });
     }
 
     public void loadFragment(Fragment fragment){
@@ -95,7 +114,4 @@ public class HomeScreen extends AppCompatActivity {
         }
     }
 
-    public static void setThemeFragment(int theme){
-        context.setTheme(theme);
-    }
 }
