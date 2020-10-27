@@ -15,13 +15,17 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.example.cocoshop.models.Message;
 import com.example.cocoshop.models.UserAccount;
 import com.example.cocoshop.R;
 import com.example.cocoshop.screen.HomeScreen;
 import com.example.cocoshop.dao.MessageDao;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -31,17 +35,17 @@ import java.util.UUID;
 
 
 public class ChatFragment extends Fragment {
-    private static final String[] keywordForbid = {"dm","du ma","lon","cac","fack","di me may"};
+    private static final String[] keywordForbid = {"dm","du ma","lon","cac","fack","di me may","https","http"};
     private RecyclerView messageRecycerView;
     private EditText edBoxMessage;
     private ImageView imgSend;
     private ImageView imgrecord;
     private MessageDao messageDao;
-    private static final FirebaseFirestore firestore;
+    private static final FirebaseDatabase mDatabase;
     private static final FirebaseAuth mAuth;
     private UserAccount userAccount;
     static {
-        firestore = FirebaseFirestore.getInstance();
+        mDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
     }
     @Override
@@ -50,7 +54,7 @@ public class ChatFragment extends Fragment {
         edBoxMessage = (EditText)view.findViewById(R.id.box_message);
         imgSend = (ImageView)view.findViewById(R.id.img_send);
         imgrecord = (ImageView)view.findViewById(R.id.img_record);
-        new getUserAsyncTask(firestore,mAuth).execute();
+        new getUserAsyncTask(mAuth).execute();
         onClickSendMessage();
         messageDao = new MessageDao(messageRecycerView,getContext());
         messageDao.execute();
@@ -68,19 +72,18 @@ public class ChatFragment extends Fragment {
                             message = "I'm really sorry";
                         }
                     }
-                    HashMap<String, Object> userMessage = new HashMap<>();
-                    userMessage.put("me", userAccount.getUid());
-                    userMessage.put("message", message);
-                    userMessage.put("imgUrl", userAccount.getImage());
-                    userMessage.put("userName", userAccount.getEmail().split("@")[0]);
-                    userMessage.put("time", Calendar.getInstance().getTime());
-                    userMessage.put("accounttype",userAccount.getAccount());
-                    firestore.collection("messages").document(UUID.randomUUID().toString()).set(userMessage).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    Message mes = new Message(message,userAccount.getImage(),userAccount.getEmail().split("@")[0],Calendar.getInstance().getTime().toString(),userAccount.getUid(),userAccount.getAccount());
+                    mDatabase.getReference().child("message").child(UUID.randomUUID().toString()).setValue(mes).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            messageDao = new MessageDao(messageRecycerView,getContext());
-                            messageDao.execute();
-                            edBoxMessage.setText("");
+                            if(task.isSuccessful()){
+                                edBoxMessage.setText("");
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Snackbar.make(imgSend,e.getMessage(),Snackbar.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -100,10 +103,9 @@ public class ChatFragment extends Fragment {
     }
 
      class getUserAsyncTask extends AsyncTask<Void,UserAccount,Boolean>{
-        private FirebaseFirestore firestore;
+        private final FirebaseFirestore firestore = FirebaseFirestore.getInstance();
         private FirebaseAuth mAuth;
-        public getUserAsyncTask(FirebaseFirestore firestore,FirebaseAuth mAuth) {
-            this.firestore = firestore;
+        public getUserAsyncTask(FirebaseAuth mAuth) {
             this.mAuth = mAuth;
         }
 
@@ -114,7 +116,6 @@ public class ChatFragment extends Fragment {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if(task.isSuccessful()){
                         DocumentSnapshot snapshot = task.getResult();
-                        Log.d("Data:",""+snapshot.getData());
                         String email = snapshot.getData().get("email").toString();
                         String avata = snapshot.getData().get("avata").toString();
                         String account = snapshot.getData().get("account").toString();

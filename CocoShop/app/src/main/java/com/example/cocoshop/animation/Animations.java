@@ -48,6 +48,37 @@ public class Animations{
         animation.setRepeatCount(Animation.INFINITE);
         return animation;
     }
+
+    public Animation moveDown(long duration){
+        Animation animation = AnimationUtils.loadAnimation(context,R.anim.move_down);
+        animation.setDuration(duration);
+        return animation;
+    }
+
+    public Animation moveUp(long duration){
+        Animation animation = AnimationUtils.loadAnimation(context,R.anim.move_up);
+        animation.setDuration(duration);
+        return animation;
+    }
+
+    public Animation vibrate(long duration){
+        Animation animation = AnimationUtils.loadAnimation(context,R.anim.vibrate);
+        animation.setDuration(duration);
+        return animation;
+    }
+
+    public Animation fadeInText(long duration){
+        Animation animation = AnimationUtils.loadAnimation(context,R.anim.fade_in);
+        animation.setDuration(duration);
+        return animation;
+    }
+
+    public Animation zoomOutText(long duration){
+        Animation animation = AnimationUtils.loadAnimation(context,R.anim.zoom_out);
+        animation.setDuration(duration);
+        return animation;
+    }
+
     @NonNull
     public void stopAnimation(Animation animation){
         animation.cancel();

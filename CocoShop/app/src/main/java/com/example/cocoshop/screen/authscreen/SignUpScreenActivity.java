@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.agrawalsuneet.dotsloader.loaders.CircularDotsLoader;
 import com.example.cocoshop.auth.AuthGoogle;
 import com.example.cocoshop.models.User;
 import com.example.cocoshop.models.UserAccount;
@@ -24,7 +25,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -38,10 +41,12 @@ public class SignUpScreenActivity extends AppCompatActivity {
 
     private String email;
     private String password ;
-    private Button mbtnRegister;
-    private TextView mtxChange;
-    private ImageView imgSignInWithGoogle,img_logo;
-    private TextInputEditText medPassword,medEmail,medConfirmPassword;
+    private Button mBtnRegister;
+    private TextView mTxChange,mTxTitle;
+    private CircularDotsLoader mCircularDotsLoader;
+    private ImageView mImgSignInWithGoogle,mImgLogo;
+    private TextInputEditText mEdPassword,mEdEmail,mEdConfirmPassword;
+
     public static final FirebaseAuth mAuth;
     public static FirebaseUser currentUser;
     private static final int RC_SIGN_IN = 9001;
@@ -55,13 +60,17 @@ public class SignUpScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_screen);
-        mbtnRegister = (Button)findViewById(R.id.mbtnRg);
-        mtxChange = (TextView)findViewById(R.id.mtxChange);
-        medPassword = (TextInputEditText)findViewById(R.id.medPassword);
-        medEmail = (TextInputEditText)findViewById(R.id.medGmail);
-        imgSignInWithGoogle = (ImageView)findViewById(R.id.imgSignInGoogle);
-        img_logo = (ImageView)findViewById(R.id.logo);
-        medConfirmPassword = (TextInputEditText)findViewById(R.id.medConfirmPassword);
+        mBtnRegister = (Button)findViewById(R.id.mbtnRg);
+        mTxChange = (TextView)findViewById(R.id.mtxChange);
+        mTxTitle = (TextView)findViewById(R.id.m_tx_title);
+
+        mEdPassword = (TextInputEditText)findViewById(R.id.medPassword);
+        mEdEmail = (TextInputEditText)findViewById(R.id.medGmail);
+        mImgSignInWithGoogle = (ImageView)findViewById(R.id.imgSignInGoogle);
+        mImgLogo = (ImageView)findViewById(R.id.logo);
+        mCircularDotsLoader = findViewById(R.id.progress_circular);
+        mEdConfirmPassword = (TextInputEditText)findViewById(R.id.medConfirmPassword);
+
         animations = new Animations(this);
         authGoogle = new AuthGoogle(mAuth,this,getString(R.string.default_web_client_id));
         setOnClickButtonLogin();
@@ -72,19 +81,21 @@ public class SignUpScreenActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        mImgLogo.startAnimation(animations.fadeIn(2000));
+        mTxTitle.startAnimation(animations.move(2000));
     }
 
     private void setOnClickButtonLogin(){
-        mbtnRegister.setOnClickListener(new View.OnClickListener() {
+        mBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mbtnRegister.startAnimation(animations.zoomOut(100));
+                mBtnRegister.startAnimation(animations.zoomOut(100));
                 if(signUp()){
+                    mCircularDotsLoader.setVisibility(View.VISIBLE);
                     mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(SignUpScreenActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(SignUpScreenActivity.this, "Register a successfuly ", Toast.LENGTH_SHORT).show();
                                 currentUser = task.getResult().getUser();
                                 // Login into Screen home
                                 // Lưu tài khoản và mật khẩu vào User
@@ -97,10 +108,13 @@ public class SignUpScreenActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                                 registerSuccessed();
-                            }else{
-                                Log.w("Thông tin",task.getException());
-                                Toast.makeText(SignUpScreenActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                             }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Snackbar.make(mImgLogo,e.getMessage(),Snackbar.LENGTH_LONG).show();
+                            mCircularDotsLoader.setVisibility(View.INVISIBLE);
                         }
                     });
                 }
@@ -131,10 +145,10 @@ public class SignUpScreenActivity extends AppCompatActivity {
     }
 
     private void setOnClickTextSwitch(){
-        mtxChange.setOnClickListener(new View.OnClickListener() {
+        mTxChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mtxChange.startAnimation(animations.zoonIn(100));
+                mTxChange.startAnimation(animations.zoonIn(100));
                 Intent intent = new Intent(SignUpScreenActivity.this, LoginScreen.class);
                 startActivity(intent);
                 finish();
@@ -144,23 +158,23 @@ public class SignUpScreenActivity extends AppCompatActivity {
 
 
     private boolean signUp(){
-        email = medEmail.getText().toString();
-        password = medPassword.getText().toString();
+        email = mEdEmail.getText().toString();
+        password = mEdPassword.getText().toString();
         //String confirmPassword = mtxilConfirmPassword.getEditText().getText().toString();
         if(email.isEmpty()){
-            medEmail.setError("Email hasn't empty");
+            mEdEmail.setError("Email hasn't empty");
             return false;
         }else if(!email.contains("@")){
-            medEmail.setError("Invalid email");
+            mEdEmail.setError("Invalid email");
         }else if(password.isEmpty()){
-            medPassword.setError("Password hasn't empty");
+            mEdPassword.setError("Password hasn't empty");
             return false;
         }else if(password.length()< 6){
-            medPassword.setError("Password at least 8 character");
+            mEdPassword.setError("Password at least 8 character");
             return false;
         }
-        if(!medConfirmPassword.getText().toString().equals(password)){
-                medConfirmPassword.setError("Password doesn't match");
+        if(!mEdConfirmPassword.getText().toString().equals(password)){
+                mEdConfirmPassword.setError("Password doesn't match");
                 return false;
         }
         return  true;
@@ -186,7 +200,7 @@ public class SignUpScreenActivity extends AppCompatActivity {
 
 
     private void signInWithGoogle(){
-        imgSignInWithGoogle.setOnClickListener(new View.OnClickListener() {
+        mImgSignInWithGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = authGoogle.getSignInIntent();

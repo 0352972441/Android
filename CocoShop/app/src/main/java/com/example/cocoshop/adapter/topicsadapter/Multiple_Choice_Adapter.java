@@ -66,7 +66,6 @@ public class Multiple_Choice_Adapter extends RecyclerView.Adapter<Multiple_Choic
             // Tạo array list thêm vào 4 câu trả lời
             final ArrayList<String> answer = new ArrayList<>();
             final String vocabuary = item.get("vocabulary").toString();
-            Log.d("Vocabulary:",vocabuary);
             answer.add(vocabuary);
             answer.add(String.valueOf(vocabuary.charAt(vocabuary.length()-1))+vocabuary);
             Collections.shuffle(number);// Xáo trộn vị trí
@@ -136,7 +135,7 @@ public class Multiple_Choice_Adapter extends RecyclerView.Adapter<Multiple_Choic
                         holder.tx_Answer_Correct.setText(String.valueOf(correctAnswer)+" / "+ vocabularies.size());
                         holder.tx_score.setText(""+(score));
                         holder.relative_CompleteTopic.setVisibility(View.VISIBLE);
-                        if(score>= (vocabularies.size() *10) -20 ){
+                        if(score>= (vocabularies.size() *10) ){
                             finishTopic(holder.linearLayoutStar,3);
                         }else if(score >= (vocabularies.size() *10)/2 -20){
                             finishTopic(holder.linearLayoutStar,2);

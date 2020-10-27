@@ -1,7 +1,9 @@
 package com.example.cocoshop.dao;
 
 import android.content.Context;
+import android.content.Entity;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,15 +14,25 @@ import com.example.cocoshop.models.Message;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MessageDao extends AsyncTask<Void, ArrayList<Message>,Void> {
-    private static final FirebaseFirestore store;
+    private static final FirebaseDatabase mDatabase;
     private static final String COLECTION = "messages";
     private ArrayList<Message> messages = new ArrayList<>();
     private RecyclerView messageRecyclerView;
@@ -32,27 +44,33 @@ public class MessageDao extends AsyncTask<Void, ArrayList<Message>,Void> {
     }
 
     static {
-        store = FirebaseFirestore.getInstance();
+        mDatabase = FirebaseDatabase.getInstance();
     }
     @Override
     protected Void doInBackground(Void... voids) {
-        store.collection(COLECTION).orderBy("time", Query.Direction.DESCENDING).limit(15).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        mDatabase.getReference().child("message").orderByChild("time").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    for(int i = task.getResult().getDocuments().size()-1; i>=0; i--){
-                        Map<String,Object> item = task.getResult().getDocuments().get(i).getData();
-                        String mes = item.get("message").toString();
-                        String avata = item.get("imgUrl").toString();
-                        String uid = item.get("me").toString();
-                        String typeAccount = item.get("accounttype").toString();
-                        String userName = item.get("userName").toString();
-                        String time = item.get("time").toString();
-                        Message message = new Message(mes,avata,userName,time,uid,typeAccount);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.getValue() != null) {
+                    messages.clear();
+                    for(Map.Entry<String, Object> i : ((Map<String, Object>) snapshot.getValue()).entrySet()){
+                        Map<String, Object> item = (Map<String, Object>) i.getValue();
+                        Message message = new Message(item.get("message").toString(), item.get("avata").toString(), item.get("userName").toString(), item.get("time").toString(), item.get("uid").toString(), item.get("accoutType").toString());
                         messages.add(message);
                     }
+                    Collections.sort(messages, new Comparator<Message>() {
+                        @Override
+                        public int compare(Message o1, Message o2) {
+                            return o1.getTime().compareTo(o2.getTime());
+                        }
+                    });
                     onProgressUpdate(messages);
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
         return null;

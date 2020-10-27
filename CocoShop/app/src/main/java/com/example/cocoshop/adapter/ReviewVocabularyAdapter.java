@@ -2,6 +2,7 @@ package com.example.cocoshop.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,10 +34,12 @@ public class ReviewVocabularyAdapter extends RecyclerView.Adapter<ReviewVocabula
     // Số câu hỏi
     private static int numberOfQuestion = 0;
     private Activity activity;
+    private Animations animations;
     public ReviewVocabularyAdapter(List<Map<String,Object>> topicList, Activity activity) {
         this.topicList = topicList;
         numberOfQuestion = topicList.size();
         this.activity = activity;
+        animations = new Animations(activity);
     }
 
     public void setOnClickNextQuestion(ListenerViewPage onClickNextQuestion) {
@@ -54,7 +57,7 @@ public class ReviewVocabularyAdapter extends RecyclerView.Adapter<ReviewVocabula
         if(topicList != null){
             final String answer = topicList.get(position).get("vocabulary").toString();
             holder.mTxMean.setText(topicList.get(position).get("mean").toString());
-            WordAnswerAdapter answerAdapter = new WordAnswerAdapter(topicList.get(position).get("vocabulary").toString());
+            final WordAnswerAdapter answerAdapter = new WordAnswerAdapter(topicList.get(position).get("vocabulary").toString());
             final WordLineAdapter lineAdapter = new WordLineAdapter(topicList.get(position).get("vocabulary").toString());
 
             // Set Adapter cho recyclerView
@@ -70,6 +73,8 @@ public class ReviewVocabularyAdapter extends RecyclerView.Adapter<ReviewVocabula
                     for(int i=0; i<answer.length(); i++){
                         if(lineAdapter.getViewPosition(i).getText().toString().equalsIgnoreCase("")){
                             lineAdapter.getViewPosition(i).setText(answers);
+                            lineAdapter.getViewPosition(i).setBackgroundResource(R.drawable.line_word);
+                            lineAdapter.getViewPosition(i).startAnimation(animations.zoomOutText(500));
                             break;
                         }
                     }
@@ -99,7 +104,15 @@ public class ReviewVocabularyAdapter extends RecyclerView.Adapter<ReviewVocabula
                             mediaPlayer = MediaPlayer.create(holder.mTxMean.getContext(), R.raw.correct_answer);
                             mediaPlayer.start();
                             holder.img_Correction.setVisibility(View.VISIBLE);
-                            Toast.makeText(holder.mLineRecycler.getContext(), "Correct", Toast.LENGTH_SHORT).show();
+
+                            // Set onclick bằng null
+                            for(int i=0; i<answer.length(); i++){
+                                answerAdapter.getCard(i).setBackgroundColor(Color.GRAY);
+                                answerAdapter.getCard(i).setOnClickListener(null);
+                                // TextView
+                                lineAdapter.getViewPosition(i).setOnClickListener(null);
+                            }
+
                             isCorrected = true;
                             holder.mBtnCheck.setText("Next");
                             Animations animations = new Animations(holder.mTxMean.getContext());
@@ -126,6 +139,10 @@ public class ReviewVocabularyAdapter extends RecyclerView.Adapter<ReviewVocabula
                             mediaPlayer = MediaPlayer.create(holder.mTxMean.getContext(), R.raw.wrong_answer_sound);
                             mediaPlayer.start();
                             numberOfQuestion = numberOfQuestion - 1;
+                            for(int i=0; i < answer.length(); i++){
+                                lineAdapter.getViewPosition(i).startAnimation(animations.vibrate(500));
+                                lineAdapter.getViewPosition(i).setBackgroundResource(R.drawable.line_word_wrong);
+                            }
                         }
                     }
                 }

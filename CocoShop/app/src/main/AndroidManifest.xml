@@ -53,6 +53,7 @@
             android:name=".screen.HomeScreen"
             android:theme="@style/HomeAppTheme" /> <!-- android:theme="@style/noActionBar" -->
         <activity
+            android:screenOrientation="fullSensor"
             android:name=".screen.authscreen.LoginScreen"
             android:theme="@style/noActionBar" />
         <activity

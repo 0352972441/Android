@@ -87,6 +87,7 @@ public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabular
                 @Override
                 public void onClick(View v) {
                     holder.bottomSheet.setVisibility(View.VISIBLE);
+                    holder.bottomSheet.startAnimation(animations.moveUp(700));
                     /*holder.imgNextVocabulary.setVisibility(View.INVISIBLE);
                     holder.imgFavoriteVocabulary.setVisibility(View.INVISIBLE);*/
                     holder.layoutNextvocabulary.setVisibility(View.INVISIBLE);
@@ -99,6 +100,7 @@ public class ViewPagerVocabulary extends RecyclerView.Adapter<ViewPagerVocabular
                 @Override
                 public void onClick(View v) {
                     holder.bottomSheet.setVisibility(View.INVISIBLE);
+                    holder.bottomSheet.startAnimation(animations.moveDown(700));
                     if(isReaded){
                        /* holder.imgNextVocabulary.setVisibility(View.VISIBLE);
                         holder.imgFavoriteVocabulary.setVisibility(View.VISIBLE);*/

@@ -26,5 +26,21 @@
         android:layout_gravity="bottom"
         app:itemTextColor="@color/white"
         android:layout_alignParentBottom="true"/>
+        <com.agrawalsuneet.dotsloader.loaders.CircularDotsLoader
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="invisible"
+            android:id="@+id/progress_circular"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:loader_animDur="100"
+            app:loader_bigCircleRadius="42dp"
+            app:loader_circleRadius="14dp"
+            app:loader_defaultColor="@color/colorPrimary"
+            app:loader_firstShadowColor="@color/yellow"
+            app:loader_secondShadowColor="@color/grey"
+            app:loader_selectedColor="@color/blue_sky_color"
+            app:loader_showRunningShadow="true" />
     </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

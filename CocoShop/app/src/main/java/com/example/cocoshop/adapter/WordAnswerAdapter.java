@@ -22,6 +22,8 @@ public class WordAnswerAdapter extends RecyclerView.Adapter<WordAnswerAdapter.Vi
     private String wordList;
     private List<Character> characters;
     private ListenerAnswer onClickWordAnswer;
+    private ArrayList<CardView> cardList;
+
     public WordAnswerAdapter(String wordList) {
         this.wordList = wordList;
         characters = new ArrayList<>();
@@ -29,6 +31,7 @@ public class WordAnswerAdapter extends RecyclerView.Adapter<WordAnswerAdapter.Vi
             characters.add(wordList.charAt(i));
         }
         Collections.shuffle(characters);
+        cardList = new ArrayList<>();
     }
 
     public void setOnClickWordAnswer(ListenerAnswer onClickWordAnswer) {
@@ -51,7 +54,12 @@ public class WordAnswerAdapter extends RecyclerView.Adapter<WordAnswerAdapter.Vi
                     onClickWordAnswer.listenerAnswer(position,holder.txWordAnswer.getText().toString());
                 }
             });
+            cardList.add(holder.wordAnswerCard);
         }
+    }
+
+    public CardView getCard(int position){
+        return cardList.get(position);
     }
 
     @Override

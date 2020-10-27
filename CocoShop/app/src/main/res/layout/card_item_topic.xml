@@ -52,6 +52,32 @@
                 android:textSize="@dimen/text_size_label_title_28sp"
                 android:layout_gravity="bottom"
                 tools:ignore="SpUsage" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="@dimen/margin_5dp"
+            app:cardCornerRadius="@dimen/radiu_1000dp"
+            app:cardBackgroundColor="@color/grey"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="8dp">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:weightSum="10">
+                    <LinearLayout
+                        android:id="@+id/topic_progress"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:orientation="horizontal"
+                        android:background="@drawable/topic_progress_background"/>
+                </LinearLayout>
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
        <!-- </RelativeLayout>-->
     </FrameLayout>
 </androidx.cardview.widget.CardView>

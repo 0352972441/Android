@@ -37,17 +37,8 @@ public class AudioFragment extends Fragment {
         txViewAll = (TextView)view.findViewById(R.id.view_all);
         cardItemAudioRecycler = (RecyclerView)view.findViewById(R.id.card_item_audio_recycler);
         cardItemAudioPopularRecycler = (RecyclerView)view.findViewById(R.id.card_item_audio_popular_recycler);
-        //audioApdapter = new CardItemAudioApdapter(Sound.listAllData);
-        /*data = Sound.getAllAudioPopular();
-        audioPopularAdapter = new CardItemAudioPopularAdapter(data);
-        cardItemAudioRecycler.setAdapter(audioApdapter);
-        getCardItemAudioPopularRecycler.setAdapter(audioPopularAdapter);
-        getCardItemAudioPopularRecycler.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        cardItemAudioRecycler.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));*/
         new AudioDao(cardItemAudioPopularRecycler,cardItemAudioRecycler).execute();
-        //new Sound(cardItemAudioPopularRecycler).execute();
         onClickViewAll();
-        //onClickPlayAudio();
     }
 
     @Override
@@ -72,25 +63,4 @@ public class AudioFragment extends Fragment {
         });
     }
 
-    /*private void onClickPlayAudio(){
-        final Intent intent = new Intent(getContext(), PlayAudioActivity.class);
-        audioPopularAdapter.setPlayAudioListener(new Listener() {
-            @Override
-            public void listener(int position) {
-                Bundle bundle = new Bundle();
-                Audio audio = data.get(position);
-                intent.putExtra(PlayAudioActivity.KEYAUDIO, BundleData.sendData(audio));
-                startActivity(intent);
-            }
-        });
-        audioApdapter.setPlayAudioListener(new Listener() {
-            @Override
-            public void listener(int position) {
-                Bundle bundle = new Bundle();
-                Audio audio = data.get(position);
-                intent.putExtra(PlayAudioActivity.KEYAUDIO, BundleData.sendData(audio));
-                startActivity(intent);
-            }
-        });
-    }*/
 }

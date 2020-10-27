@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cocoshop.adapter.topicsadapter.CardItemTopicAdapter;
+import com.example.cocoshop.database.responsive.TopicProgressResponsive;
+import com.example.cocoshop.listener.ListenerTopicProgress;
 import com.example.cocoshop.models.topicsmodel.Levels;
 import com.example.cocoshop.models.topicsmodel.Topic;
 import com.example.cocoshop.models.Vocabulary;
@@ -32,11 +34,8 @@ import java.util.Map;
 public class TopicDao extends AsyncTask<Void, ArrayList<Topic>,Boolean> {
     @SuppressLint("StaticFieldLeak")
     private static final FirebaseFirestore firestore;
-    private static final FirebaseStorage storage;
-    private static final StorageReference mRef;
     public static long countPopular = 1;
     public static final String MODEL = "TOPIC";
-    //private static Topic topic = new Topic();
     private ArrayList<Topic> topics = new ArrayList<>();
 
     public ArrayList<Topic> getTopics() {
@@ -44,9 +43,7 @@ public class TopicDao extends AsyncTask<Void, ArrayList<Topic>,Boolean> {
     }
 
     static {
-        storage = FirebaseStorage.getInstance();
         firestore = FirebaseFirestore.getInstance();
-        mRef = storage.getReference();
     }
     private Activity activity;
 
@@ -80,12 +77,13 @@ public class TopicDao extends AsyncTask<Void, ArrayList<Topic>,Boolean> {
         if(cardAdapter!= null && cardItemTopic!= null){
             cardItemTopic.setAdapter(cardAdapter);
             cardItemTopic.setLayoutManager(new LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false));
-            cardAdapter.setListenerItem(new Listener() {
+            cardAdapter.setOnClickTopic(new ListenerTopicProgress() {
                 @Override
-                public void listener(int position) {
+                public void onClickListener(int position, int topicId) {
                     Intent intent = new Intent(activity, LearningTopicActivity.class);
                     intent.putExtra(LearningTopicActivity.KEYPOSITION,position);
                     intent.putExtra(LearningTopicActivity.MODEL,MODEL);
+                    intent.putExtra(LearningTopicActivity.ID,topicId);
                     activity.startActivity(intent);
                     new PopularAsycnTask().execute(values[0].get(position));
                 }

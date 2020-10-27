@@ -1,163 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     android:background="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="15dp"
-    android:scrollbars="none"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".screen.authscreen.LoginScreen">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
     <LinearLayout
-        android:weightSum="3"
+        android:background="@color/white"
+        android:padding="15dp"
+        android:scrollbars="none"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:context=".screen.authscreen.LoginScreen"
+        tools:ignore="UselessParent">
         <LinearLayout
-            android:layout_weight="2.4"
-            android:weightSum="2"
-            android:id="@+id/rlLayout"
-            android:layout_height="0dp"
-            android:padding="15dp"
             android:layout_width="match_parent"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_weight="0.5"
-                android:id="@+id/logo"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:src="@drawable/buzzbee"
-                android:contentDescription="@string/description_image_logo" />
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
             <LinearLayout
-                android:layout_weight="1.5"
-                android:layout_below="@id/logo"
-                android:id="@+id/lnLayout"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_below="@id/logo"
-                    android:layout_marginTop="50dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_signup"
-                    android:id="@+id/mtxTtile"
-                    android:textSize="20dp"
-                    android:textColor="#171617"
-                    android:textStyle="bold"/>
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:id="@+id/medGmail"
-                    android:textColorHint="@color/colorPrimary"
-                    app:hintAnimationEnabled="true"
-                    android:hint="@string/label_hint_email"
-                    android:layout_marginTop="@dimen/margin_top_10dp"
-                    android:background="@drawable/edittext_custom"
-                    android:layout_height="@dimen/height_text_input_edittext_50dp"
-                    android:paddingLeft="@dimen/padding_left_15dp"
-                    android:inputType="textEmailAddress"
-                    app:errorEnabled="true">
-                </com.google.android.material.textfield.TextInputEditText>
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_marginTop="@dimen/margin_top_10dp"
-                    android:layout_width="match_parent"
-                    android:id="@+id/medPassword"
-                    android:hint="@string/label_hint_password"
-                    android:textColorHint="@color/colorPrimary"
-                    app:passwordToggleEnabled="true"
-                    android:layout_height="@dimen/height_text_input_edittext_50dp"
-                    android:inputType="textPassword"
-                    android:background="@drawable/edittext_custom"
-                    android:paddingLeft="@dimen/padding_left_15dp"
-                    app:errorEnabled="true">
-                </com.google.android.material.textfield.TextInputEditText>
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:visibility="visible"
-                    android:layout_below="@id/medPassword"
-                    android:hint="@string/label_hint_confirm_password"
-                    android:textColorHint="@color/colorPrimary"
-                    android:layout_marginTop="@dimen/margin_top_10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/height_text_input_edittext_50dp"
-                    android:id="@+id/medConfirmPassword"
-                    android:paddingLeft="@dimen/padding_left_15dp"
-                    android:background="@drawable/edittext_custom"
-                    android:drawablePadding="10dp"
-                    android:inputType="textPassword"
-                    app:errorEnabled="true">
-                </com.google.android.material.textfield.TextInputEditText>
-                <Button
-                    android:layout_marginTop="@dimen/margin_top_10dp"
-                    android:background="@drawable/button_custom"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/mbtnRg"
-                    android:textColor="#ffffffff"
-                    android:text="@string/label_button_signup"/>
-            </LinearLayout>
-        </LinearLayout>
-        <RelativeLayout
-            android:layout_weight="0.6"
-            android:layout_width="match_parent"
-            android:layout_height="0dp">
-            <TextView
-                android:textSize="15dp"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/txsignwith"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/label_signWith"/>
-
-            <include
-                android:id="@+id/bottomLayoutSignWith"
-                layout="@layout/bottomlayoutlogin"/>
-
-            <LinearLayout
-                android:layout_marginTop="20dp"
                 android:weightSum="3"
-                android:layout_centerHorizontal="true"
-                android:orientation="horizontal"
-                android:layout_below="@id/bottomLayoutSignWith"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="20dp"
-                    android:gravity="right"
-                    android:textSize="@dimen/text_size_label_question_sign_with_15dp"
-                    android:textColor="#000000"
-                    android:id="@+id/mtxquestion"
-                    android:layout_width="0dp"
-                    android:layout_weight="1.5"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_question_have_account"/>
-                <TextView
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="8dp"
-                    android:textSize="@dimen/text_size_label_sign_with_18dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"
-                    android:id="@+id/mtxChange"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_change_activity_signin"
-                    tools:ignore="SpUsage" />
+                <LinearLayout
+                    android:layout_weight="2.4"
+                    android:weightSum="2"
+                    android:id="@+id/rlLayout"
+                    android:layout_height="0dp"
+                    android:padding="15dp"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_weight="0.5"
+                        android:id="@+id/logo"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:src="@drawable/buzzbee"
+                        android:contentDescription="@string/description_image_logo" />
+                    <LinearLayout
+                        android:layout_weight="1.5"
+                        android:layout_below="@id/logo"
+                        android:id="@+id/lnLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_below="@id/logo"
+                            android:layout_marginTop="50dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_signup"
+                            android:id="@+id/m_tx_title"
+                            android:textSize="20dp"
+                            android:textColor="#171617"
+                            android:textStyle="bold"/>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:paddingStart="@dimen/padding_10dp"
+                            android:drawablePadding="@dimen/padding_10dp"
+                            android:drawableStart="@drawable/ic_account_circle_blue_24dp"
+                            android:layout_width="match_parent"
+                            android:id="@+id/medGmail"
+                            android:textColorHint="@color/colorPrimary"
+                            app:hintAnimationEnabled="true"
+                            android:hint="@string/label_hint_email"
+                            android:layout_marginTop="@dimen/margin_top_10dp"
+                            android:background="@drawable/edittext_custom"
+                            android:layout_height="@dimen/height_text_input_edittext_50dp"
+                            android:inputType="textEmailAddress"
+                            app:errorEnabled="true">
+                        </com.google.android.material.textfield.TextInputEditText>
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:paddingStart="@dimen/padding_10dp"
+                            android:drawablePadding="@dimen/padding_10dp"
+                            android:drawableStart="@drawable/ic_lock_outline_blue_24dp"
+                            android:layout_marginTop="@dimen/margin_top_10dp"
+                            android:layout_width="match_parent"
+                            android:id="@+id/medPassword"
+                            android:hint="@string/label_hint_password"
+                            android:textColorHint="@color/colorPrimary"
+                            app:passwordToggleEnabled="true"
+                            android:layout_height="@dimen/height_text_input_edittext_50dp"
+                            android:inputType="textPassword"
+                            android:background="@drawable/edittext_custom"
+                            app:errorEnabled="true">
+                        </com.google.android.material.textfield.TextInputEditText>
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:paddingStart="@dimen/padding_10dp"
+                            android:drawablePadding="@dimen/padding_10dp"
+                            android:drawableStart="@drawable/ic_lock_outline_blue_24dp"
+                            android:visibility="visible"
+                            android:hint="@string/label_hint_confirm_password"
+                            android:textColorHint="@color/colorPrimary"
+                            android:layout_marginTop="@dimen/margin_top_10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/height_text_input_edittext_50dp"
+                            android:id="@+id/medConfirmPassword"
+                            android:background="@drawable/edittext_custom"
+                            android:inputType="textPassword"
+                            app:errorEnabled="true"
+                            tools:ignore="RtlSymmetry">
+                        </com.google.android.material.textfield.TextInputEditText>
+                        <Button
+                            android:layout_marginTop="@dimen/margin_top_10dp"
+                            android:background="@drawable/button_custom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/mbtnRg"
+                            android:textColor="#ffffffff"
+                            android:text="@string/label_button_signup"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_weight="0.6"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+                    <TextView
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:gravity="center"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/txsignwith"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_signWith"/>
+
+                    <include
+                        android:id="@+id/bottomLayoutSignWith"
+                        layout="@layout/bottomlayoutlogin"/>
+
+                    <LinearLayout
+                        android:layout_marginTop="20dp"
+                        android:weightSum="3"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal"
+                        android:layout_below="@id/bottomLayoutSignWith"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="right"
+                            android:textSize="@dimen/text_size_label_question_sign_with_15dp"
+                            android:textColor="#000000"
+                            android:id="@+id/mtxquestion"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_question_have_account"/>
+                        <TextView
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="8dp"
+                            android:textSize="@dimen/text_size_label_sign_with_18dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimary"
+                            android:id="@+id/mtxChange"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_change_activity_signin"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
-        </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
-    </LinearLayout>
+    <com.agrawalsuneet.dotsloader.loaders.CircularDotsLoader
+        android:visibility="invisible"
+        android:id="@+id/progress_circular"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:loader_animDur="100"
+        app:loader_bigCircleRadius="42dp"
+        app:loader_circleRadius="14dp"
+        app:loader_defaultColor="@color/colorPrimary"
+        app:loader_firstShadowColor="@color/yellow"
+        app:loader_secondShadowColor="@color/grey"
+        app:loader_selectedColor="@color/blue_sky_color"
+        app:loader_showRunningShadow="true" />
+</FrameLayout>

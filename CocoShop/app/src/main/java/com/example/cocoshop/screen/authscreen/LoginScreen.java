@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.agrawalsuneet.dotsloader.loaders.CircularDotsLoader;
 import com.example.cocoshop.auth.AuthGoogle;
 import com.example.cocoshop.models.User;
 import com.example.cocoshop.models.UserAccount;
@@ -32,6 +33,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -55,6 +57,7 @@ public class LoginScreen extends AppCompatActivity {
     private ImageView imgSignInWithGoogle, imgLogo;
     private TextInputEditText medPassword,medEmail;
     private Animations animations;
+    private CircularDotsLoader circularDotsLoader;
 
     public static final FirebaseAuth mAuth;
     public static FirebaseUser currentUser;
@@ -74,12 +77,14 @@ public class LoginScreen extends AppCompatActivity {
         medEmail = (TextInputEditText)findViewById(R.id.medGmail);
         imgSignInWithGoogle = (ImageView)findViewById(R.id.imgSignInGoogle);
         imgLogo = (ImageView)findViewById(R.id.logo);
+        circularDotsLoader = findViewById(R.id.progress_circular);
         animations = new Animations(this);
         authGoogle = new AuthGoogle(mAuth,this,getString(R.string.default_web_client_id));
 
         setOnClickButtonLogin();
         setOnClickTextSwitch();
         signInWithGoogle();
+        // Animation progre
     }
 
     @Override
@@ -149,22 +154,23 @@ public class LoginScreen extends AppCompatActivity {
             public void onClick(View v) {
                 mbtnLogin.startAnimation(animations.zoomOut(100));
                 if(signUp()){
-                        final ProgressDialog dialog = new ProgressDialog(LoginScreen.this);
-                        dialog.setTitle("Please waiting ...");
-                        dialog.show();
+                        circularDotsLoader.setVisibility(View.VISIBLE);
                         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(LoginScreen.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
-                                    // Login into Screen home
-                                    // Lưu tài khoản và mật khẩu vào User
-                                    //dialog.dismiss();
                                     User.setKind("Basic");
                                     User.setEmail(email);
                                     loginSuccessed();
                                 }else{
-                                    dialog.dismiss();
+                                    circularDotsLoader.setVisibility(View.INVISIBLE);
                                 }
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Snackbar.make(imgLogo,e.getMessage(),Snackbar.LENGTH_LONG).show();
+                                circularDotsLoader.setVisibility(View.INVISIBLE);
                             }
                         });
                     }
@@ -281,8 +287,6 @@ public class LoginScreen extends AppCompatActivity {
             }
         });
     }
-
-
 
 
 }

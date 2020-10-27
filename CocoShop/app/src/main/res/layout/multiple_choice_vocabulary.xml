@@ -13,8 +13,8 @@
         <ImageView
             android:src="@drawable/icon_speaker"
             android:layout_centerHorizontal="true"
-            android:layout_width="@dimen/icon_size_36dp"
-            android:layout_height="@dimen/icon_size_36dp"
+            android:layout_width="@dimen/icon_size_48dp"
+            android:layout_height="@dimen/icon_size_48dp"
             android:id="@+id/img_speaker"/>
     </RelativeLayout>
 

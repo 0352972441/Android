@@ -6,15 +6,15 @@ public class Message {
     private String userName;
     private String time;
     private String uid;
-    private String accoutType;
+    private String accountType;
 
-    public Message(String message, String avata, String userName, String time, String uid, String accoutType) {
+    public Message(String message, String avata, String userName, String time, String uid, String accountType) {
         this.message = message;
         this.avata = avata;
         this.userName = userName;
         this.time = time;
         this.uid = uid;
-        this.accoutType = accoutType;
+        this.accountType = accountType;
     }
 
     public String getMessage() {
@@ -58,10 +58,10 @@ public class Message {
     }
 
     public String getAccoutType() {
-        return accoutType;
+        return accountType;
     }
 
     public void setAccoutType(String accoutType) {
-        this.accoutType = accoutType;
+        this.accountType = accoutType;
     }
 }

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cocoshop.adapter.CardItemAdapter;
+import com.example.cocoshop.listener.ListenerTopicProgress;
 import com.example.cocoshop.models.topicsmodel.Levels;
 import com.example.cocoshop.models.topicsmodel.Topic;
 import com.example.cocoshop.models.Vocabulary;
@@ -69,12 +70,13 @@ public class RecommendDao extends AsyncTask<Void, ArrayList<Topic>,Void> {
             GridLayoutManager gridLayoutManager = new GridLayoutManager(recommendRecyclerView.getContext(),2);
             recommendRecyclerView.setAdapter(adapter);
             recommendRecyclerView.setLayoutManager(gridLayoutManager);
-            adapter.setCardListener(new Listener() {
+            adapter.setOnClickTopic(new ListenerTopicProgress() {
                 @Override
-                public void listener(int position) {
+                public void onClickListener(int position, int topicId) {
                     Intent intent = new Intent(recommendRecyclerView.getContext(), LearningTopicActivity.class);
                     intent.putExtra(LearningTopicActivity.KEYPOSITION,position);
                     intent.putExtra(LearningTopicActivity.MODEL,MODEL);
+                    intent.putExtra(LearningTopicActivity.ID,topicId);
                     recommendRecyclerView.getContext().startActivity(intent);
                     new TopicDao.PopularAsycnTask().execute((Topic) values[0].get(position));
                 }

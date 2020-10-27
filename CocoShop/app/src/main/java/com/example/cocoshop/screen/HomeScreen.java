@@ -10,7 +10,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.agrawalsuneet.dotsloader.loaders.CircularDotsLoader;
 import com.example.cocoshop.R;
 import com.example.cocoshop.dao.AudioDao;
 import com.example.cocoshop.fragment.TopicFragment;
@@ -24,12 +26,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class HomeScreen extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     public static String isCurrentFragment = "";
+    private CircularDotsLoader mCircularDotsLoader;
     //private ActionBar tabBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavigatorView);
+        mCircularDotsLoader = findViewById(R.id.progress_circular);
         bottomNavigationView.setItemIconTintList(null);
         //tabBar = getSupportActionBar();
         //tabBar.setTitle("Home");
@@ -43,14 +47,12 @@ public class HomeScreen extends AppCompatActivity {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                ProgressDialog progressDialog = new ProgressDialog(HomeScreen.this);
                 InternetPermission internetPermission = new InternetPermission(HomeScreen.this);
                 internetPermission.run();
                 if(internetPermission.isOccurred()){
-                    progressDialog.show();
+                    mCircularDotsLoader.setVisibility(View.VISIBLE);
                 }else{
-                    progressDialog.dismiss();
-                    progressDialog.cancel();
+                    mCircularDotsLoader.setVisibility(View.INVISIBLE);
                 }
                 handler.postDelayed(this,3000);
             }
